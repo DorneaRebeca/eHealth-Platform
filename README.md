@@ -1,5 +1,8 @@
 # EHealth
 
+## If "Could not find module “@angular-devkit/build-angular”
+    Run "npm update"
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.20.
 
 ## Development server
