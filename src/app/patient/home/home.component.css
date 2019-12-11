@@ -17,11 +17,11 @@ html, body {
 mat-calendar {
   width: 100%;
   height: auto;
-  color: #6C9F7F;
+  color: #fa991c;
 }
 
 .mat-card-title {
-  color: #6C9F7F;
+  color: #fa991c;
 }
 
 textarea {
@@ -39,10 +39,7 @@ textarea {
   width: 90%;
   height: 50px;
   margin-top: 0;
-}
-
-li div mat-card {
-  height: 200px;
+  vertical-align: center;
 }
 
 #patientNotes {
