@@ -24,6 +24,8 @@ import {RouterModule} from "@angular/router";
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {AccountService} from "../services/account.service";
+import {FullCalendarModule} from '@fullcalendar/angular';
+import {MatGridListModule} from '@angular/material';
 
 
 
@@ -54,6 +56,8 @@ import {AccountService} from "../services/account.service";
     RouterModule,
     FlexLayoutModule,
     MatSidenavModule,
+    FullCalendarModule,
+    MatGridListModule,
   ],
   exports: [
     HeaderComponent,
@@ -79,6 +83,8 @@ import {AccountService} from "../services/account.service";
     MatListModule,
     FlexLayoutModule,
     CommonModule,
+    FullCalendarModule,
+    MatGridListModule,
   ],
   providers: [
     AccountService

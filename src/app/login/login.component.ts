@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
   public login() {
       let userType = this.accountService.canLogin(this.myForm.controls['email'].value, this.myForm.controls['password'].value);
       if(userType == 0) {
-        this.snackBar.open("Invalid email/password", "", {duration: 3000});
+        this.snackBar.open('Invalid email/password', '', {duration: 3000});
         return;
       } else if(userType == 1) {
         this.router.navigate(['home-patient']);

@@ -13,6 +13,7 @@ export class AccountService {
     'username' : 'doctor',
     'password' : 'doctor'
   };
+
   public shouldShowNavBar: BehaviorSubject<Boolean> = new BehaviorSubject<Boolean>(true);
   constructor() { }
 
