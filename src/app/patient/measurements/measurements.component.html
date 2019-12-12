@@ -1,0 +1,125 @@
+<mat-toolbar id="headerToolbar"  class="toolbar" color="accent">
+  <mat-card-title>Save Measurements</mat-card-title>
+  <span class="toolbar-spacer"></span>
+  <mat-icon (click)="onClose()">cancel</mat-icon>
+</mat-toolbar>
+
+<mat-list>
+  <mat-list-item>
+    <mat-toolbar class="toolbar" >
+      <mat-card-title>Blood Pressure</mat-card-title>
+      <span class="toolbar-spacer"></span>
+      <mat-icon fxLayoutAlign="end" (click)="showBloodPressureForm()">arrow_drop_down</mat-icon>
+    </mat-toolbar>
+  </mat-list-item>
+    <form class="normal-form" (submit)="saveBloodPressure()" [hidden]="hideBloodPressure">
+      <div class="controles-container">
+        <input type="hidden" >
+        <mat-form-field appearance="outline">
+          <mat-label>Systolic</mat-label>
+          <input matInput placeholder="mmHg" [ngModel]="pressureData.systolic">
+          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+          <mat-hint>*mandatory value</mat-hint>
+          <mat-error>This field is mandatory.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Diastolic</mat-label>
+          <input matInput placeholder="mmGh" [ngModel]="pressureData.diastolic">
+          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+          <mat-hint>*mandatory value</mat-hint>
+          <mat-error>This field is mandatory.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Pulse rate</mat-label>
+          <input matInput placeholder="beats/minute" [ngModel]="pressureData.pulse">
+          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+          <mat-hint>*mandatory value</mat-hint>
+          <mat-error>This field is mandatory.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput [matDatepicker]="pressPicker" placeholder="Choose a date" [ngModel]="pressureData.date">
+          <mat-datepicker-toggle matSuffix [for]="pressPicker"></mat-datepicker-toggle>
+          <mat-datepicker #pressPicker></mat-datepicker>
+        </mat-form-field>
+
+
+        <div class="button-row">
+          <button mat-raised-button color="primary" type="submit">Save</button>
+          <button mat-raised-button color="accent" (click)="onClear()">Cancel</button>
+        </div>
+      </div>
+    </form>
+
+  <mat-divider></mat-divider>
+
+  <mat-list-item>
+    <mat-toolbar class="toolbar" >
+      <mat-card-title>Temperature</mat-card-title>
+      <span class="toolbar-spacer"></span>
+      <mat-icon fxLayoutAlign="end" (click)="showTemperatureForm()">arrow_drop_down</mat-icon>
+    </mat-toolbar>
+  </mat-list-item>
+  <mat-divider></mat-divider>
+
+  <form class="normal-form" (submit)="saveTemperature()" [hidden]="hideTemperature">
+    <div class="controles-container">
+      <input type="hidden" >
+      <mat-form-field appearance="outline">
+        <mat-label>Temperature</mat-label>
+        <input matInput placeholder="Celsius grades" [ngModel]="tempData.temperature">
+        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        <mat-hint>*mandatory value</mat-hint>
+        <mat-error>This field is mandatory.</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput [matDatepicker]="tempPicker" placeholder="Choose a date"  [ngModel]="tempData.date">
+        <mat-datepicker-toggle matSuffix [for]="tempPicker"></mat-datepicker-toggle>
+        <mat-datepicker #tempPicker></mat-datepicker>
+      </mat-form-field>
+
+      <div class="button-row">
+        <button mat-raised-button color="primary" type="submit">Save</button>
+        <button mat-raised-button color="accent" (click)="onClear()">Cancel</button>
+      </div>
+    </div>
+  </form>
+
+  <mat-list-item>
+    <mat-toolbar class="toolbar" >
+      <mat-card-title>Blood Sugar Level</mat-card-title>
+      <span class="toolbar-spacer"></span>
+      <mat-icon fxLayoutAlign="end" (click)="showBloodSugarFrom()">arrow_drop_down</mat-icon>
+    </mat-toolbar>
+  </mat-list-item>
+  <mat-divider></mat-divider>
+
+  <form class="normal-form" (submit)="saveBloodSugar()" [hidden]="hideBloodSugar">
+    <div class="controles-container">
+      <input type="hidden" >
+      <mat-form-field appearance="outline">
+        <mat-label>Sugar Level</mat-label>
+        <input matInput placeholder="levesdjc" [ngModel]="sugarData.bloodSugar">
+        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        <mat-hint>*mandatory value</mat-hint>
+        <mat-error>This field is mandatory.</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput [matDatepicker]="sugarPicker" placeholder="Choose a date" [ngModel]="sugarData.date">
+        <mat-datepicker-toggle matSuffix [for]="sugarPicker"></mat-datepicker-toggle>
+        <mat-datepicker #sugarPicker></mat-datepicker>
+      </mat-form-field>
+
+      <div class="button-row">
+        <button mat-raised-button color="primary" type="submit">Save</button>
+        <button mat-raised-button color="accent" (click)="onClear()">Cancel</button>
+      </div>
+    </div>
+  </form>
+
+</mat-list>
+

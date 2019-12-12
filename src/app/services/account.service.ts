@@ -5,6 +5,7 @@ import {BehaviorSubject} from "rxjs";
   providedIn: 'root'
 })
 export class AccountService {
+
   private user1 = {
     'username' : 'patient',
     'password' : 'patient'
@@ -18,8 +19,19 @@ export class AccountService {
   constructor() { }
 
   public canLogin(username, password) {
-    if( this.user1.username == username && this.user1.password == password) { return 1; }
-    else if( this.user2.username == username && this.user2.password == password) { return 2; }
-    else { return 0; }
+    if( this.user1.username == username && this.user1.password == password) {
+      localStorage.setItem('loggedUserType' , 'patient');
+      return 1;
+    }
+    else if( this.user2.username == username && this.user2.password == password) {
+      localStorage.setItem('loggedUserType' , 'doctor');
+      return 2; }
+    else {
+      localStorage.setItem('loggedUserType' , null);
+      return 0; }
   }
+
+
+
+
 }

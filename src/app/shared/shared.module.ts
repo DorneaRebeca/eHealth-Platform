@@ -26,6 +26,7 @@ import {MatSidenavModule} from "@angular/material/sidenav";
 import {AccountService} from "../services/account.service";
 import {FullCalendarModule} from '@fullcalendar/angular';
 import {MatGridListModule} from '@angular/material';
+import {MeasurementsComponent} from '../patient/measurements/measurements.component';
 
 
 
@@ -88,6 +89,9 @@ import {MatGridListModule} from '@angular/material';
   ],
   providers: [
     AccountService
+  ],
+  entryComponents : [
+    MeasurementsComponent
   ]
 })
 export class SharedModule { }
