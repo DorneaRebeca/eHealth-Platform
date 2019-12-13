@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialogRef} from '@angular/material';
+import {PatientService} from '../../services/patient.service';
 
 @Component({
   selector: 'app-measurements',
@@ -12,23 +13,22 @@ export class MeasurementsComponent implements OnInit {
   hideTemperature : boolean = true;
   hideBloodSugar : boolean = true;
 
-  pressureData = {
-    date : new Date(),
-      systolic : 0,
-      diastolic : 0,
-      pulse : 0
-    };
-  tempData = {
-    date: new Date(),
-    temperature: 0.00,
-  };
-  sugarData = {
-    date : new  Date(),
-    bloodSugar : 0,
-  };
+    presDate : Date = new Date();
+      systolic  : number;
+      diastolic : number;
+      pulse : number;
+
+    tempDate: Date =  new Date();
+    temperature : number;
+
+
+  sugarDate : Date =  new  Date();
+  bloodSugar : number;
+
 
   constructor(
     private dialogRef: MatDialogRef<MeasurementsComponent>,
+    private patientService : PatientService,
   ) { }
 
   ngOnInit() {
@@ -39,13 +39,31 @@ export class MeasurementsComponent implements OnInit {
   }
 
   saveTemperature() {
-
+    let tempData = {
+      date : this.tempDate,
+      temperature : this.temperature
+    };
+    this.patientService.saveDataInLocalStorageArray(tempData, 'temperatureData');
   }
 
   saveBloodSugar() {
+    let sugarData =
+      {
+        date : this.sugarDate,
+        sugar : this.bloodSugar
+  };
+    this.patientService.saveDataInLocalStorageArray(sugarData, 'sugarData');
+
   }
 
   saveBloodPressure(){
+    let pressureData = {
+      date : this.presDate,
+      systolic :this.systolic,
+      diastolic : this.diastolic,
+      pulseRate : this.pulse
+    };
+    this.patientService.saveDataInLocalStorageArray(pressureData, 'pressureData');
 
   }
 

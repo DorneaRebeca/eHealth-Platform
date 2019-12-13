@@ -3,6 +3,10 @@
   border-radius: 10px;
 }
 
+mat-icon {
+  margin-right: 30px;
+
+}
 mat-list {
   width: 100%;
   height: 500px;
