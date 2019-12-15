@@ -24,6 +24,11 @@ import {RouterModule} from "@angular/router";
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {AccountService} from "../services/account.service";
+import {MatProgressBarModule} from "@angular/material/progress-bar";
+import {FoodTrackerComponent} from "../patient/food-tracker/food-tracker.component";
+import {MatCheckbox, MatCheckboxModule} from "@angular/material/checkbox";
+import {MatTooltip, MatTooltipModule} from "@angular/material/tooltip";
+import {MatProgressSpinner, MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 
 
@@ -54,6 +59,10 @@ import {AccountService} from "../services/account.service";
     RouterModule,
     FlexLayoutModule,
     MatSidenavModule,
+    MatProgressBarModule,
+    MatCheckboxModule,
+    MatTooltipModule,
+    MatProgressSpinnerModule
   ],
   exports: [
     HeaderComponent,
@@ -79,9 +88,16 @@ import {AccountService} from "../services/account.service";
     MatListModule,
     FlexLayoutModule,
     CommonModule,
+    MatProgressBarModule,
+    MatCheckboxModule,
+    MatTooltipModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     AccountService
+  ],
+  entryComponents: [
+    FoodTrackerComponent
   ]
 })
 export class SharedModule { }

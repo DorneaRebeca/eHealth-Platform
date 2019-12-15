@@ -13,12 +13,14 @@ import {MatListModule} from "@angular/material/list";
 import {SharedModule} from "./shared/shared.module";
 import { HomeComponent } from './doctor/home/home.component';
 import {DoctorModule} from "./doctor/doctor.module";
+import { FoodTrackerComponent } from './patient/food-tracker/food-tracker.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     HomeComponent,
+    FoodTrackerComponent,
   ],
   imports: [
     BrowserModule,

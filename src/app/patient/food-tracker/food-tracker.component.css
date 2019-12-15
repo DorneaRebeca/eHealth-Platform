@@ -1,0 +1,38 @@
+/*#cancel {*/
+/*  float: right;*/
+/*}*/
+
+
+table {
+  padding-top: 50px;
+  margin: auto;
+  text-align: center;
+}
+
+td {
+  padding:10px 15px;
+}
+
+tr.disabled{
+  color: gray;
+}
+
+.overlay-button{
+  position: absolute;
+  left: 48%;
+  bottom: 5%;
+}
+
+
+video {
+  height: 456px;
+  width: 616px;
+  object-fit: fill;
+  z-index: 10;
+}
+
+#video-wrapper {
+  object-fit: fill;
+}
+
+
