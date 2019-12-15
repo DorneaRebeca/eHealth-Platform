@@ -1,5 +1,9 @@
 # EHealth
 
+# External dependencies
+	File input: npm i ngx-material-file-input 
+
+
 ## If "Could not find module “@angular-devkit/build-angular”
     Run "npm update"
 

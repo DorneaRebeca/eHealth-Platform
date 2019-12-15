@@ -6,16 +6,18 @@
 }
 
 mat-progress-bar {
-  margin-top: 10%;
-  margin-left: 5%;
   width: 250px;
   height: 20px;
   display: inline-block;
 }
 
 #p2 {
-  width: 100px;
+  width: 20%;
   margin-left: 0;
+}
+
+#nutrients-progress-bar {
+  width: 75%;
 }
 
 main {

@@ -3,6 +3,7 @@ import { FormControl, FormGroup, ValidationErrors, Validators } from '@angular/f
 import { MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
 import {AccountService} from "../services/account.service";
+import {init} from "protractor/built/launcher";
 
 @Component({
   selector: 'app-login',
@@ -47,10 +48,21 @@ export class LoginComponent implements OnInit {
         return;
       } else if(userType == 1) {
         this.router.navigate(['home-patient']);
+        this.initMeasurements();
       } else if(userType == 2) {
         this.router.navigate(['home-doctor']);
       }
     this.accountService.shouldShowNavBar.next(false);
+  }
+
+  initMeasurements() {
+    var meals = [];
+    meals.push({name: 'Breakfast', status: false, calories: 0});
+    meals.push({name: 'Lunch', status: false, calories: 0});
+    meals.push({name: 'Dinner', status: false, calories: 0});
+    meals.push({name: 'Snack', status: false, calories: 0});
+    localStorage.setItem('dailyMeals', JSON.stringify(meals));
+    localStorage.setItem('nutrients', JSON.stringify(0));
   }
 }
 

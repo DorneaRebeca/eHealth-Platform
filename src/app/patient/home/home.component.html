@@ -36,25 +36,30 @@
       </mat-card-content>
     </mat-card>
 
-    <mat-card>
-      <mat-card-header>
-        <mat-card-title>Nutrients</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-                <textarea type="text" ngDefaultControl [ngModel]="nutrientsMessage" >
-                </textarea>
-      </mat-card-content>
-    </mat-card>
-</div>
-<h1>adsjna,sdnklanskldnakslndkankdaskm</h1>
+  <mat-card >
+    <mat-card-header>
+      <mat-card-title>Nutrients</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-progress-bar id="nutrients-progress-bar"
+                            [@progressBarTrigger]='state'
+                             [color]="color"
+                             [mode]="mode"
+                             [value]="value"
+                             [bufferValue]="bufferValue"
+                             matTooltip="{{patientService.nutrients}}/2000"
+                             matTooltipPosition="below">
+      </mat-progress-bar>
+      <mat-progress-bar id ="p2"
+                        [@progressBarTrigger]='state'
+                        [color]="'warn'"
+                        [mode]="mode"
+                        [value]="exceededNutrition"
+                        [bufferValue]="bufferValue">
+      </mat-progress-bar>
+      <textarea type="text" ngDefaultControl [ngModel]="nutrientsMessage" ></textarea>
+    </mat-card-content>
+  </mat-card>
 
-<div id="nutritionStats" >
-  <mat-progress-bar  [@progressBarTrigger]='state' id= "p1"[color]="color"
-                     [mode]="mode"
-                     [value]="value"
-                     [bufferValue]="bufferValue"></mat-progress-bar>
-  <!--  <mat-progress-bar  id="p2" [color]="color"-->
-  <!--                     [mode]="mode"-->
-  <!--                     [value]="0"-->
-  <!--                     [bufferValue]="bufferValue"></mat-progress-bar>-->
+
 </div>

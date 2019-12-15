@@ -32,8 +32,8 @@ export class HeaderComponent implements OnInit {
       width: '664px',
     });
   }
+
   public openMeasurementsDialog() : void {
-    console.log('Merge');
     this.dialog.open(MeasurementsComponent);
   }
 }

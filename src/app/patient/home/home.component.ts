@@ -1,4 +1,4 @@
-import {AfterContentInit, AfterViewInit, Component, OnInit} from '@angular/core';
+import {AfterContentInit, AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {animate, state, style, transition, trigger} from "@angular/animations";
 import {interval, Subscription} from "rxjs";
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
@@ -21,15 +21,16 @@ import {PatientService} from '../../services/patient.service';
 export class HomeComponent implements OnInit, AfterContentInit  {
   color = 'primary';
   mode = 'determined';
+  exceededNutrition = 0;
   value = 80;
-  bufferValue = 75;
+  bufferValue = 100;
   state = 'none';
 
-  refreshIntervalId = 0;
+  refreshIntervalId: any;
   selectedDate : Date = new Date();
 
   measurementsMessage : string = '';
-  nutrientsMessage : string = 'Aci is nutrientii vietii';
+  nutrientsMessage : string = '';
   patientsNews  = [
     {
       from : 'Patrick',
@@ -52,10 +53,28 @@ export class HomeComponent implements OnInit, AfterContentInit  {
   ];
 
   ngAfterContentInit (): void {
-    this.startAnimate();
+    this.patientService.nutritionValue.subscribe( value => {
+      setTimeout(() => {
+        document.getElementById("nutrients-progress-bar").scrollIntoView({behavior: 'smooth', block: 'start', inline: 'nearest'});
+        this.value = value.valueOf() * 100 / 2000;
+        if(this.patientService.nutrients > 2000) {
+          console.log(this.exceededNutrition)
+          this.exceededNutrition += this.value;
+        }
+        this.nutrientsMessage = '';
+        for(var i = 0; i < this.patientService.dailyMeals.length; i++){
+          let meal = this.patientService.dailyMeals[i];
+          if(meal.calories != 0) {
+            this.nutrientsMessage += meal.name + ': ' + meal.calories + ' calories.\n\n';
+          }
+        }
+        }, 100 );
+    });
     this.refreshIntervalId = setInterval(() => this.startAnimate(), 1000);
   }
-
+  update(v) {
+    this.value = v;
+  }
   constructor(
     private router: Router,
     private patientService : PatientService,
@@ -96,9 +115,7 @@ export class HomeComponent implements OnInit, AfterContentInit  {
   }
 
   public startAnimate() {
-    console.log(this.value);
-    this.state = 'maximum';
-    this.value -= 5;
+    this.value = this.patientService.nutrients * 100 / 2000;
     clearInterval(this.refreshIntervalId);
   }
 }

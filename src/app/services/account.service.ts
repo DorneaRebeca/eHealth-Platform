@@ -14,7 +14,7 @@ export class AccountService {
     'username' : 'doctor',
     'password' : 'doctor'
   };
-  public shouldShowNavBar: BehaviorSubject<Boolean> = new BehaviorSubject<Boolean>(true);
+  public shouldShowNavBar: BehaviorSubject<Boolean> = new BehaviorSubject<Boolean>(false);
   constructor() { }
 
   public canLogin(username, password) {

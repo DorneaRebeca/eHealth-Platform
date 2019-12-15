@@ -1,22 +1,28 @@
 import { Injectable } from '@angular/core';
 import {Meal} from "../patient/food-tracker/food-tracker.component";
+import {BehaviorSubject} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class PatientService {
-  nutritionValue = 0;
+  nutrients: number;
+  nutritionValue: BehaviorSubject<number> = new BehaviorSubject<number>(0);
   dailyMeals = [];// = [{'Breakfast': false}, {'Lunch': false}, {'Dinner': false}];
+
   constructor() {
-    this.dailyMeals.push({name: 'Breakfast', status: false, calories: 0});
-    this.dailyMeals.push({name: 'Lunch', status: true, calories: 0});
-    this.dailyMeals.push({name: 'Dinner', status: false, calories: 0});
-    this.dailyMeals.push({name: 'Snack', status: false, calories: 0});
+    this.nutrients = JSON.parse(localStorage.getItem('nutrients'));
+    this.dailyMeals = JSON.parse(localStorage.getItem('dailyMeals'))
   }
 
-  public addNutritionValue(numberOfNutrition) {
+  public addNutritionValue(numberOfNutrition, toMeal) {
     //2000 is max
-    this.nutritionValue = numberOfNutrition;
+    this.nutrients += numberOfNutrition;
+    localStorage.setItem('nutrients', JSON.stringify(this.nutrients));
+    this.nutritionValue.next(this.nutrients);
+    this.dailyMeals[toMeal].status = true;
+    this.dailyMeals[toMeal].calories += numberOfNutrition;
+    localStorage.setItem('dailyMeals', JSON.stringify(this.dailyMeals));
   }
 
   saveDataInLocalStorageArray(tempData, arrayName : string) :void {
@@ -32,7 +38,7 @@ export class PatientService {
     }
     }
 
-      getDataOnDate(date: Date, dataName : string) {
+    getDataOnDate(date: Date, dataName : string) {
         let data = JSON.parse(localStorage.getItem(dataName));
         let rez;
 
@@ -43,7 +49,7 @@ export class PatientService {
             }
           }
         }
-        console.log(rez);
         return rez;
-      }
+  }
+
   }

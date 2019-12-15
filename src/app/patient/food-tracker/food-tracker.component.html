@@ -1,41 +1,51 @@
 <html>
 <body>
-<mat-icon id="cancel" color="primary" (click)="onNoClick()" al>cancel</mat-icon>
-<div id="video-wrapper" style="height: 0px;width: 0px;" >
-  <video id="video"></video>
+<mat-icon id="cancel" color="primary" (click)="onNoClick()" >cancel</mat-icon>
 
+<div id="video-wrapper">
+  <video id="video" width="606px" height="456px"></video>
+  <button class="overlay-button" mat-fab color="primary" (click)="didTapTakePhotoButton()">
+    <mat-icon>done</mat-icon>
+  </button>
 </div>
-<button class="overlay-button" mat-fab color="primary" *ngIf="shouldShowCamera" (click)="stopCamera()">
-  <mat-icon>done</mat-icon>
-</button>
+
+<div id="canvas-wrapper">
+  <canvas id="canvas" width="606px" height="456px"></canvas>
+  <button id="doneButton" class="overlay-button" mat-fab color="primary" (click)="didTapApprovePhoto()">
+    <mat-icon>done</mat-icon>
+  </button>
+  <button id="retryButton" class="overlay-button" mat-fab color="primary" (click)="didTapRetakePhotoButton()">
+    <mat-icon>autorenew</mat-icon>
+  </button>
+</div>
+
 <div *ngIf="!shouldShowCamera">
   <table>
     <thead></thead>
     <tbody>
-      <tr [ngClass]="{'disabled': (meal.status && !(meal.name.includes('Snack')))}" *ngFor="let meal of meals; index as i">
-        <td>
-          <mat-checkbox class="example-margin"  *ngIf="!(meal.name=='Snack')" [disabled]="true" [checked]="meal.status"></mat-checkbox>
-        </td>
-        <td>{{meal.name}}</td>
-        <td>
-          <button mat-fab color="primary" [disabled]="(meal.status && !(meal.name.includes('Snack')))" matTooltip="Take a photo!" (click)="startCamera(i)">
-            <mat-icon>photo_camera</mat-icon>
-          </button>
-        </td>
-        <td>
-          <button mat-fab color="primary" [disabled]="(meal.status && !(meal.name.includes('Snack')))" matTooltip="Upload a photo!" >
-            <mat-icon>cloud_upload</mat-icon>
-          </button>
-        </td>
-      </tr>
+    <tr [ngClass]="{'disabled': (meal.status && !(meal.name.includes('Snack')))}" *ngFor="let meal of meals; index as i">
+      <td>
+        <mat-checkbox class="example-margin"  *ngIf="!(meal.name=='Snack')" [disabled]="true" [checked]="meal.status"></mat-checkbox>
+      </td>
+      <td>{{meal.name}}</td>
+      <td>
+        <button mat-fab color="primary" [disabled]="(meal.status && !(meal.name.includes('Snack')))" matTooltip="Take a photo!" (click)="didTapCaptureButton(i)">
+          <mat-icon>photo_camera</mat-icon>
+        </button>
+      </td>
+      <td>
+        <input #fileUpload type="file" (change)="didTapUploadButton(fileUpload.files, i)" style="display:none"
+               accept="image/*">
+        <button id="upload-button" mat-fab color="primary" [disabled]="(meal.status && !(meal.name.includes('Snack')))" matTooltip="Upload a photo!" (click)="fileUpload.click()">
+          <mat-icon>cloud_upload</mat-icon>
+        </button>
+      </td>
+    </tr>
     </tbody>
   </table>
 </div>
-
-<mat-card *ngIf="shouldShowLoadingScreen">
-  <mat-card-content>
-    <mat-progress-spinner class="example-margin" [color]="'primary'" [mode]="'indeterminate'"></mat-progress-spinner>
-  </mat-card-content>
-</mat-card>
+<div id="loading-spinner">
+  <mat-progress-spinner class="example-margin" [color]="'primary'" [mode]="'indeterminate'"></mat-progress-spinner>
+</div>
 </body>
 </html>
