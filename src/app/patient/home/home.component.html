@@ -1,3 +1,51 @@
+<mat-grid-list cols="2">
+
+  <mat-grid-tile>
+<mat-calendar
+  [selected]="selectedDate"
+  (selectedChange)="onSelect($event)" >
+</mat-calendar>
+  </mat-grid-tile>
+
+  <mat-grid-tile >
+        <div id="newsCard">
+          <mat-card-title >News</mat-card-title>
+          <mat-list>
+            <a mat-list-item ngDefaultControl *ngFor="let news of patientsNews" href="{{news.src}}">
+              <h3 matLine> Dr {{news.from}} </h3>
+              <p matLine>
+                <span class="demo-2"> {{news.message}} </span>
+              </p>
+            </a>
+            <mat-divider></mat-divider>
+          </mat-list>
+        </div>
+  </mat-grid-tile>
+
+</mat-grid-list>
+
+<div id="patientNotes">
+
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Measurements</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+                  <textarea type="text" ngDefaultControl [ngModel]="measurementsMessage" >
+                  </textarea>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Nutrients</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+                <textarea type="text" ngDefaultControl [ngModel]="nutrientsMessage" >
+                </textarea>
+      </mat-card-content>
+    </mat-card>
+</div>
 <h1>adsjna,sdnklanskldnakslndkankdaskm</h1>
 
 <div id="nutritionStats" >
@@ -5,8 +53,8 @@
                      [mode]="mode"
                      [value]="value"
                      [bufferValue]="bufferValue"></mat-progress-bar>
-<!--  <mat-progress-bar  id="p2" [color]="color"-->
-<!--                     [mode]="mode"-->
-<!--                     [value]="0"-->
-<!--                     [bufferValue]="bufferValue"></mat-progress-bar>-->
+  <!--  <mat-progress-bar  id="p2" [color]="color"-->
+  <!--                     [mode]="mode"-->
+  <!--                     [value]="0"-->
+  <!--                     [bufferValue]="bufferValue"></mat-progress-bar>-->
 </div>

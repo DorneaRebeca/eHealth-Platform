@@ -1,18 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {HomeComponent} from "./home/home.component";
-import {SharedModule} from "../shared/shared.module";
-import {MatSidenavModule} from "@angular/material/sidenav";
+import {HomeComponent} from './home/home.component';
+import {SharedModule} from '../shared/shared.module';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import { MeasurementsComponent } from './measurements/measurements.component';
 
 
 @NgModule({
   declarations: [
-    HomeComponent
+    HomeComponent,
+    MeasurementsComponent
   ],
   imports: [
     CommonModule,
     SharedModule,
-    MatSidenavModule
+    MatSidenavModule,
   ],
 })
 export class PatientModule { }

@@ -29,6 +29,9 @@ import {FoodTrackerComponent} from "../patient/food-tracker/food-tracker.compone
 import {MatCheckbox, MatCheckboxModule} from "@angular/material/checkbox";
 import {MatTooltip, MatTooltipModule} from "@angular/material/tooltip";
 import {MatProgressSpinner, MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {MatGridListModule} from '@angular/material';
+import {MeasurementsComponent} from '../patient/measurements/measurements.component';
+import {FullCalendarModule} from "@fullcalendar/angular";
 
 
 
@@ -62,7 +65,9 @@ import {MatProgressSpinner, MatProgressSpinnerModule} from "@angular/material/pr
     MatProgressBarModule,
     MatCheckboxModule,
     MatTooltipModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    FullCalendarModule,
+    MatGridListModule,
   ],
   exports: [
     HeaderComponent,
@@ -91,13 +96,16 @@ import {MatProgressSpinner, MatProgressSpinnerModule} from "@angular/material/pr
     MatProgressBarModule,
     MatCheckboxModule,
     MatTooltipModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    FullCalendarModule,
+    MatGridListModule,
   ],
   providers: [
     AccountService
   ],
   entryComponents: [
-    FoodTrackerComponent
-  ]
+    FoodTrackerComponent,
+    MeasurementsComponent
+  ],
 })
 export class SharedModule { }
