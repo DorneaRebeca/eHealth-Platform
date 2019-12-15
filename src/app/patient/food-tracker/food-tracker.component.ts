@@ -89,6 +89,7 @@ export class FoodTrackerComponent implements OnInit, OnDestroy {
   didTapRetakePhotoButton() {
     if(this.uploadProcessIsOn)  {
       document.getElementById('upload-button').click();
+      document.getElementById('meals-menu').style.removeProperty('display');
       document.getElementById('canvas-wrapper').style.setProperty('display', 'none');
     } else {
       document.getElementById('video-wrapper').style.setProperty('display', 'block');
@@ -120,6 +121,7 @@ export class FoodTrackerComponent implements OnInit, OnDestroy {
       img.onload = function(){
         const canvas: any = document.getElementById('canvas');
         const context: any = canvas.getContext('2d');
+        document.getElementById('meals-menu').style.setProperty('display', 'none');
         document.getElementById('canvas-wrapper').style.setProperty('display', 'block');
         context.drawImage(img, 0, 0, 640, 480);
       };

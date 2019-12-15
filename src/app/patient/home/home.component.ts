@@ -58,7 +58,6 @@ export class HomeComponent implements OnInit, AfterContentInit  {
         document.getElementById("nutrients-progress-bar").scrollIntoView({behavior: 'smooth', block: 'start', inline: 'nearest'});
         this.value = value.valueOf() * 100 / 2000;
         if(this.patientService.nutrients > 2000) {
-          console.log(this.exceededNutrition)
           this.exceededNutrition += this.value;
         }
         this.nutrientsMessage = '';
@@ -116,6 +115,9 @@ export class HomeComponent implements OnInit, AfterContentInit  {
 
   public startAnimate() {
     this.value = this.patientService.nutrients * 100 / 2000;
+    if(this.patientService.nutrients > 2000) {
+      this.exceededNutrition += 100;
+    }
     clearInterval(this.refreshIntervalId);
   }
 }
