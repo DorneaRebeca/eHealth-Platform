@@ -4,6 +4,7 @@ import {connectableObservableDescriptor} from "rxjs/internal/observable/Connecta
 import {MatDialog, MatDialogModule, MatDialogConfig} from '@angular/material/dialog';
 import {FoodTrackerComponent} from "../../patient/food-tracker/food-tracker.component";
 import {MeasurementsComponent} from '../../patient/measurements/measurements.component';
+import { DailyTreatmentComponent } from 'src/app/patient/daily-treatment/daily-treatment.component';
 
 @Component({
   selector: 'app-header',
@@ -35,5 +36,8 @@ export class HeaderComponent implements OnInit {
 
   public openMeasurementsDialog() : void {
     this.dialog.open(MeasurementsComponent);
+  }
+  public openMyDailyTreatmentDialog() : void {
+    this.dialog.open(DailyTreatmentComponent);
   }
 }

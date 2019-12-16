@@ -14,6 +14,7 @@ import {SharedModule} from "./shared/shared.module";
 import { HomeComponent } from './doctor/home/home.component';
 import {DoctorModule} from "./doctor/doctor.module";
 import { FoodTrackerComponent } from './patient/food-tracker/food-tracker.component';
+import { DailyTreatmentComponent } from './patient/daily-treatment/daily-treatment.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { FoodTrackerComponent } from './patient/food-tracker/food-tracker.compon
     LoginComponent,
     HomeComponent,
     FoodTrackerComponent,
+    DailyTreatmentComponent
   ],
   imports: [
     BrowserModule,

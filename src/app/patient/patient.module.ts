@@ -9,7 +9,7 @@ import { MeasurementsComponent } from './measurements/measurements.component';
 @NgModule({
   declarations: [
     HomeComponent,
-    MeasurementsComponent
+    MeasurementsComponent,
   ],
   imports: [
     CommonModule,
