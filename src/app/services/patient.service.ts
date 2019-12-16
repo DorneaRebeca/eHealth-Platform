@@ -8,6 +8,20 @@ import {BehaviorSubject} from "rxjs";
 export class PatientService {
   nutrients: number;
   nutritionValue: BehaviorSubject<number> = new BehaviorSubject<number>(0);
+  drugsBreakfast = [
+    {name: 'Medicament 1',selected:false},
+    {name: 'Medicament 2',selected:false},
+    {name: 'Medicament 3',selected:false}
+  ];
+  drugsLunch = [
+    {name: 'Medicament 5',selected:false},
+    {name: 'Medicament 6',selected:false}
+  ];
+  drugsDinner = [
+    {name: 'Medicament 8',selected:false},
+    {name: 'Medicament 10',selected:false},
+    {name: 'Medicament 13',selected:false}
+  ];
   dailyMeals = [];// = [{'Breakfast': false}, {'Lunch': false}, {'Dinner': false}];
 
   constructor() {
@@ -50,6 +64,18 @@ export class PatientService {
           }
         }
         return rez;
+  }
+  setDrugsForBeakfast(data:{name:string,selected:boolean}[]){
+    this.drugsBreakfast=data;
+
+  }
+  setDrugsForLunch(data:{name:string,selected:boolean}[]){
+    this.drugsLunch=data;
+
+  }
+  setDrugsForDinner(data:{name:string,selected:boolean}[]){
+    this.drugsDinner=data;
+
   }
 
   }

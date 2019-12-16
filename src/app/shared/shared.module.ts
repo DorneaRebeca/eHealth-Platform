@@ -32,6 +32,7 @@ import {MatProgressSpinner, MatProgressSpinnerModule} from "@angular/material/pr
 import {MatGridListModule} from '@angular/material';
 import {MeasurementsComponent} from '../patient/measurements/measurements.component';
 import {FullCalendarModule} from "@fullcalendar/angular";
+import { DailyTreatmentComponent } from '../patient/daily-treatment/daily-treatment.component';
 
 
 
@@ -105,7 +106,8 @@ import {FullCalendarModule} from "@fullcalendar/angular";
   ],
   entryComponents: [
     FoodTrackerComponent,
-    MeasurementsComponent
+    MeasurementsComponent,
+    DailyTreatmentComponent,
   ],
 })
 export class SharedModule { }
