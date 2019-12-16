@@ -5,6 +5,7 @@ import {BehaviorSubject} from "rxjs";
 @Injectable({
   providedIn: 'root'
 })
+
 export class PatientService {
   nutrients: number;
   nutritionValue: BehaviorSubject<number> = new BehaviorSubject<number>(0);

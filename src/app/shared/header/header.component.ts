@@ -5,6 +5,7 @@ import {MatDialog, MatDialogModule, MatDialogConfig} from '@angular/material/dia
 import {FoodTrackerComponent} from "../../patient/food-tracker/food-tracker.component";
 import {MeasurementsComponent} from '../../patient/measurements/measurements.component';
 import { DailyTreatmentComponent } from 'src/app/patient/daily-treatment/daily-treatment.component';
+import { MydrugsComponent } from 'src/app/patient/mydrugs/mydrugs.component';
 
 @Component({
   selector: 'app-header',
@@ -39,5 +40,8 @@ export class HeaderComponent implements OnInit {
   }
   public openMyDailyTreatmentDialog() : void {
     this.dialog.open(DailyTreatmentComponent);
+  }
+  public openMyDrugs() : void {
+    this.dialog.open(MydrugsComponent);
   }
 }

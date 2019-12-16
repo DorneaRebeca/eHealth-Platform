@@ -12,6 +12,9 @@
     <div  *ngIf="patientUser; else elseBlock" fxFlex fxLayout fxLayoutAlign="end" fxHide.xs>
       <ul fxLayout fxLayoutGap="15px" class="navigation-items">
         <li>
+          <button mat-button  (click)="openMyDrugs()">My Drugs</button>
+        </li>
+        <li>
           <button mat-button  (click)="openMyDailyTreatmentDialog()">My Treatment</button>
         </li>
         <li>

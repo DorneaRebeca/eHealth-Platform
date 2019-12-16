@@ -33,6 +33,8 @@ import {MatGridListModule} from '@angular/material';
 import {MeasurementsComponent} from '../patient/measurements/measurements.component';
 import {FullCalendarModule} from "@fullcalendar/angular";
 import { DailyTreatmentComponent } from '../patient/daily-treatment/daily-treatment.component';
+import { MydrugsComponent } from '../patient/mydrugs/mydrugs.component';
+import { AskformoreComponent } from '../patient/askformore/askformore.component';
 
 
 
@@ -108,6 +110,8 @@ import { DailyTreatmentComponent } from '../patient/daily-treatment/daily-treatm
     FoodTrackerComponent,
     MeasurementsComponent,
     DailyTreatmentComponent,
+    MydrugsComponent,
+    AskformoreComponent
   ],
 })
 export class SharedModule { }

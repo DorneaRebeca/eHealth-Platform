@@ -15,6 +15,8 @@ import { HomeComponent } from './doctor/home/home.component';
 import {DoctorModule} from "./doctor/doctor.module";
 import { FoodTrackerComponent } from './patient/food-tracker/food-tracker.component';
 import { DailyTreatmentComponent } from './patient/daily-treatment/daily-treatment.component';
+import { MydrugsComponent } from './patient/mydrugs/mydrugs.component';
+import { AskformoreComponent } from './patient/askformore/askformore.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { DailyTreatmentComponent } from './patient/daily-treatment/daily-treatme
     LoginComponent,
     HomeComponent,
     FoodTrackerComponent,
-    DailyTreatmentComponent
+    DailyTreatmentComponent,
+    MydrugsComponent,
+    AskformoreComponent
   ],
   imports: [
     BrowserModule,
