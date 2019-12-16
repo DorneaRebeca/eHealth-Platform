@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {MatDialogRef} from '@angular/material';
 import {PatientService} from '../../services/patient.service';
+import {FormControl, FormGroup, NgForm, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-measurements',
@@ -25,6 +26,11 @@ export class MeasurementsComponent implements OnInit {
   sugarDate : Date =  new  Date();
   bloodSugar : number;
 
+  systolicControl = new FormControl('', [Validators.required, Validators.max(999)]);
+  diastolicControl = new FormControl('', [Validators.required, Validators.max(999)]);
+  pulseControl = new FormControl('', [Validators.required, Validators.max(999)]);
+  sugarControl = new FormControl('', [Validators.required, Validators.max(999)]);
+  tempControl = new FormControl('', [Validators.required, Validators.max(99)]);
 
   constructor(
     private dialogRef: MatDialogRef<MeasurementsComponent>,
@@ -68,7 +74,9 @@ export class MeasurementsComponent implements OnInit {
   }
 
   onClear() {
-
+    (<HTMLFormElement>document.getElementById("pressure")).reset();
+    (<HTMLFormElement>document.getElementById("sugar")).reset();
+    (<HTMLFormElement>document.getElementById("temp")).reset();
   }
 
   showBloodPressureForm() {

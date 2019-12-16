@@ -12,31 +12,31 @@
       <mat-icon fxLayoutAlign="end" (click)="showBloodPressureForm()">arrow_drop_down</mat-icon>
     </mat-toolbar>
   </mat-list-item>
-    <form class="normal-form" [hidden]="hideBloodPressure">
+    <form class="normal-form" id="pressure" [hidden]="hideBloodPressure">
       <div class="controles-container">
         <input type="hidden" >
         <mat-form-field appearance="outline">
           <mat-label>Systolic</mat-label>
-          <input matInput type="number"  placeholder="mmHg" name="systolic" [(ngModel)]="systolic">
+          <input matInput type="number"  placeholder="mmHg" name="systolic"  [formControl]="systolicControl" [(ngModel)]="systolic">
           <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
           <mat-hint>*mandatory value</mat-hint>
-          <mat-error>This field is mandatory.</mat-error>
+          <mat-error>This field requires a number of maxim 3 digits.</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="outline">
           <mat-label>Diastolic</mat-label>
-          <input matInput type="number" name="diastolic" placeholder="mmGh" [(ngModel)]="diastolic">
+          <input matInput type="number" name="diastolic" placeholder="mmGh" [formControl]="diastolicControl" [(ngModel)]="diastolic">
           <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
           <mat-hint>*mandatory value</mat-hint>
-          <mat-error>This field is mandatory.</mat-error>
+          <mat-error>This field requires a number of maxim 3 digits.</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="outline">
           <mat-label>Pulse rate</mat-label>
-          <input matInput placeholder="beats/minute" type="number" name="pulse" [(ngModel)]="pulse">
+          <input matInput placeholder="beats/minute" type="number" name="pulse" [formControl]="pulseControl" [(ngModel)]="pulse">
           <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
           <mat-hint>*mandatory value</mat-hint>
-          <mat-error>This field is mandatory.</mat-error>
+          <mat-error>This field requires a number of maxim 3 digits</mat-error>
         </mat-form-field>
 
         <mat-form-field>
@@ -47,7 +47,7 @@
 
 
         <div class="button-row">
-          <button mat-raised-button color="primary" (click)="saveBloodPressure()">Save</button>
+          <button mat-raised-button color="primary" type="submit" (click)="saveBloodPressure()">Save</button>
           <button mat-raised-button color="accent" (click)="onClear()">Cancel</button>
         </div>
       </div>
@@ -64,15 +64,15 @@
   </mat-list-item>
   <mat-divider></mat-divider>
 
-  <form class="normal-form"  [hidden]="hideTemperature">
-    <div class="controles-container">
+  <form class="normal-form" id="temp"  [hidden]="hideTemperature">
+    <div class="controles-contabloodPressureiner">
       <input type="hidden" >
       <mat-form-field appearance="outline">
         <mat-label>Temperature</mat-label>
-        <input matInput placeholder="Celsius grades" type="number" name="temp" [(ngModel)]="temperature">
+        <input matInput placeholder="Celsius grades" type="number" name="temp" [formControl]="tempControl" [(ngModel)]="temperature">
         <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
         <mat-hint>*mandatory value</mat-hint>
-        <mat-error>This field is mandatory.</mat-error>
+        <mat-error>This field requires a number of maxim 3 digits</mat-error>
       </mat-form-field>
 
       <mat-form-field>
@@ -97,15 +97,15 @@
   </mat-list-item>
   <mat-divider></mat-divider>
 
-  <form class="normal-form"  [hidden]="hideBloodSugar">
+  <form class="normal-form" id="sugar" [hidden]="hideBloodSugar">
     <div class="controles-container">
       <input type="hidden" >
       <mat-form-field appearance="outline">
         <mat-label>Sugar Level</mat-label>
-        <input matInput placeholder="levesdjc"  type="number" name="sugar" [(ngModel)]="bloodSugar">
+        <input matInput placeholder="levesdjc"  type="number" name="sugar"  [formControl]="sugarControl" [(ngModel)]="bloodSugar">
         <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
         <mat-hint>*mandatory value</mat-hint>
-        <mat-error>This field is mandatory.</mat-error>
+        <mat-error >This field requires a number of maxim 3 digits</mat-error>
       </mat-form-field>
 
       <mat-form-field>

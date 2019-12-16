@@ -12,10 +12,10 @@ mat-list {
   height: 500px;
 }
 
-
 form {
   width: 500px;
   height: 400px;
+  align-content: center;
 }
 
 mat-form-field {
