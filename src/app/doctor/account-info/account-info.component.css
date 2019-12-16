@@ -1,0 +1,61 @@
+.header-image {
+  background-image: url('src/assets/doctor-header.jpg');
+  background-size: cover;
+}
+
+img {
+  float: right;
+  margin: 0 auto;
+  display: inline-block;
+}
+
+mat-calendar {
+  width: 400px;
+  height: 400px;
+  margin-bottom: 100px;
+  display: inline-block;
+}
+
+#calendar {
+  height: fit-content;
+}
+
+#hospital {
+  width: 40%;
+  margin-right: 50px;
+  margin-top: 40px;
+  margin-left: 0;
+  float: right;
+  /*display: inline-block;*/
+}
+
+#contact {
+  margin-top: 20px;
+  margin-left: 0;
+  float: right;
+}
+
+#contact > button {
+  margin-right: 0;
+  display: inline-block;
+}
+
+textarea {
+  /*position: absolute;*/
+  width: 250px;
+  height: 200px;
+  resize: none;
+  border-radius: 10px;
+  border-style: none;
+  background-color: #8ebbc7;
+  box-sizing: border-box;
+  outline: none;
+}
+#card-appointment {
+  box-shadow: none;
+  display: inline-block;
+  position: absolute;
+  margin-left: 40px;
+  margin-top: 100px;
+  width: 250px;
+}

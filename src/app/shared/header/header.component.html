@@ -26,12 +26,12 @@
       </ul>
     </div>
     <ng-template #elseBlock>
-      <ul fxLayout fxLayoutGap="15px" class="navigation-items">
+      <ul fxLayout fxLayoutGap="15px" class="navigation-items" fxLayoutAlign="end">
         <li>
-          <a routerLink="/account">Account Info</a>
+          <a routerLink="/account">Home</a>
         </li>
         <li>
-          <a routerLink="/account">Account Info</a>
+          <button mat-button  (click)="openDoctorAccountInfo()">Account Info</button>
         </li>
       </ul>
     </ng-template>

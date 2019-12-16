@@ -6,6 +6,7 @@ import {FoodTrackerComponent} from "../../patient/food-tracker/food-tracker.comp
 import {MeasurementsComponent} from '../../patient/measurements/measurements.component';
 import { DailyTreatmentComponent } from 'src/app/patient/daily-treatment/daily-treatment.component';
 import { MydrugsComponent } from 'src/app/patient/mydrugs/mydrugs.component';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-header',
@@ -14,7 +15,7 @@ import { MydrugsComponent } from 'src/app/patient/mydrugs/mydrugs.component';
 })
 export class HeaderComponent implements OnInit {
   private sideNavVisible = false;
-  constructor(private accountService: AccountService, public dialog: MatDialog) { }
+  constructor(private route: Router,private accountService: AccountService, public dialog: MatDialog) { }
   private patientUser : boolean = true;
 
   ngOnInit() {
@@ -38,10 +39,16 @@ export class HeaderComponent implements OnInit {
   public openMeasurementsDialog() : void {
     this.dialog.open(MeasurementsComponent);
   }
+
   public openMyDailyTreatmentDialog() : void {
     this.dialog.open(DailyTreatmentComponent);
   }
+
   public openMyDrugs() : void {
     this.dialog.open(MydrugsComponent);
+  }
+
+  openDoctorAccountInfo() {
+    this.route.navigateByUrl('/app-account-info').then(r => {});
   }
 }
