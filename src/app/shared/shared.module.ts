@@ -29,7 +29,7 @@ import {FoodTrackerComponent} from "../patient/food-tracker/food-tracker.compone
 import {MatCheckbox, MatCheckboxModule} from "@angular/material/checkbox";
 import {MatTooltip, MatTooltipModule} from "@angular/material/tooltip";
 import {MatProgressSpinner, MatProgressSpinnerModule} from "@angular/material/progress-spinner";
-import {MatGridListModule} from '@angular/material';
+import {MatExpansionModule, MatGridListModule} from '@angular/material';
 import {MeasurementsComponent} from '../patient/measurements/measurements.component';
 import {FullCalendarModule} from "@fullcalendar/angular";
 
@@ -68,6 +68,7 @@ import {FullCalendarModule} from "@fullcalendar/angular";
     MatProgressSpinnerModule,
     FullCalendarModule,
     MatGridListModule,
+    MatExpansionModule
   ],
   exports: [
     HeaderComponent,
@@ -99,6 +100,7 @@ import {FullCalendarModule} from "@fullcalendar/angular";
     MatProgressSpinnerModule,
     FullCalendarModule,
     MatGridListModule,
+    MatExpansionModule
   ],
   providers: [
     AccountService

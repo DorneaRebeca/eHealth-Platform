@@ -1,4 +1,4 @@
-<div [hidden]="sideNavVisible">
+<div [hidden]="sideNavVisible" >
   <mat-toolbar color="primary">
     <div fxHide.gt-xs>
       <button mat-icon-button (click)="sidenav.toggle()">
@@ -6,7 +6,7 @@
       </button>
     </div>
     <div>
-      <a routerLink="/home">Owner-Account</a>
+      <a routerLink="/home">Home</a>
     </div>
 
     <div  *ngIf="patientUser; else elseBlock" fxFlex fxLayout fxLayoutAlign="end" fxHide.xs>
@@ -16,6 +16,9 @@
         </li>
         <li>
           <button mat-button  (click)="showFoodTracker()">Food Tracker</button>
+        </li>
+        <li>
+          <a routerLink="measurements-tutorial">Measurements tutorial</a>
         </li>
       </ul>
     </div>

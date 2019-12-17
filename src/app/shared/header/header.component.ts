@@ -36,4 +36,7 @@ export class HeaderComponent implements OnInit {
   public openMeasurementsDialog() : void {
     this.dialog.open(MeasurementsComponent);
   }
+
+  redirect
+
 }
