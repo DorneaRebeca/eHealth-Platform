@@ -1,20 +1,20 @@
 <mat-toolbar id="headerToolbar"  class="toolbar" color="accent">
   <mat-card-title>Save Measurements</mat-card-title>
   <span class="toolbar-spacer"></span>
-  <mat-icon (click)="onClose()">cancel</mat-icon>
+  <mat-icon fxFlexAlign="end" (click)="onClose()">cancel</mat-icon>
 </mat-toolbar>
 
-<mat-list>
-  <mat-list-item>
-    <mat-toolbar class="toolbar" >
-      <mat-card-title>Blood Pressure</mat-card-title>
-      <span class="toolbar-spacer"></span>
-      <mat-icon fxLayoutAlign="end" (click)="showBloodPressureForm()">arrow_drop_down</mat-icon>
-    </mat-toolbar>
-  </mat-list-item>
-    <form class="normal-form" id="pressure" [hidden]="hideBloodPressure">
-      <div class="controles-container">
-        <input type="hidden" >
+<mat-accordion >
+  <mat-expansion-panel #panel1>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Blood Pressure
+      </mat-panel-title>
+      <mat-panel-description>
+        Insert systolic, diastolic and pulse parameters
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
         <mat-form-field appearance="outline">
           <mat-label>Systolic</mat-label>
           <input matInput type="number"  placeholder="mmHg" name="systolic"  [formControl]="systolicControl" [(ngModel)]="systolic">
@@ -45,81 +45,74 @@
           <mat-datepicker #pressPicker></mat-datepicker>
         </mat-form-field>
 
-
         <div class="button-row">
           <button mat-raised-button color="primary" type="submit" (click)="saveBloodPressure()">Save</button>
           <button mat-raised-button color="accent" (click)="onClear()">Cancel</button>
         </div>
-      </div>
-    </form>
+  </mat-expansion-panel>
 
-  <mat-divider></mat-divider>
+  <mat-expansion-panel  #panel2>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Temperature
+      </mat-panel-title>
+      <mat-panel-description>
+        Insert temperature parameter
+      </mat-panel-description>
+    </mat-expansion-panel-header>
 
-  <mat-list-item>
-    <mat-toolbar class="toolbar" >
-      <mat-card-title>Temperature</mat-card-title>
-      <span class="toolbar-spacer"></span>
-      <mat-icon fxLayoutAlign="end" (click)="showTemperatureForm()">arrow_drop_down</mat-icon>
-    </mat-toolbar>
-  </mat-list-item>
-  <mat-divider></mat-divider>
+    <mat-form-field appearance="outline">
+      <mat-label>Temperature</mat-label>
+      <input matInput placeholder="Celsius grades" type="number" name="temp" [formControl]="tempControl" [(ngModel)]="temperature">
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      <mat-hint>*mandatory value</mat-hint>
+      <mat-error>This field requires a number of maxim 3 digits</mat-error>
+    </mat-form-field>
 
-  <form class="normal-form" id="temp"  [hidden]="hideTemperature">
-    <div class="controles-contabloodPressureiner">
-      <input type="hidden" >
-      <mat-form-field appearance="outline">
-        <mat-label>Temperature</mat-label>
-        <input matInput placeholder="Celsius grades" type="number" name="temp" [formControl]="tempControl" [(ngModel)]="temperature">
-        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-        <mat-hint>*mandatory value</mat-hint>
-        <mat-error>This field requires a number of maxim 3 digits</mat-error>
-      </mat-form-field>
+    <mat-form-field>
+      <input matInput [matDatepicker]="tempPicker" name="tempDate" placeholder="Choose a date"  [(ngModel)]="tempDate">
+      <mat-datepicker-toggle matSuffix [for]="tempPicker"></mat-datepicker-toggle>
+      <mat-datepicker #tempPicker></mat-datepicker>
+    </mat-form-field>
 
-      <mat-form-field>
-        <input matInput [matDatepicker]="tempPicker" name="tempDate" placeholder="Choose a date"  [(ngModel)]="tempDate">
-        <mat-datepicker-toggle matSuffix [for]="tempPicker"></mat-datepicker-toggle>
-        <mat-datepicker #tempPicker></mat-datepicker>
-      </mat-form-field>
-
-      <div class="button-row">
-        <button mat-raised-button color="primary" (click)="saveTemperature()">Save</button>
-        <button mat-raised-button color="accent" (click)="onClear()">Cancel</button>
-      </div>
+    <div class="button-row">
+      <button mat-raised-button color="primary" (click)="saveTemperature()">Save</button>
+      <button mat-raised-button color="accent" (click)="onClear()">Cancel</button>
     </div>
-  </form>
+  </mat-expansion-panel>
 
-  <mat-list-item>
-    <mat-toolbar class="toolbar" >
-      <mat-card-title>Blood Sugar Level</mat-card-title>
-      <span class="toolbar-spacer"></span>
-      <mat-icon fxLayoutAlign="end" (click)="showBloodSugarFrom()">arrow_drop_down</mat-icon>
-    </mat-toolbar>
-  </mat-list-item>
-  <mat-divider></mat-divider>
+  <mat-expansion-panel #panel3>
+    <mat-expansion-panel-header  >
+      <mat-panel-title>
+        Blood sugar
+      </mat-panel-title>
+      <mat-panel-description>
+        Insert the quantity you measured with
+      </mat-panel-description>
+    </mat-expansion-panel-header>
 
-  <form class="normal-form" id="sugar" [hidden]="hideBloodSugar">
-    <div class="controles-container">
-      <input type="hidden" >
-      <mat-form-field appearance="outline">
-        <mat-label>Sugar Level</mat-label>
-        <input matInput placeholder="levesdjc"  type="number" name="sugar"  [formControl]="sugarControl" [(ngModel)]="bloodSugar">
-        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-        <mat-hint>*mandatory value</mat-hint>
-        <mat-error >This field requires a number of maxim 3 digits</mat-error>
-      </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Sugar Level</mat-label>
+      <input matInput placeholder="levesdjc"  type="number" name="sugar"  [formControl]="sugarControl" [(ngModel)]="bloodSugar">
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      <mat-hint>*mandatory value</mat-hint>
+      <mat-error >This field requires a number of maxim 3 digits</mat-error>
+    </mat-form-field>
 
-      <mat-form-field>
-        <input matInput [matDatepicker]="sugarPicker" placeholder="Choose a date" name="sDate" [(ngModel)]="sugarDate">
-        <mat-datepicker-toggle matSuffix [for]="sugarPicker"></mat-datepicker-toggle>
-        <mat-datepicker #sugarPicker></mat-datepicker>
-      </mat-form-field>
+    <mat-form-field>
+      <input matInput [matDatepicker]="sugarPicker" placeholder="Choose a date" name="sDate" [(ngModel)]="sugarDate">
+      <mat-datepicker-toggle matSuffix [for]="sugarPicker"></mat-datepicker-toggle>
+      <mat-datepicker #sugarPicker></mat-datepicker>
+    </mat-form-field>
 
-      <div class="button-row">
-        <button mat-raised-button color="primary" (click)="saveBloodSugar()" >Save</button>
-        <button mat-raised-button color="accent" (click)="onClear()">Cancel</button>
-      </div>
+    <div class="button-row">
+      <button mat-raised-button color="primary" (click)="saveBloodSugar()" >Save</button>
+      <button mat-raised-button color="accent" (click)="onClear()">Cancel</button>
     </div>
-  </form>
+  </mat-expansion-panel>
 
-</mat-list>
+</mat-accordion>
 
+<div id="loading-spinner">
+  <mat-progress-spinner class="example-margin" [color]="'primary'" [mode]="'indeterminate'"></mat-progress-spinner>
+</div>
