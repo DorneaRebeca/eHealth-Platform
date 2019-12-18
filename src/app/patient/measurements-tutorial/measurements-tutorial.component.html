@@ -1,0 +1,96 @@
+<br>
+    <section id="tutorialList">
+      <h1>What is Blood pressure? </h1>
+
+      <div id="info">
+        <p>{{infoMessage}}</p>
+      </div>
+
+
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              What is blood pressure?
+            </mat-panel-title>
+            <mat-panel-description>
+              Understanding blood pressure
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div class="videos" >
+            <iframe width="627" height="309" src="https://www.youtube.com/embed/4YNdp3pRjig" frameborder="0"
+                    allow="accelerometer; autoplay; encrypted-media; gyroscope;"
+                    allowfullscreen></iframe>
+            <mat-divider></mat-divider>
+          </div>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Measure blood pressure
+            </mat-panel-title>
+            <mat-panel-description>
+             Manual pressure monitor
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div class="videos">
+            <iframe width="627" height="309" src="https://www.youtube.com/embed/nFUqoTNBHyQ" frameborder="0"
+                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <mat-divider></mat-divider>
+          </div>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Measure blood pressure
+            </mat-panel-title>
+            <mat-panel-description>
+              Electronic pressure monitor
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div   class="videos" >
+            <iframe width="627" height="309" src="https://www.youtube.com/embed/bD-KNOtwr10" frameborder="0"
+                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <mat-divider></mat-divider>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+</section>
+
+
+<section id="tutorialCards">
+  <div>
+    <h1>Step by step</h1>
+<table >
+  <tr *ngFor="let step of steps | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
+    <mat-card class="example-card" >
+      <img fxFlexAlign="center" mat-card-image src="https://bio1152.nicerweb.com/Locked/media/ch42/42_12MeasureBP.jpg" alt="buhuuu">
+      <mat-card-content>
+        <p>
+          {{step}}
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button color="accent" fxFlexAlign="start" mat-button (click)="previousStep()" >Previous Step</button>
+        <button color="accent" fxFlexAlign="end" mat-button (click)="nextStep()">Next Step</button>
+      </mat-card-actions>
+    </mat-card>
+  </tr>
+</table>
+    <mat-card id="adviceCard">
+      <mat-card-header>
+        <i class="material-icons">
+          report_problem
+        </i>
+        <h1>Advice</h1>
+      </mat-card-header>
+      <mat-card-content>
+            <textarea type="text" ngDefaultControl [ngModel]="adviceMessage" >
+            </textarea>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</section>
+
