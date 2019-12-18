@@ -17,7 +17,7 @@ import { FoodTrackerComponent } from './patient/food-tracker/food-tracker.compon
 import { DailyTreatmentComponent } from './patient/daily-treatment/daily-treatment.component';
 import { MydrugsComponent } from './patient/mydrugs/mydrugs.component';
 import { AskformoreComponent } from './patient/askformore/askformore.component';
-import { AccountInfoComponent } from './doctor/account-info/account-info.component';
+import { PatientsComponent } from './patients/patients.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +28,7 @@ import { AccountInfoComponent } from './doctor/account-info/account-info.compone
     DailyTreatmentComponent,
     MydrugsComponent,
     AskformoreComponent,
-    AccountInfoComponent
+    PatientsComponent,
   ],
   imports: [
     BrowserModule,

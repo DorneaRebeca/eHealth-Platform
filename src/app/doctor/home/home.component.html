@@ -1,1 +1,55 @@
-<p>home works!</p>
+<html>
+<body>
+<div id="content-wrapper">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title><b>Dr. John Doe</b></mat-card-title>
+      <mat-card-subtitle>Surgeon, Heart, Transplant, Teacher</mat-card-subtitle>
+      <div mat-card-avatar class="header-image"></div>
+    </mat-card-header>
+    <mat-card-content>
+      <h4>Quick Bio</h4>
+      <p>
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+      </p>
+
+      <div id="calendar">
+        <div id="hospital">
+          <img mat-card-image src="assets/doctor-full.jpg" alt="Photo of doctor">
+          <div id="contact">
+            <button mat-button disabled>
+              <mat-icon>phone</mat-icon>
+              +40 264 597 852
+            </button>
+            <button mat-button disabled>
+              <mat-icon>email</mat-icon>
+              secretariat@scjucluj.ro
+            </button>
+            <button mat-button disabled>
+              <mat-icon>near_me</mat-icon>
+              strada Clinicilor nr. 3-8
+            </button>
+          </div>
+        </div>
+
+        <mat-card id="card-appointment">
+          <mat-card-header>
+            <mat-card-title>  Appointments</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <textarea type="text" ngDefaultControl [ngModel]="appointmentMessage" ></textarea>
+          </mat-card-content>
+        </mat-card>
+
+        <mat-calendar
+          [selected]="selectedDate"
+          (selectedChange)="onSelect($event)"
+          [dateClass]="dateClass"
+        >
+        </mat-calendar>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
+</body>
+</html>

@@ -5,9 +5,6 @@
         <mat-icon>menu</mat-icon>
       </button>
     </div>
-    <div>
-      <a routerLink="/home">Owner-Account</a>
-    </div>
 
     <div  *ngIf="patientUser; else elseBlock" fxFlex fxLayout fxLayoutAlign="end" fxHide.xs>
       <ul fxLayout fxLayoutGap="15px" class="navigation-items">
@@ -28,10 +25,10 @@
     <ng-template #elseBlock>
       <ul fxLayout fxLayoutGap="15px" class="navigation-items" fxLayoutAlign="end">
         <li>
-          <a routerLink="/account">Home</a>
+          <button mat-button  (click)="openDoctorHome()">Home</button>
         </li>
         <li>
-          <button mat-button  (click)="openDoctorAccountInfo()">Account Info</button>
+          <button mat-button  (click)="openPatientsPage()">Patients</button>
         </li>
       </ul>
     </ng-template>

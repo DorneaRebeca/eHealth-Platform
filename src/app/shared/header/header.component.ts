@@ -30,7 +30,7 @@ export class HeaderComponent implements OnInit {
 
 
   showFoodTracker() {
-    let dialogRef = this.dialog.open(FoodTrackerComponent, {
+    this.dialog.open(FoodTrackerComponent, {
       height: '520px',
       width: '664px',
     });
@@ -48,7 +48,11 @@ export class HeaderComponent implements OnInit {
     this.dialog.open(MydrugsComponent);
   }
 
-  openDoctorAccountInfo() {
-    this.route.navigateByUrl('/app-account-info').then(r => {});
+  openDoctorHome() {
+    this.route.navigateByUrl('/home-doctor').then(r => {});
+  }
+
+  openPatientsPage() {
+
   }
 }
