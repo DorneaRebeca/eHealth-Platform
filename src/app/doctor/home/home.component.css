@@ -10,8 +10,8 @@ img {
 }
 
 mat-calendar {
-  width: 400px;
-  height: 400px;
+  width: 25%;
+  height: auto;
   margin-bottom: 100px;
   margin-right: 50px;
   float: right;
