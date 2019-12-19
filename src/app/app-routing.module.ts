@@ -4,12 +4,14 @@ import { NgModule } from '@angular/core';
 import {HomeComponent  as HomePatientComponent} from "./patient/home/home.component";
 import {HomeComponent as HomeDoctorComponent} from "./doctor/home/home.component"
 import {PatientsComponent} from "./doctor/patients/patients.component";
+import {MeasurementsTutorialComponent} from './patient/measurements-tutorial/measurements-tutorial.component';
 
 const routes: Routes = [
     { path: 'login', component: LoginComponent } ,
     { path: 'home-patient', component: HomePatientComponent },
     { path: 'home-doctor', component: HomeDoctorComponent },
-    { path: 'app-patients', component: PatientsComponent }
+    { path: 'app-patients', component: PatientsComponent },
+    { path: 'measurements-tutorial', component: MeasurementsTutorialComponent },
 ];
 
 @NgModule({
