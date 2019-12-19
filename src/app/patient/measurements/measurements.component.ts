@@ -1,7 +1,9 @@
-import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatDialogRef, MatExpansionPanel} from '@angular/material';
 import {PatientService} from '../../services/patient.service';
-import {FormControl, FormGroup, NgForm, Validators} from '@angular/forms';
+import {FormControl, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
+
 
 @Component({
   selector: 'app-measurements',
@@ -35,6 +37,7 @@ export class MeasurementsComponent implements OnInit {
   constructor(
     private dialogRef: MatDialogRef<MeasurementsComponent>,
     private patientService : PatientService,
+    private route : Router,
   ) { }
 
   ngOnInit() {
@@ -93,6 +96,17 @@ export class MeasurementsComponent implements OnInit {
 
   hideLoadingScreen() {
     document.getElementById("loading-spinner").style.setProperty('display', 'none');
+  }
+
+  openTutorial(vitalName : string) {
+    localStorage.setItem('vitalName', vitalName);
+   if(this.route.url == '/measurements-tutorial'){
+     location.reload();
+   }
+   else {
+     this.route.navigateByUrl('measurements-tutorial');
+   }
+    this.onClose();
   }
 
 }

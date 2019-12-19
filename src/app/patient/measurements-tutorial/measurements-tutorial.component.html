@@ -1,6 +1,6 @@
 <br>
     <section id="tutorialList">
-      <h1>What is Blood pressure? </h1>
+      <h1>What is {{vitalName}}? </h1>
 
       <div id="info">
         <p>{{infoMessage}}</p>
@@ -11,14 +11,14 @@
         <mat-expansion-panel>
           <mat-expansion-panel-header>
             <mat-panel-title>
-              What is blood pressure?
+              What is {{vitalName}}?
             </mat-panel-title>
             <mat-panel-description>
-              Understanding blood pressure
+              Understanding {{vitalName}}
             </mat-panel-description>
           </mat-expansion-panel-header>
           <div class="videos" >
-            <iframe width="627" height="309" src="https://www.youtube.com/embed/4YNdp3pRjig" frameborder="0"
+            <iframe width="627" height="309" [src]=transform(descriptiveVideoSrc) frameborder="0"
                     allow="accelerometer; autoplay; encrypted-media; gyroscope;"
                     allowfullscreen></iframe>
             <mat-divider></mat-divider>
@@ -28,14 +28,14 @@
         <mat-expansion-panel>
           <mat-expansion-panel-header>
             <mat-panel-title>
-              Measure blood pressure
+              Measure {{vitalName}}
             </mat-panel-title>
             <mat-panel-description>
-             Manual pressure monitor
+             Manual {{vitalName}} monitor
             </mat-panel-description>
           </mat-expansion-panel-header>
           <div class="videos">
-            <iframe width="627" height="309" src="https://www.youtube.com/embed/nFUqoTNBHyQ" frameborder="0"
+            <iframe width="627" height="309" [src]=transform(manualDeviceSrc) frameborder="0"
                     allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             <mat-divider></mat-divider>
           </div>
@@ -44,14 +44,14 @@
         <mat-expansion-panel>
           <mat-expansion-panel-header>
             <mat-panel-title>
-              Measure blood pressure
+              Measure  {{vitalName}}
             </mat-panel-title>
             <mat-panel-description>
-              Electronic pressure monitor
+              Digital {{vitalName}} monitor
             </mat-panel-description>
           </mat-expansion-panel-header>
           <div   class="videos" >
-            <iframe width="627" height="309" src="https://www.youtube.com/embed/bD-KNOtwr10" frameborder="0"
+            <iframe width="627" height="309" [src]=transform(digitalDeviceSrc) frameborder="0"
                     allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             <mat-divider></mat-divider>
           </div>
@@ -66,7 +66,7 @@
 <table >
   <tr *ngFor="let step of steps | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
     <mat-card class="example-card" >
-      <img fxFlexAlign="center" mat-card-image src="https://bio1152.nicerweb.com/Locked/media/ch42/42_12MeasureBP.jpg" alt="buhuuu">
+      <img fxFlexAlign="center" mat-card-image [src]=transform(stepByStepSrc) alt="buhuuu">
       <mat-card-content>
         <p>
           {{step}}

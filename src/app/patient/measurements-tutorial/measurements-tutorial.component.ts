@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {DomSanitizer} from '@angular/platform-browser';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-measurements-tutorial',
@@ -45,11 +47,36 @@ export class MeasurementsTutorialComponent implements OnInit {
     ' -> Avoid smoking, drinking, and exercise for 30 minutes before taking blood pressure.\n' +
     ' -> Empty the bladder before taking a blood pressure test. A full bladder may give an incorrect blood pressure reading.\n'
     ;
+  descriptiveVideoSrc : string = '';
+  manualDeviceSrc : string = '';
+  digitalDeviceSrc : string = '';
+  stepByStepSrc : string = '';
+  vitalName : string = '';
 
-
-  constructor() { }
+  constructor(
+    private sanitizer: DomSanitizer,
+    private router : Router
+  ) { }
 
   ngOnInit() {
+    this.vitalName = localStorage.getItem('vitalName');
+    switch (this.vitalName) {
+      case 'blood pressure' : {
+        this.getData("bloodPressure");
+        break;
+      }
+      case 'blood sugar' : {
+        this.getData("bloodSugar");
+        break;
+      }
+      case 'body temperature' : {
+        this.getData("temperature");
+        break;
+      }
+      default : {
+        this.router.navigateByUrl('home-patient');
+      }
+    }
   }
 
   nextStep() {
@@ -60,6 +87,25 @@ export class MeasurementsTutorialComponent implements OnInit {
   previousStep() {
     if(this.page > 1)
         this.page--;
+  }
+
+  getData(vitalName : string) {
+    let info = JSON.parse(
+      localStorage.getItem(vitalName)
+    );
+    this.infoMessage = info.infoMessage;
+    this.steps = info.steps;
+    this.adviceMessage = info.adviceMessage;
+    this.descriptiveVideoSrc = info.descriptiveVideoSrc;
+    this.manualDeviceSrc = info.manualDeviceSrc;
+    this.digitalDeviceSrc = info.digitalDeviceSrc;
+    this.stepByStepSrc = info.stepByStepImage;
+    console.log(this.stepByStepSrc);
+    console.log(this.transform(this.stepByStepSrc));
+  }
+
+  transform(url) {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
 
 }

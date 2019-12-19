@@ -10,11 +10,11 @@
       <mat-panel-title>
         Blood Pressure
       </mat-panel-title>
-      <mat-panel-description>
-        Insert systolic, diastolic and pulse parameters
-      </mat-panel-description>
     </mat-expansion-panel-header>
 
+    <mat-icon color="primary" class="tutorialIcon" (click)="openTutorial('blood pressure')">
+      help_outline
+    </mat-icon>
         <mat-form-field appearance="outline">
           <mat-label>Systolic</mat-label>
           <input matInput type="number"  placeholder="mmHg" name="systolic"  [formControl]="systolicControl" [(ngModel)]="systolic">
@@ -56,10 +56,11 @@
       <mat-panel-title>
         Temperature
       </mat-panel-title>
-      <mat-panel-description>
-        Insert temperature parameter
-      </mat-panel-description>
     </mat-expansion-panel-header>
+
+    <mat-icon color="primary" class="tutorialIcon"  (click)="openTutorial('body temperature')" >
+      help_outline
+    </mat-icon>>
 
     <mat-form-field appearance="outline">
       <mat-label>Temperature</mat-label>
@@ -86,10 +87,11 @@
       <mat-panel-title>
         Blood sugar
       </mat-panel-title>
-      <mat-panel-description>
-        Insert the quantity you measured with
-      </mat-panel-description>
     </mat-expansion-panel-header>
+
+    <mat-icon class="tutorialIcon"  color="primary" (click)="openTutorial('blood sugar')" >
+      help_outline
+    </mat-icon>
 
     <mat-form-field appearance="outline">
       <mat-label>Sugar Level</mat-label>

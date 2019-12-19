@@ -36,3 +36,10 @@ mat-progress-spinner {
   display: none;
   z-index: 100;
 }
+
+.tutorialIcon {
+  margin-left: 90%;
+  margin-top: 10px;
+  font-size: 40px;
+}
+
