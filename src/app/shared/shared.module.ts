@@ -35,6 +35,7 @@ import {FullCalendarModule} from "@fullcalendar/angular";
 import { DailyTreatmentComponent } from '../patient/daily-treatment/daily-treatment.component';
 import { MydrugsComponent } from '../patient/mydrugs/mydrugs.component';
 import { AskformoreComponent } from '../patient/askformore/askformore.component';
+import {MatTabsModule} from "@angular/material/tabs";
 
 
 
@@ -71,6 +72,7 @@ import { AskformoreComponent } from '../patient/askformore/askformore.component'
     MatProgressSpinnerModule,
     FullCalendarModule,
     MatGridListModule,
+    MatTabsModule
   ],
   exports: [
     HeaderComponent,
@@ -102,6 +104,7 @@ import { AskformoreComponent } from '../patient/askformore/askformore.component'
     MatProgressSpinnerModule,
     FullCalendarModule,
     MatGridListModule,
+    MatTabsModule
   ],
   providers: [
     AccountService

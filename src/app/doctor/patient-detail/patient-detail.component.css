@@ -1,0 +1,95 @@
+#people-icon {
+  height: 35px;
+  width: auto;
+  font-size: 35px;
+  vertical-align: middle;
+  margin-right: 20px;
+}
+
+.card-container-right {
+  font-size: 30px;
+}
+
+#patient-overview {
+  margin-left: 20px;
+  margin-top: 20px;
+  max-width: 18%;
+  display: inline-block;
+
+}
+
+#patient-details-list{
+  margin-left: 30px;
+}
+
+#medical-history {
+  display: inline-block;
+  margin-left: 20px;
+  margin-top: 20px;
+  max-width: 18%;
+}
+
+#patient-header {
+  display: inline;
+}
+
+#patient-details-table {
+  width: 80%;
+  height: auto;
+  margin-left: 10%;
+  margin-top: 100px;
+}
+
+.activity-log {
+  margin: 16px auto 16px auto;
+  text-align: center;
+  padding: 4px;
+  max-width: 90%;
+  display: table;
+  height: auto;
+  border-radius: 8px;
+}
+
+#activity-list {
+  padding: 0;
+  overflow: auto;
+  max-height: 400px;
+}
+
+#activity-details-table {
+  height: 100%;
+  width: 100%;
+}
+
+#activity-details-table img {
+  height: 50px;
+  width: 50px;
+  margin-top: 40%;
+}
+
+#wrapper-activity-image {
+  height: 100px;
+  width: 100px;
+  background-color: #8ebbc7;
+  border-radius: 50%;
+}
+
+#activity-details-table mat-icon {
+  height: 100%;
+  width: 100%;
+  font-size: 60px;
+  background-color: #8ebbc7;
+  border-radius: 50%;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#activity-list mat-list-item {
+  height: auto;
+  width: auto;
+}
+
+.col-first {
+  width: 400px;
+  text-align: left;
+}
