@@ -1,7 +1,9 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {MatDialogRef} from '@angular/material';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {MatDialogRef, MatExpansionPanel} from '@angular/material';
 import {PatientService} from '../../services/patient.service';
-import {FormControl, FormGroup, NgForm, Validators} from '@angular/forms';
+import {FormControl, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
+
 
 @Component({
   selector: 'app-measurements',
@@ -9,10 +11,6 @@ import {FormControl, FormGroup, NgForm, Validators} from '@angular/forms';
   styleUrls: ['./measurements.component.css']
 })
 export class MeasurementsComponent implements OnInit {
-
-  hideBloodPressure : boolean = true;
-  hideTemperature : boolean = true;
-  hideBloodSugar : boolean = true;
 
     presDate : Date = new Date();
       systolic  : number;
@@ -32,12 +30,18 @@ export class MeasurementsComponent implements OnInit {
   sugarControl = new FormControl('', [Validators.required, Validators.max(999)]);
   tempControl = new FormControl('', [Validators.required, Validators.max(99)]);
 
+  @ViewChild('panel1', {static : false}) firstPanel: MatExpansionPanel;
+  @ViewChild('panel2', {static : false}) secondPanel: MatExpansionPanel;
+  @ViewChild('panel3', {static : false}) thirdPanel: MatExpansionPanel;
+
   constructor(
     private dialogRef: MatDialogRef<MeasurementsComponent>,
     private patientService : PatientService,
+    private route : Router,
   ) { }
 
   ngOnInit() {
+    this.showLoadingScreen(20);
   }
 
   onClose() {
@@ -49,7 +53,9 @@ export class MeasurementsComponent implements OnInit {
       date : this.tempDate,
       temperature : this.temperature
     };
+    this.showLoadingScreen(1000);
     this.patientService.saveDataInLocalStorageArray(tempData, 'temperatureData');
+    this.secondPanel.close();
   }
 
   saveBloodSugar() {
@@ -58,8 +64,9 @@ export class MeasurementsComponent implements OnInit {
         date : this.sugarDate,
         sugar : this.bloodSugar
   };
+    this.showLoadingScreen(1000);
     this.patientService.saveDataInLocalStorageArray(sugarData, 'sugarData');
-
+    this.thirdPanel.close();
   }
 
   saveBloodPressure(){
@@ -69,32 +76,37 @@ export class MeasurementsComponent implements OnInit {
       diastolic : this.diastolic,
       pulseRate : this.pulse
     };
+    this.showLoadingScreen(1000);
     this.patientService.saveDataInLocalStorageArray(pressureData, 'pressureData');
+    this.firstPanel.close();
 
   }
 
   onClear() {
-    (<HTMLFormElement>document.getElementById("pressure")).reset();
-    (<HTMLFormElement>document.getElementById("sugar")).reset();
-    (<HTMLFormElement>document.getElementById("temp")).reset();
+    this.firstPanel.close();
+    this.secondPanel.close();
+    this.thirdPanel.close();
   }
 
-  showBloodPressureForm() {
-    this.hideBloodPressure = false;
-    this.hideBloodSugar = true;
-    this.hideTemperature = true;
+  showLoadingScreen(predefined  = 0) {
+    const interval = predefined == 0 ? Math.round(Math.random() * 10_000 % 200) * 10 : predefined;
+    document.getElementById("loading-spinner").style.setProperty('display', 'block');
+    return setTimeout(this.hideLoadingScreen, interval)
   }
 
-  showBloodSugarFrom() {
-    this.hideBloodPressure = true;
-    this.hideBloodSugar = false;
-    this.hideTemperature = true;
+  hideLoadingScreen() {
+    document.getElementById("loading-spinner").style.setProperty('display', 'none');
   }
 
-  showTemperatureForm() {
-    this.hideBloodPressure = true;
-    this.hideBloodSugar = true;
-    this.hideTemperature = false;
+  openTutorial(vitalName : string) {
+    localStorage.setItem('vitalName', vitalName);
+   if(this.route.url == '/measurements-tutorial'){
+     location.reload();
+   }
+   else {
+     this.route.navigateByUrl('measurements-tutorial');
+   }
+    this.onClose();
   }
 
 }

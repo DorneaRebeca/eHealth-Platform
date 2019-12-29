@@ -55,4 +55,5 @@ export class HeaderComponent implements OnInit {
   openPatientsPage() {
     this.route.navigateByUrl('/app-patient-detail').then(r => {});
   }
+
 }
