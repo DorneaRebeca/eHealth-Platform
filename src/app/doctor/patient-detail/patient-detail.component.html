@@ -3,13 +3,22 @@
     <mat-card-header>
       <mat-card-title class="card-container-right">
         <mat-icon class="card-icon">people</mat-icon>
-        <u>Pop Ionel</u>
+        <u>{{patientDetails.name}}</u>
       </mat-card-title>
     </mat-card-header>
     <mat-card-content>
       <mat-list id="patient-details-list">
-        <mat-list-item *ngFor="let detail of patientDetails">
-          <p mat-line><font color="gray">{{detail[0]}}:</font> {{detail[1]}}</p>
+        <mat-list-item>
+          <p mat-line><font color="gray">Age:</font> {{patientDetails.age}}</p>
+        </mat-list-item>
+        <mat-list-item>
+          <p mat-line><font color="gray">Gender:</font> {{patientDetails.gender}}</p>
+        </mat-list-item>
+        <mat-list-item>
+          <p mat-line><font color="gray">Height:</font> {{patientDetails.height}}</p>
+        </mat-list-item>
+        <mat-list-item>
+          <p mat-line><font color="gray">Weight:</font> {{patientDetails.weigth}}</p>
         </mat-list-item>
       </mat-list>
     </mat-card-content>
@@ -87,5 +96,3 @@
   <mat-tab label="Nutrition history"> Nutrition history </mat-tab>
   <mat-tab label="Treatment(s)"> Treatment(s) </mat-tab>
 </mat-tab-group>
-<br><br>
-*just to see the shadow behind the card*

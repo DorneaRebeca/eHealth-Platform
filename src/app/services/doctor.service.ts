@@ -5,21 +5,22 @@ import { Injectable } from '@angular/core';
 })
 
 export class DoctorService {
+  patients: Patient[] = [];
+  constructor() {
+    this.patients.push({ name: 'Pop Ionel', age: '34 years old', gender: 'Male', height: '191 cm', weigth: '86 kg'});
+    this.patients.push({ name: 'Dan Tudor', age: '28 years old', gender: 'Male', height: '192 cm', weigth: '100 kg'});
+    this.patients.push({ name: 'Palade Adrian', age: '31 years old', gender: 'Male', height: '195 cm', weigth: '98 kg'});
+    this.patients.push({ name: 'Dan Andreea', age: '25 years old', gender: 'Female', height: '178 cm', weigth: '56 kg'});
+    this.patients.push({ name: 'Dornea Rebeca', age: '29 years old', gender: 'Female', height: '169 cm', weigth: '61 kg'});
 
-  constructor() { }
-
-  getPatients() {
-    var patients = [];
-    patients.push({ name: 'Pop Ionel', age: '34 years old', gender: 'Male', height: '191 cm', weigth: '86 kg'});
-    patients.push({ name: 'Dan Tudor', age: '28 years old', gender: 'Male', height: '192 cm', weigth: '100 kg'});
-    patients.push({ name: 'Palade Adrian', age: '31 years old', gender: 'Male', height: '195 cm', weigth: '98 kg'});
-    patients.push({ name: 'Dan Andreea', age: '25 years old', gender: 'Female', height: '178 cm', weigth: '56 kg'});
-    patients.push({ name: 'Dornea Rebeca', age: '29 years old', gender: 'Female', height: '169 cm', weigth: '61 kg'});
-    return patients;
   }
 
-  getDetailsForPatient(name) {
-    var activities = [];
+  getPatientDetails(name) {
+    return this.patients.filter( patient => patient.name === name)[0];
+  }
+
+  getActivitiesForPatient(name) {
+    var activities: Activity[] = [];
     if (name === 'Pop Ionel') {
       activities.push({created_at: '2019-12-21 17:51', duration: '17 min', distance: '0,5 km', title: 'Short Run', image: 'run'});
       activities.push({created_at: '2019-12-21 17:51', duration: '7 min', distance: '0,3 km', title: 'Shopping Walk', image: 'walk'});
@@ -35,9 +36,27 @@ export class DoctorService {
   }
 
 
-  getMedicalHistory() {
-
+  getMedicalHistory(name) {
+    var medicalRecord: Record[] = [];
+    if (name === 'Pop Ionel') {
+      medicalRecord.push( { name: 'Astm', start_date: '17-12-2019', duration: 15, description: 'Pacientul s-a prezentat cu stari febrile(39,8 C). I-au fost administrate calmante, iar in urma analizelor s-a observat un nivel ridicat de celule albe ceea ce a dus la o investigatie mai amanuntita.'});
+      medicalRecord.push( { name: 'Astm', start_date: '17-12-2019', duration: 15, description: 'Pacientul s-a prezentat cu stari febrile(39,8 C). I-au fost administrate calmante, iar in urma analizelor s-a observat un nivel ridicat de celule albe ceea ce a dus la o investigatie mai amanuntita.'});
+      medicalRecord.push( { name: 'Astm', start_date: '17-12-2019', duration: 15, description: 'Pacientul s-a prezentat cu stari febrile(39,8 C). I-au fost administrate calmante, iar in urma analizelor s-a observat un nivel ridicat de celule albe ceea ce a dus la o investigatie mai amanuntita.'});
+      medicalRecord.push( { name: 'Astm', start_date: '17-12-2019', duration: 15, description: 'Pacientul s-a prezentat cu stari febrile(39,8 C). I-au fost administrate calmante, iar in urma analizelor s-a observat un nivel ridicat de celule albe ceea ce a dus la o investigatie mai amanuntita.'});
+      medicalRecord.push( { name: 'Astm', start_date: '17-12-2019', duration: 15, description: 'Pacientul s-a prezentat cu stari febrile(39,8 C). I-au fost administrate calmante, iar in urma analizelor s-a observat un nivel ridicat de celule albe ceea ce a dus la o investigatie mai amanuntita.'});
+      medicalRecord.push( { name: 'Astm', start_date: '17-12-2019', duration: 15, description: 'Pacientul s-a prezentat cu stari febrile(39,8 C). I-au fost administrate calmante, iar in urma analizelor s-a observat un nivel ridicat de celule albe ceea ce a dus la o investigatie mai amanuntita.'});
+      medicalRecord.push( { name: 'Astm', start_date: '17-12-2019', duration: 15, description: 'Pacientul s-a prezentat cu stari febrile(39,8 C). I-au fost administrate calmante, iar in urma analizelor s-a observat un nivel ridicat de celule albe ceea ce a dus la o investigatie mai amanuntita.'});
+    }
+    //else alt pacient
+    return medicalRecord;
   }
+}
+
+export interface Record {
+  name: string;
+  start_date: string;
+  duration: number;
+  description: string;
 }
 
 export interface Activity {

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {DoctorService} from "../../services/doctor.service";
+import {DoctorService, Patient} from '../../services/doctor.service';
 import {animate, state, style, transition, trigger} from '@angular/animations';
+import {Record} from '../../services/doctor.service';
 
 @Component({
   selector: 'app-patient-detail',
@@ -16,91 +17,18 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
 })
 
 export class PatientDetailComponent implements OnInit {
-  patientDetails = [
-    ['Age', '34 years old'],
-    ['Gender', 'Male'],
-    ['Height', '191 cm'],
-    ['Weigth', '86 kg'],
-  ];
+  patientDetails: Patient;
   patientActivities = [];
-  dataSource = ELEMENT_DATA;
+  dataSource = [];
   columnsToDisplay = ['name', 'start_date', 'duration'];
   expandedElement: Record | null;
 
   constructor(private doctorService: DoctorService) { }
 
   ngOnInit() {
-    this.patientActivities = this.doctorService.getDetailsForPatient('Pop Ionel')
+    this.patientDetails = this.doctorService.getPatientDetails('Pop Ionel');
+    this.patientActivities = this.doctorService.getActivitiesForPatient('Pop Ionel');
+    this.dataSource = this.doctorService.getMedicalHistory('Pop Ionel');
   }
 
 }
-
-export interface Record {
-  name: string;
-  start_date: string;
-  duration: number;
-  description: string;
-}
-
-const ELEMENT_DATA: Record[] = [
-  {
-    name: 'Astm',
-    start_date: '17-12-2019',
-    duration: 15,
-    description: 'Pacientul s-a prezentat cu stari febrile(39,8 C). I-au fost administrate calmante, iar in urma analizelor s-a observat un nivel ridicat de celule albe ceea ce a dus la o investigatie mai amanuntita.'
-    },
-  {
-    name: 'Faringita',
-    start_date: '17-12-2019',
-    duration: 15,
-    description: ''
-  },
-  {
-    name: 'Laringita>',
-    start_date: '17-12-2019',
-    duration: 15,
-    description: ''
-  },
-  {
-    name: 'Bronsita',
-    start_date: '17-12-2019',
-    duration: 15,
-    description: ''
-  },
-  {
-    name: 'Pneumonie',
-    start_date: '17-12-2019',
-    duration: 15,
-    description: ''
-  },
-  {
-    name: 'Pneumonie',
-    start_date: '17-12-2019',
-    duration: 15,
-    description: ''
-  },
-  {
-    name: 'Pneumonie',
-    start_date: '17-12-2019',
-    duration: 15,
-    description: ''
-  },
-  {
-    name: 'Pneumonie',
-    start_date: '17-12-2019',
-    duration: 15,
-    description: ''
-  },
-  {
-    name: 'Pneumonie',
-    start_date: '17-12-2019',
-    duration: 15,
-    description: ''
-  },
-  {
-    name: 'Pneumonie',
-    start_date: '17-12-2019',
-    duration: 15,
-    description: ''
-  },
-];
