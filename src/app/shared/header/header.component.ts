@@ -1,7 +1,6 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, OnInit, ChangeDetectorRef, AfterContentChecked} from '@angular/core';
 import {AccountService} from "../../services/account.service";
-import {connectableObservableDescriptor} from "rxjs/internal/observable/ConnectableObservable";
-import {MatDialog, MatDialogConfig} from '@angular/material';
+import {MatDialog} from '@angular/material';
 import {MeasurementsComponent} from '../../patient/measurements/measurements.component';
 
 @Component({
@@ -9,22 +8,18 @@ import {MeasurementsComponent} from '../../patient/measurements/measurements.com
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
-  private sideNavVisible = false;
-  private patientUser : boolean = true;
+export class HeaderComponent implements OnInit, AfterContentChecked {
+  
+  private sideNavVisible: boolean;
 
-  constructor(private accountService: AccountService,
-  private dialog : MatDialog) { }
-
+  constructor(
+    private accountService: AccountService,
+    private cdRef : ChangeDetectorRef,
+    private dialog : MatDialog ) {
+      this.accountService.shouldShowNavBar.subscribe(value => this.sideNavVisible = value);
+  }
 
   ngOnInit() {
-    this.accountService.shouldShowNavBar.subscribe( value => {
-      console.log(value.valueOf());
-      this.sideNavVisible = value.valueOf();
-    });
-    console.log(localStorage.getItem('loggedUserType'));
-    this.patientUser = (localStorage.getItem('loggedUserType') === 'patient');
-    console.log(this.patientUser);
   }
 
   public openMeasurementsDialog() : void {
@@ -32,5 +27,8 @@ export class HeaderComponent implements OnInit {
     this.dialog.open(MeasurementsComponent);
   }
 
-
+  ngAfterContentChecked():void{
+    this.cdRef.detectChanges();
+  }
+    
 }

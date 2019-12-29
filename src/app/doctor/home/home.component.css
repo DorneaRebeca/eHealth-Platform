@@ -1,0 +1,15 @@
+.example-container {
+    width: 90%;
+    margin-left: 80px; 
+}
+
+table {
+    margin-top: 30px;
+    width: 100%;
+}
+
+#add-button {
+    margin-top: 40px;
+    margin-left: 80px;
+}
+  
