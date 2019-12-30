@@ -1,0 +1,15 @@
+table {
+    width: 600px;
+  }
+  
+  #headerToolbar {
+    margin-bottom: 30px;
+    border-radius: 10px;
+    background-color: #3399CC;
+  }
+  button{
+      background-color: #3399CC;
+      border-radius: 10px;
+      padding: 5px;
+  }
+  

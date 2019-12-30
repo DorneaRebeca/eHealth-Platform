@@ -1,33 +1,54 @@
-mat-sidenav-container, mat-sidenav-content, mat-sidenav {
-  height: 100%;
+#secondSection {
+  float: right;
+  width: 50%;
+  margin-top: 30px;
 }
 
-mat-sidenav {
+#calendarSection {
+  float: left;
+  width: 50%;
+}
+#nutritionStats {
+  width: 400px;
+  height: 400px;
+  border: solid black;
+  margin: 0 auto;
+}
+
+mat-progress-bar {
   width: 250px;
+  height: 20px;
+  display: inline-block;
+}
+
+#p2 {
+  width: 20%;
+  margin-left: 0;
+}
+
+#nutrients-progress-bar {
+  width: 75%;
 }
 
 main {
   padding: 10px;
 }
-html, body {
-  margin: 0;
-  height: 100%;
-}
 
 mat-calendar {
   width: 100%;
   height: auto;
-  color: #fa991c;
+  color: #d0836e;
 }
 
-.mat-card-title {
-  color: #fa991c;
+h1{
+  color: #d0836e;
+  font-family: "Proxima Nova",-apple-system,system-ui,system-ui,"Helvetica Neue",Helvetica,Roboto,Arial,sans-serif;
+  margin-left: 10px;
 }
 
 textarea {
   width: 100%;
   height: 150px;
-  color: white;
   box-sizing: border-box;
   resize: none;
   border: none;
@@ -37,8 +58,7 @@ textarea {
 
 #newsCard {
   width: 90%;
-  height: 50px;
-  margin-top: 0;
+  height: auto;
   vertical-align: center;
 }
 
@@ -48,11 +68,8 @@ textarea {
 
 mat-card {
   display: inline-block;
+  box-shadow: none;
   width : 250px;
-  background-color: #33383E;
-  margin-top: 30px;
-  margin-bottom: 50px;
-  margin-left: 30px;
-  margin-right: 30px;
+  background-color: #d3e2d9;
+  margin: 10px;
 }
-

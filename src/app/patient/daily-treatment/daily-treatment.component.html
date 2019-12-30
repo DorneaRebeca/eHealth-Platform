@@ -1,0 +1,61 @@
+<mat-toolbar id="headerToolbar"  class="toolbar" >
+    <mat-card-title>My Treatment</mat-card-title>
+    <span class="toolbar-spacer"></span>
+    <mat-icon (click)="onClose()">cancel</mat-icon>
+  </mat-toolbar>
+
+<mat-list>
+    <mat-list-item>
+      <mat-toolbar class="toolbar"  >
+        <mat-card-title>Before breakfast</mat-card-title>
+        <span class="toolbar-spacer"></span>
+        <mat-icon  fxLayoutAlign="end" (click)="showBreakfastForm()">arrow_drop_down</mat-icon>
+      </mat-toolbar>
+    </mat-list-item>
+      <form class="normal-form" [hidden]="hideBeforeBreakfast">
+        <div class="controles-container" *ngFor="let drug of drugsBreakfast;">
+            <input type="checkbox" 
+            [ngModelOptions]="{standalone: true}"
+            [(ngModel)]="drug.selected"/> {{drug.name}}
+          </div>
+      </form>
+  
+    <mat-divider></mat-divider>
+  
+    <mat-list-item>
+      <mat-toolbar class="toolbar" >
+        <mat-card-title>Before lunch</mat-card-title>
+        <span class="toolbar-spacer"></span>
+        <mat-icon fxLayoutAlign="end" (click)="showLunchFrom()">arrow_drop_down</mat-icon>
+      </mat-toolbar>
+    </mat-list-item>
+    
+  
+    <form class="normal-form"  [hidden]="hideBeforeLunch">
+        <div class="controles-container" *ngFor="let drug of drugsLunch;">
+            <input type="checkbox" 
+            [ngModelOptions]="{standalone: true}"
+            [(ngModel)]="drug.selected"/> {{drug.name}}
+          </div>
+    </form>
+    <mat-divider></mat-divider>
+  
+    <mat-list-item>
+      <mat-toolbar class="toolbar" >
+        <mat-card-title>Before dinner</mat-card-title>
+        <span class="toolbar-spacer"></span>
+        <mat-icon fxLayoutAlign="end" (click)="showDinnerForm()">arrow_drop_down</mat-icon>
+      </mat-toolbar>
+    </mat-list-item>
+    
+  
+    <form class="normal-form"  [hidden]="hideBeforeDinner">
+        <div class="controles-container" *ngFor="let drug of drugsDinner;">
+            <input type="checkbox" 
+            [ngModelOptions]="{standalone: true}"
+            [(ngModel)]="drug.selected"/> {{drug.name}}
+          </div>
+    </form>
+    <mat-divider></mat-divider>
+  
+  </mat-list>

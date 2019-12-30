@@ -23,9 +23,18 @@ import {RouterModule} from "@angular/router";
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {AccountService} from "../services/account.service";
-import {FullCalendarModule} from '@fullcalendar/angular';
-import {MatGridListModule} from '@angular/material';
+import {MatProgressBarModule} from "@angular/material/progress-bar";
+import {FoodTrackerComponent} from "../patient/food-tracker/food-tracker.component";
+import {MatCheckbox, MatCheckboxModule} from "@angular/material/checkbox";
+import {MatTooltip, MatTooltipModule} from "@angular/material/tooltip";
+import {MatProgressSpinner, MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {MatExpansionModule, MatGridListModule} from '@angular/material';
 import {MeasurementsComponent} from '../patient/measurements/measurements.component';
+import {FullCalendarModule} from "@fullcalendar/angular";
+import { DailyTreatmentComponent } from '../patient/daily-treatment/daily-treatment.component';
+import { MydrugsComponent } from '../patient/mydrugs/mydrugs.component';
+import { AskformoreComponent } from '../patient/askformore/askformore.component';
+import {MatTabsModule} from "@angular/material/tabs";
 
 
 
@@ -56,8 +65,14 @@ import {MeasurementsComponent} from '../patient/measurements/measurements.compon
     RouterModule,
     FlexLayoutModule,
     MatSidenavModule,
+    MatProgressBarModule,
+    MatCheckboxModule,
+    MatTooltipModule,
+    MatProgressSpinnerModule,
     FullCalendarModule,
     MatGridListModule,
+    MatTabsModule,
+    MatExpansionModule,
   ],
   exports: [
     HeaderComponent,
@@ -83,14 +98,24 @@ import {MeasurementsComponent} from '../patient/measurements/measurements.compon
     MatListModule,
     FlexLayoutModule,
     CommonModule,
+    MatProgressBarModule,
+    MatCheckboxModule,
+    MatTooltipModule,
+    MatProgressSpinnerModule,
     FullCalendarModule,
     MatGridListModule,
+    MatTabsModule,
+    MatExpansionModule,
   ],
   providers: [
     AccountService
   ],
-  entryComponents : [
-    MeasurementsComponent
-  ]
+  entryComponents: [
+    FoodTrackerComponent,
+    MeasurementsComponent,
+    DailyTreatmentComponent,
+    MydrugsComponent,
+    AskformoreComponent
+  ],
 })
 export class SharedModule { }

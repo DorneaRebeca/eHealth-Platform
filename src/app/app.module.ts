@@ -13,12 +13,24 @@ import {MatListModule} from "@angular/material/list";
 import {SharedModule} from "./shared/shared.module";
 import { HomeComponent } from './doctor/home/home.component';
 import {DoctorModule} from "./doctor/doctor.module";
+import { FoodTrackerComponent } from './patient/food-tracker/food-tracker.component';
+import { DailyTreatmentComponent } from './patient/daily-treatment/daily-treatment.component';
+import { MydrugsComponent } from './patient/mydrugs/mydrugs.component';
+import { AskformoreComponent } from './patient/askformore/askformore.component';
+import { PatientsComponent } from './doctor/patients/patients.component';
+import { PatientDetailComponent } from './doctor/patient-detail/patient-detail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     HomeComponent,
+    FoodTrackerComponent,
+    DailyTreatmentComponent,
+    MydrugsComponent,
+    AskformoreComponent,
+    PatientsComponent,
+    PatientDetailComponent,
   ],
   imports: [
     BrowserModule,

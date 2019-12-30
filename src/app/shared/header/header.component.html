@@ -1,6 +1,6 @@
 <mat-sidenav-container fullscreen >
 
-  <mat-sidenav #sidenav >
+  <!-- <mat-sidenav #sidenav >
     <mat-nav-list>
         <a mat-list-item routerLink="/home" >
           <mat-icon>home</mat-icon> <span class="nav-caption">Home</span>
@@ -12,7 +12,41 @@
           <mat-icon>home</mat-icon> <span class="nav-caption">Home</span>
         </a>
     </mat-nav-list>
-  </mat-sidenav>
+  </mat-sidenav> -->
+<div [hidden]="sideNavVisible" >
+  <mat-toolbar color="primary">
+    <div fxHide.gt-xs>
+      <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </div>
+
+    <div  *ngIf="patientUser; else elseBlock" fxFlex fxLayout fxLayoutAlign="end" fxHide.xs>
+      <ul fxLayout fxLayoutGap="15px" class="navigation-items">
+        <li>
+          <button mat-button  (click)="openMyDrugs()">My Drugs</button>
+        </li>
+        <li>
+          <button mat-button  (click)="openMyDailyTreatmentDialog()">My Treatment</button>
+        </li>
+        <li>
+          <button mat-button  (click)="openMeasurementsDialog()">Measurements</button>
+        </li>
+        <li>
+          <button mat-button  (click)="showFoodTracker()">Food Tracker</button>
+        </li>
+      </ul>
+    </div>
+    <ng-template #elseBlock>
+      <ul fxLayout fxLayoutGap="15px" class="navigation-items" fxLayoutAlign="end">
+        <li>
+          <button mat-button  (click)="openDoctorHome()">Home</button>
+        </li>
+        <li>
+          <button mat-button  (click)="openPatientsPage()">Patients</button>
+        </li>
+      </ul>
+    </ng-template>
 
   <div *ngIf="sideNavVisible">
     <mat-toolbar  color="primary">

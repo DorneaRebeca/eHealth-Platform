@@ -1,4 +1,6 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {AfterContentInit, AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {animate, state, style, transition, trigger} from "@angular/animations";
+import {interval, Subscription} from "rxjs";
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {PatientService} from '../../services/patient.service';
@@ -6,15 +8,29 @@ import {PatientService} from '../../services/patient.service';
 @Component({
   selector: 'app-home-patient',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
+  animations: [
+    trigger('progressBarTrigger', [
+      transition(':enter', [
+        style({transform: 'scaleX(0)'}), animate('500ms')
+      ])]
+    )
+  ]
 })
 
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, AfterContentInit  {
+  color = 'primary';
+  mode = 'determined';
+  exceededNutrition = 0;
+  value = 80;
+  bufferValue = 100;
+  state = 'none';
 
+  refreshIntervalId: any;
   selectedDate : Date = new Date();
 
   measurementsMessage : string = '';
-  nutrientsMessage : string = 'Aci is nutrientii vietii';
+  nutrientsMessage : string = '';
   patientsNews  = [
     {
       from : 'Patrick',
@@ -36,6 +52,28 @@ export class HomeComponent implements OnInit {
     }
   ];
 
+  ngAfterContentInit (): void {
+    this.patientService.nutritionValue.subscribe( value => {
+      setTimeout(() => {
+        document.getElementById("nutrients-progress-bar").scrollIntoView({behavior: 'smooth', block: 'start', inline: 'nearest'});
+        this.value = value.valueOf() * 100 / 2000;
+        if(this.patientService.nutrients > 2000) {
+          this.exceededNutrition += this.value;
+        }
+        this.nutrientsMessage = '';
+        for(var i = 0; i < this.patientService.dailyMeals.length; i++){
+          let meal = this.patientService.dailyMeals[i];
+          if(meal.calories != 0) {
+            this.nutrientsMessage += meal.name + ': ' + meal.calories + ' calories.\n\n';
+          }
+        }
+        }, 100 );
+    });
+    this.refreshIntervalId = setInterval(() => this.startAnimate(), 1000);
+  }
+  update(v) {
+    this.value = v;
+  }
   constructor(
     private router: Router,
     private patientService : PatientService,
@@ -75,5 +113,12 @@ export class HomeComponent implements OnInit {
     return this.measurementsMessage;
   }
 
+  public startAnimate() {
+    this.value = this.patientService.nutrients * 100 / 2000;
+    if(this.patientService.nutrients > 2000) {
+      this.exceededNutrition += 100;
+    }
+    clearInterval(this.refreshIntervalId);
+  }
 }
 

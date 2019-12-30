@@ -1,15 +1,13 @@
-<mat-grid-list cols="2">
-
-  <mat-grid-tile>
+  <section id="calendarSection">
 <mat-calendar
   [selected]="selectedDate"
-  (selectedChange)="onSelect($event)" >
+  (selectedChange)="onSelect($event)">
 </mat-calendar>
-  </mat-grid-tile>
+  </section>
 
-  <mat-grid-tile >
+  <section id="secondSection" >
         <div id="newsCard">
-          <mat-card-title >News</mat-card-title>
+          <h1>News</h1>
           <mat-list>
             <a mat-list-item ngDefaultControl *ngFor="let news of patientsNews" href="{{news.src}}">
               <h3 matLine> Dr {{news.from}} </h3>
@@ -20,30 +18,41 @@
             <mat-divider></mat-divider>
           </mat-list>
         </div>
-  </mat-grid-tile>
 
-</mat-grid-list>
+        <div id="patientNotes">
+            <mat-card>
+              <mat-card-header>
+                <mat-card-title>Measurements</mat-card-title>
+              </mat-card-header>
+              <mat-card-content>
+                          <textarea type="text" ngDefaultControl [ngModel]="measurementsMessage" >
+                          </textarea>
+              </mat-card-content>
+            </mat-card>
 
-<div id="patientNotes">
-
-    <mat-card>
-      <mat-card-header>
-        <mat-card-title>Measurements</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-                  <textarea type="text" ngDefaultControl [ngModel]="measurementsMessage" >
-                  </textarea>
-      </mat-card-content>
-    </mat-card>
-
-    <mat-card>
-      <mat-card-header>
-        <mat-card-title>Nutrients</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-                <textarea type="text" ngDefaultControl [ngModel]="nutrientsMessage" >
-                </textarea>
-      </mat-card-content>
-    </mat-card>
-</div>
-
+          <mat-card >
+            <mat-card-header>
+              <mat-card-title>Nutrients</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <mat-progress-bar id="nutrients-progress-bar"
+                                    [@progressBarTrigger]='state'
+                                     [color]="color"
+                                     [mode]="mode"
+                                     [value]="value"
+                                     [bufferValue]="bufferValue"
+                                     matTooltip="{{patientService.nutrients}}/2000"
+                                     matTooltipPosition="below">
+              </mat-progress-bar>
+              <mat-progress-bar id ="p2"
+                                [@progressBarTrigger]='state'
+                                [color]="'warn'"
+                                [mode]="mode"
+                                [value]="exceededNutrition"
+                                [bufferValue]="bufferValue">
+              </mat-progress-bar>
+              <textarea type="text" ngDefaultControl [ngModel]="nutrientsMessage" ></textarea>
+            </mat-card-content>
+          </mat-card>
+        </div>
+  </section>
