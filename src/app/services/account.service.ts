@@ -1,6 +1,5 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter, Output } from '@angular/core';
 import {BehaviorSubject} from "rxjs";
-import { IfStmt } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root'
@@ -37,6 +36,7 @@ export class AccountService {
     }
   ];
 
+  @Output() roleEvent: EventEmitter<any> = new EventEmitter();
   public shouldShowNavBar: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
 
   constructor() { }
@@ -46,17 +46,20 @@ export class AccountService {
     this.users.forEach(user => {
       if(user.username == username && user.password == password) {
         if(user.role == "PATIENT") {
-          localStorage.setItem('loggedUserType' , 'patient');
+          this.roleEvent.emit("PATIENT");
+          localStorage.setItem('loggedInUserRole' , "PATIENT");
           role = 1;
         }
         else if(user.role == "DOCTOR") {
-          localStorage.setItem('loggedUserType' , 'doctor');
+          this.roleEvent.emit("DOCTOR");
+          localStorage.setItem('loggedInUserRole' , "DOCTOR");
           role = 2;
         }
       }
     });
     if(role == 0) {
-      localStorage.setItem('loggedUserType' , null);
+      this.roleEvent.emit("");
+      localStorage.setItem('loggedInUserRole' , null);
     }
     return role;
   }
@@ -71,5 +74,10 @@ export class AccountService {
     });
     
     return patients;
+  }
+  
+  public getLoggedInUserRole() {
+    let role = localStorage.getItem('loggedInUserRole');
+    return role;
   }
 }

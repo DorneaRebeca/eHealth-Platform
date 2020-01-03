@@ -16,19 +16,26 @@ import {Router} from "@angular/router";
 export class HeaderComponent implements OnInit, AfterContentChecked {
   
   private sideNavVisible: boolean;
-  private patientUser : boolean = true;
+  private loggedInUserRole;
 
   constructor(
     private accountService: AccountService,
     private cdRef : ChangeDetectorRef,
-    private route: Router,
+    private router: Router,
     private dialog : MatDialog ) {
       this.accountService.shouldShowNavBar.subscribe(value => this.sideNavVisible = value);
+      this.accountService.roleEvent.subscribe(role => this.loggedInUserRole = role);
   }
 
   ngOnInit() {
-  }
+    this.loggedInUserRole = this.accountService.getLoggedInUserRole();
+   }
 
+  onLogout() {
+    this.router.navigate(["login"]);
+    this.loggedInUserRole = "";
+    this.accountService.shouldShowNavBar.next(false);
+  }
 
   showFoodTracker() {
     this.dialog.open(FoodTrackerComponent, {
@@ -37,28 +44,28 @@ export class HeaderComponent implements OnInit, AfterContentChecked {
     });
   }
 
-  public openMeasurementsDialog() : void {
-    this.dialog.open(MeasurementsComponent);
-  }
-
   ngAfterContentChecked():void{
     this.cdRef.detectChanges();
   }
-    
-  public openMyDailyTreatmentDialog() : void {
+  
+  openMeasurementsDialog() {
+    this.dialog.open(MeasurementsComponent);
+  }
+
+  openMyDailyTreatmentDialog() {
     this.dialog.open(DailyTreatmentComponent);
   }
 
-  public openMyDrugs() : void {
+  openMyDrugs() {
     this.dialog.open(MydrugsComponent);
   }
 
   openDoctorHome() {
-    this.route.navigateByUrl('/home-doctor').then(r => {});
+    this.router.navigateByUrl('/home-doctor').then(r => {});
   }
 
   openPatientsPage() {
-    this.route.navigateByUrl('/app-patient-detail').then(r => {});
+    this.router.navigateByUrl('/app-patient-detail').then(r => {});
   }
 
 }

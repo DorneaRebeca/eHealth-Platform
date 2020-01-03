@@ -1,5 +1,5 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
-import {MatDialog} from "@angular/material/dialog";
+import { Component, OnInit } from '@angular/core';
+import { MatDialog } from "@angular/material/dialog";
 import { MatTableDataSource } from '@angular/material';
 import { AccountService } from 'src/app/services/account.service';
 
@@ -14,41 +14,38 @@ export interface Patient {
   address: string
 }
 
-
 @Component({
   selector: 'app-home-doctor',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  encapsulation: ViewEncapsulation.None
 })
 export class HomeComponent implements OnInit {
 
   private patients = [];
   private displayedColumns = ["First name", "Last name", "Gender", "Birth date", "Address"];
   private dataSource: MatTableDataSource<Patient> = new MatTableDataSource();
+  selectedDate : Date = new Date();
+  appointmentMessage : string = '';
+  dates = [];
 
   constructor(
     private accountService : AccountService,
     private dialog: MatDialog
   ) { }
 
-  public loadPatients() {
-    this.patients = this.accountService.getPatients();
-  }
-
   ngOnInit() {
     this.loadPatients();
     this.getAppointments();
   }
-    
-  selectedDate : Date = new Date();
-  appointmentMessage : string = '';
+
+  public loadPatients() {
+    this.patients = this.accountService.getPatients();
+  }
 
   dateClass = (d: Date) => {
     const date = d.getDate();
     return this.dates[date] ? 'no-appointment' : undefined;
   };
-  dates = [];
 
   onSelect(event) {
     this.selectedDate = event;

@@ -3,7 +3,6 @@ import { FormControl, FormGroup, ValidationErrors, Validators } from '@angular/f
 import { MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
 import {AccountService} from "../services/account.service";
-import {init} from "protractor/built/launcher";
 
 @Component({
   selector: 'app-login',
@@ -11,6 +10,16 @@ import {init} from "protractor/built/launcher";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+
+  public myForm = new FormGroup({
+    email: new FormControl('', [
+        Validators.required,
+    ]),
+    password: new FormControl('', [
+        Validators.required,
+    ])
+  });
+  private loggedInUserRole;
 
   constructor(
       private snackBar: MatSnackBar,
@@ -20,16 +29,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.accountService.shouldShowNavBar.next(false);
+    this.loggedInUserRole = this.accountService.getLoggedInUserRole();
   }
-
-  public myForm = new FormGroup({
-      email: new FormControl('', [
-          Validators.required,
-      ]),
-      password: new FormControl('', [
-          Validators.required,
-      ])
-  });
 
   validationErrorsExists(): boolean {
       var noOfErrors: number = 0;
@@ -41,25 +42,31 @@ export class LoginComponent implements OnInit {
       });
       return noOfErrors > 0;
   }
+
   public login() {
       let userType = this.accountService.canLogin(this.myForm.controls['email'].value, this.myForm.controls['password'].value);
-      if(userType == 0) {
-        this.snackBar.open('Invalid email/password', '', {duration: 3000});
-        return;
+      switch (userType) {
+        case 0 : { // Invalid user
+          this.snackBar.open('Invalid email/password', '', {duration: 3000});  
+          break;
+        }
+        case 1 : { // Patient
+          this.saveBloodPressureInfo();
+          this.saveTemperatureInfo();
+          this.saveBloodSugarInfo();
+          this.initMeasurements();
+          this.router.navigate(['home-patient']);
+          break;
+        }
+        case 2 : { // Doctor
+          this.accountService.shouldShowNavBar.next(true);
+          this.router.navigate(['home-doctor']);
+          break;
+        }
+        default : {
+          break;
+        }
       } 
-      else if(userType == 2) {
-      } 
-      else if(userType == 1) {
-        this.saveBloodPressureInfo();
-        this.saveTemperatureInfo();
-        this.saveBloodSugarInfo();
-        this.router.navigate(['home-patient']);
-        this.initMeasurements();
-      } else if(userType == 2) {
-
-this.router.navigate(['home-patient']);
-this.accountService.shouldShowNavBar.next(true);
-      }
   }
 
   initMeasurements() {
@@ -72,9 +79,7 @@ this.accountService.shouldShowNavBar.next(true);
     localStorage.setItem('nutrients', JSON.stringify(0));
   }
 
-  initTutorial() {
-
-  }
+  initTutorial() { }
 
   private saveBloodPressureInfo() {
       let info = {
@@ -154,7 +159,6 @@ this.accountService.shouldShowNavBar.next(true);
     };
     localStorage.setItem( "temperature", JSON.stringify(info));
   }
-
 
   private saveBloodSugarInfo() {
     let info = {
