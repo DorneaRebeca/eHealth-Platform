@@ -1,58 +1,47 @@
-.card-icon {
-  height: 35px;
-  width: auto;
-  font-size: 35px;
-  vertical-align: middle;
-  margin-right: 20px;
+#patient-header {
+  margin: auto;
+  margin-top: 70px;
+  width: 96%;
+  height: 100%;
+}
+
+#patient-overview {
+  display: inline-block;
+  width: 30%;
+  height: 450px;
+  padding: 0;
+}
+
+#medical-history {
+  float: right;
+  width: 68%;
+  height: 100%;
+  padding: 0;
 }
 
 .card-container-right {
   font-size: 30px;
 }
 
-#patient-details-list{
-  margin-left: 30px;
-}
-
-#patient-overview {
-  display: inline-block;
-  margin-left: 20px;
-  margin-top: 20px;
-  width: 30%;
-  height: 90%;
-  overflow: auto;
-}
-
-#medical-history {
-  display: inline-block;
-  margin-top: 20px;
-  margin-right: 20px;
-  float: right;
-  width: 50%;
-  height: 90%;
-  overflow: auto;
-}
-
-#patient-header {
-  display: inline-block;
-  width: 70%;
-  height: 300px;
-  margin-left: 15%;
+.card-icon {
+  height: 35px;
+  width: auto;
+  font-size: 35px;
+  vertical-align: middle;
 }
 
 #patient-details-table {
-  width: 60%;
+  width: 96%;
   height: auto;
   margin: 0 auto;
-  text-align: center;
   margin-top: 50px;
+  text-align: center;
 }
 
 .activity-log {
   margin: 16px auto 16px auto;
   text-align: center;
-  padding: 4px;
-  max-width: 90%;
+  width: 99%;
   display: table;
   height: auto;
   border-radius: 8px;
@@ -60,8 +49,8 @@
 
 #activity-list {
   padding: 0;
-  overflow: auto;
-  max-height: 400px;
+  overflow: hidden;
+  min-height: 400px;
 }
 
 #activity-details-table {
@@ -81,6 +70,11 @@
   width: 70px;
   background-color: #8ebbc7;
   border-radius: 50%;
+  float: right;
+}
+
+#wrapper-activity-image img{
+  margin-top: 10px;
 }
 
 #activity-details-table mat-icon {
@@ -134,3 +128,10 @@ tr.example-element-row:not(.example-expanded-row):active {
   padding-top: 0;
 }
 
+#buttons {
+  margin-top: 15px;
+}
+
+#buttons > button {
+  margin: auto 5px auto 5px;
+}

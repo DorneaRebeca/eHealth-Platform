@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {DoctorService, Patient} from '../../services/doctor.service';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {Record} from '../../services/doctor.service';
+import { AccountService } from 'src/app/services/account.service';
 
 @Component({
   selector: 'app-patient-detail',
@@ -23,12 +24,15 @@ export class PatientDetailComponent implements OnInit {
   columnsToDisplay = ['name', 'start_date', 'duration'];
   expandedElement: Record | null;
 
-  constructor(private doctorService: DoctorService) { }
+  constructor(
+    private doctorService: DoctorService
+  ) { }
 
   ngOnInit() {
-    this.patientDetails = this.doctorService.getPatientDetails('Pop Ionel');
-    this.patientActivities = this.doctorService.getActivitiesForPatient('Pop Ionel');
-    this.dataSource = this.doctorService.getMedicalHistory('Pop Ionel');
+    let selectedPatientId = localStorage.getItem("selectedPatient");
+    this.patientDetails = this.doctorService.getPatientDetails(+selectedPatientId);
+    this.patientActivities = this.doctorService.getActivitiesForPatient(+selectedPatientId);
+    this.dataSource = this.doctorService.getMedicalHistory(+selectedPatientId);
   }
 
 }

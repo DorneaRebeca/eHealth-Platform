@@ -60,12 +60,4 @@ export class HeaderComponent implements OnInit, AfterContentChecked {
     this.dialog.open(MydrugsComponent);
   }
 
-  openDoctorHome() {
-    this.router.navigateByUrl('/home-doctor').then(r => {});
-  }
-
-  openPatientsPage() {
-    this.router.navigateByUrl('/app-patient-detail').then(r => {});
-  }
-
 }

@@ -1,40 +1,8 @@
-<!-- <div class="example-container mat-elevation-z8">
-    <table mat-table [dataSource]="patients">
-        <ng-container matColumnDef="First name">
-        <th mat-header-cell *matHeaderCellDef> First name </th>
-        <td mat-cell *matCellDef="let patient"> {{patient.firstName}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="Last name">
-        <th mat-header-cell *matHeaderCellDef> Last name </th>
-        <td mat-cell *matCellDef="let patient"> {{patient.lastName}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="Gender">
-        <th mat-header-cell *matHeaderCellDef> Gender </th>
-        <td mat-cell *matCellDef="let patient"> {{patient.gender}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="Birth date">
-        <th mat-header-cell *matHeaderCellDef> Birth date </th>
-        <td mat-cell *matCellDef="let patient"> {{patient.birthDate}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="Address">
-        <th mat-header-cell *matHeaderCellDef> Address </th>
-        <td mat-cell *matCellDef="let patient"> {{patient.address}} </td>
-        </ng-container>
-
-        <tr mat-header-row *matHeaderRowDef="displayedColumns;"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
-</div> -->
-
 <div id="content-wrapper">
   <mat-card>
     
     <mat-card-header>
-      <mat-card-title><b>Dr. John Doe</b></mat-card-title>
+      <mat-card-title><b> Dr. John Doe </b></mat-card-title>
       <mat-card-subtitle>Surgeon, Heart, Transplant, Teacher</mat-card-subtitle>
       <div mat-card-avatar class="header-image"></div>
     </mat-card-header>
@@ -42,34 +10,24 @@
     <mat-card-content>
       <h4>Quick Bio</h4>
       <p> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. </p>
-      <div id="calendar">
-        <div id="hospital">
+      
+      <div id="hospital">
+        <div id="info">
           <img mat-card-image src="assets/doctor-full.jpg" alt="Photo of doctor">
-          <div id="contact">
-            <button mat-button disabled>
-              <mat-icon>phone</mat-icon>
-              +40 264 597 852
-            </button>
-            <button mat-button disabled>
-              <mat-icon>email</mat-icon>
-              secretariat@scjucluj.ro
-            </button>
-            <button mat-button disabled>
-              <mat-icon>near_me</mat-icon>
-              strada Clinicilor nr. 3-8
-            </button>
+          <div id="buttons">
+            <button mat-button disabled style="width: 26%;"> <mat-icon> phone </mat-icon> +40 264 597 852 </button>
+            <button mat-button disabled> <mat-icon> email </mat-icon> secretariat@scjucluj.ro </button>
+            <button mat-button disabled> <mat-icon> near_me </mat-icon> strada Clinicilor nr. 3-8 </button>
           </div>
         </div>
-
         <mat-card id="card-appointment">
           <mat-card-header>
-            <mat-card-title>  Appointments </mat-card-title>
+            <mat-card-title> Appointments </mat-card-title>
           </mat-card-header>
           <mat-card-content>
             <textarea type="text" ngDefaultControl [ngModel]="appointmentMessage" ></textarea>
           </mat-card-content>
         </mat-card>
-
         <mat-calendar [selected]="selectedDate" (selectedChange)="onSelect($event)" [dateClass]="dateClass"></mat-calendar>
       </div>
     </mat-card-content>

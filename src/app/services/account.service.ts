@@ -1,5 +1,6 @@
 import { Injectable, EventEmitter, Output } from '@angular/core';
 import {BehaviorSubject} from "rxjs";
+import { Patient } from '../doctor/patients/patients.component';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,8 @@ export class AccountService {
       'cnp': 'sss',
       'gender': 'F',
       'birthDate': "sss",
+      'height': 191,
+      'weight': 86,
       'address': "sss",
       'role' : "PATIENT"
     }, 
@@ -26,6 +29,8 @@ export class AccountService {
       'cnp': 'sss1',
       'gender': 'M',
       'birthDate': "sss",
+      'height': 191,
+      'weight': 86,
       'address': "sss",
       'role' : "PATIENT",
     },
@@ -76,8 +81,17 @@ export class AccountService {
     return patients;
   }
   
+  public getPatientByUsername(username) : any {
+    this.users.forEach(user => {
+      if(user.role == "PATIENT" && user.username == username) {
+        return user;
+      }
+    });
+  }
+
   public getLoggedInUserRole() {
     let role = localStorage.getItem('loggedInUserRole');
     return role;
   }
+
 }

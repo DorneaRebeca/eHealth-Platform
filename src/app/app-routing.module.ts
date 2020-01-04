@@ -12,6 +12,7 @@ const routes: Routes = [
     { path: 'home-patient', component: HomePatientComponent },
     { path: 'home-doctor', component: HomeDoctorComponent },
     { path: 'app-patients', component: PatientsComponent },
+    { path: 'doctor-patients', component: PatientsComponent },
     { path: 'app-patient-detail', component: PatientDetailComponent},
     { path: 'measurements-tutorial', component: MeasurementsTutorialComponent },
 ];

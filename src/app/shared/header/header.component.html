@@ -1,8 +1,8 @@
 <mat-toolbar color="primary" class="navbar" *ngIf="sideNavVisible">
   <div fxShow="true" fxHide.lt-md class="buttons-container">
     <a mat-button> <mat-icon aria-hidden="false"> local_hospital </mat-icon> MedApp </a>
-    <a mat-button *ngIf="loggedInUserRole == 'DOCTOR'" (click)="openDoctorHome()" > Home </a>
-    <a mat-button *ngIf="loggedInUserRole == 'DOCTOR'" (click)="openPatientsPage()" > Patients </a>
+    <a mat-button *ngIf="loggedInUserRole == 'DOCTOR'" routerLink="home-doctor" > Home </a>
+    <a mat-button *ngIf="loggedInUserRole == 'DOCTOR'" routerLink="doctor-patients" > Patients </a>
     <a mat-button *ngIf="loggedInUserRole == 'PATIENT'" (click)="openMyDrugs()" > My drugs </a>
     <a mat-button *ngIf="loggedInUserRole == 'PATIENT'" (click)="openMyDailyTreatmentDialog()" > My treatment </a>
     <a mat-button *ngIf="loggedInUserRole == 'PATIENT'" (click)="openMeasurementsDialog()" > Measurements </a>
