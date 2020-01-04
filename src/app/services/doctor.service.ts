@@ -6,6 +6,11 @@ import { Injectable } from '@angular/core';
 
 export class DoctorService {
   patients: Patient[] = [];
+  medications: Medication[] = [];
+  treatments: Treatment[] = [];
+
+  selectedMedications: Medication[] = [];
+
   constructor() {
     this.patients.push({ id: 0, name: 'Pop Ionel', age: '34 years old', gender: 'Male', height: '191 cm', weigth: '86 kg', cnp: "1980703244390", address: "Valea viilor nr 131"});
     this.patients.push({ id: 1, name: 'Dan Tudor', age: '28 years old', gender: 'Male', height: '192 cm', weigth: '100 kg', cnp: "1980703244390", address: "Valea viilor nr 131"});
@@ -13,6 +18,29 @@ export class DoctorService {
     this.patients.push({ id: 3, name: 'Dan Andreea', age: '25 years old', gender: 'Female', height: '178 cm', weigth: '56 kg', cnp: "1980703244390", address: "Valea viilor nr 131"});
     this.patients.push({ id: 4, name: 'Dornea Rebeca', age: '29 years old', gender: 'Female', height: '169 cm', weigth: '61 kg', cnp: "1980703244390", address: "Valea viilor nr 131"});
 
+    this.medications.push({name: "Paracetamol", description: "Impotriva racelii.", dosage: 1, intakeIntervals: 2});    
+    this.medications.push({name: "Algocalmin", description: "Pentru dureri de cap.", dosage: 1, intakeIntervals: 1});
+    
+    this.treatments.push({startDate: "06/01/2020", endDate: "20/01/2020", medications: this.medications});
+    
+    this.medications.push({name: "Tantum verde", description: "Pentru dureri in gat.", dosage: 1, intakeIntervals: 4});
+    this.medications.push({name: "Dicarbocalm", description: "Pentru disconforturi stomacale.", dosage: 1, intakeIntervals: 2});
+    
+    this.treatments.push({startDate: "07/01/2020", endDate: "10/01/2020", medications: this.medications});
+    
+  }
+
+  addItemToCurrentTreatment(item){
+    this.selectedMedications.push(item);
+  }
+
+  removeItemFromCurrentTreatment(item) {
+    var index = this.selectedMedications.indexOf(item);
+    this.selectedMedications.splice(index, 1);
+  }
+
+  getItemsFromCurrentTreatment(){
+    return this.selectedMedications;
   }
 
   getPatientDetails(id) {
@@ -21,6 +49,14 @@ export class DoctorService {
 
   getPatients() {
     return this.patients;
+  }
+
+  getTreatments(){
+    return this.treatments;
+  }
+
+  getMedications() {
+    return this.medications;
   }
 
   getActivitiesForPatient(id) {
@@ -81,3 +117,15 @@ export interface Patient {
   address: string;
 }
 
+export interface Treatment {
+  startDate: string;
+  endDate: string;
+  medications: Medication[]
+}
+
+export interface Medication {
+  name: string;
+  description: string;
+  dosage: number;
+  intakeIntervals: number;
+}

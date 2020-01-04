@@ -1,0 +1,46 @@
+<form class="example-form" [formGroup]="myForm">
+    <table class="example-full-width" cellspacing="0" >
+      <tr>
+        <td>
+          <mat-form-field class="example-full-width">
+            <mat-label> Medication </mat-label>
+            <mat-select formControlName="medications">
+              <mat-option *ngFor="let medication of medications" [value]="medication"> {{ medication.name }} </mat-option>
+            </mat-select>
+            <mat-error *ngIf="myForm.controls['medications'].hasError('required')">
+              Selecting a medication is <strong> required </strong>
+            </mat-error>
+          </mat-form-field>
+        </td>
+      </tr>
+    </table>
+  
+    <table class="example-full-width" cellspacing="0">
+      <tr>
+        <td>
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Dosage" formControlName="dosage">
+            <mat-error *ngIf="myForm.controls['dosage'].hasError('required')">
+              Dosage is <strong> required </strong>
+            </mat-error>
+            <mat-error *ngIf="myForm.controls['dosage'].hasError('pattern')">
+              Dosage should be a <strong> number </strong>
+            </mat-error>
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Intake intervals" formControlName="intake">
+            <mat-error *ngIf="myForm.controls['intake'].hasError('required')">
+              Intake intervals are <strong> required </strong>
+            </mat-error>
+            <mat-error *ngIf="myForm.controls['intake'].hasError('pattern')">
+              Intake interval should be a <strong> number </strong>
+            </mat-error>
+          </mat-form-field>
+        </td>
+      </tr>
+    </table>
+
+    <button mat-raised-button color="primary" [mat-dialog-close]="true" class="btn" (click)="onSubmit()"> Submit </button>
+</form>

@@ -3,6 +3,7 @@ import {DoctorService, Patient} from '../../services/doctor.service';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {Record} from '../../services/doctor.service';
 import { AccountService } from 'src/app/services/account.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-patient-detail',
@@ -25,7 +26,8 @@ export class PatientDetailComponent implements OnInit {
   expandedElement: Record | null;
 
   constructor(
-    private doctorService: DoctorService
+    private doctorService: DoctorService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -35,4 +37,7 @@ export class PatientDetailComponent implements OnInit {
     this.dataSource = this.doctorService.getMedicalHistory(+selectedPatientId);
   }
 
+  openAddTreatmentPage() {
+    this.router.navigate(["doctor-add-treatment"]);
+  }
 }

@@ -1,4 +1,7 @@
 <mat-toolbar color="primary" class="navbar" *ngIf="sideNavVisible">
+  <button mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
+    <mat-icon class="burger-icon">menu</mat-icon>
+  </button>
   <div fxShow="true" fxHide.lt-md class="buttons-container">
     <a mat-button> <mat-icon aria-hidden="false"> local_hospital </mat-icon> MedApp </a>
     <a mat-button *ngIf="loggedInUserRole == 'DOCTOR'" routerLink="home-doctor" > Home </a>
@@ -9,10 +12,25 @@
     <a mat-button *ngIf="loggedInUserRole == 'PATIENT'" (click)="showFoodTracker()" > Food tracker </a>
   </div>
   <span class="menu-spacer"></span>
-  <div class="buttons-container">
+  <div class="buttons-container" fxShow="true" fxHide.lt-md>
     <a mat-button class="docs-navbar-hide-small docs-button" (click)="onLogout()" > Deconectare
       <mat-icon aria-hidden="false"> exit_to_app </mat-icon>
     </a>
   </div>
 </mat-toolbar>
 
+<mat-sidenav-container>
+  <mat-sidenav #sidenav >
+      <mat-nav-list class="sidenav-list">
+          <a mat-list-item (click)="sidenav.toggle()" *ngIf="loggedInUserRole == 'DOCTOR'" routerLink="home-doctor" > Home </a>
+          <a mat-list-item (click)="sidenav.toggle()" *ngIf="loggedInUserRole == 'DOCTOR'" routerLink="doctor-patients" > Patients </a>
+          <a mat-list-item (click)="sidenav.toggle()" *ngIf="loggedInUserRole == 'PATIENT'" (click)="openMyDrugs()" > My drugs </a>
+          <a mat-list-item (click)="sidenav.toggle()" *ngIf="loggedInUserRole == 'PATIENT'" (click)="openMyDailyTreatmentDialog()" > My treatment </a>
+          <a mat-list-item (click)="sidenav.toggle()" *ngIf="loggedInUserRole == 'PATIENT'" (click)="openMeasurementsDialog()" > Measurements </a>
+          <a mat-list-item (click)="sidenav.toggle()" *ngIf="loggedInUserRole == 'PATIENT'" (click)="showFoodTracker()" > Food tracker </a>
+      </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content class="navbar-content">
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

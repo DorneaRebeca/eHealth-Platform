@@ -1,0 +1,26 @@
+.example-form {
+    min-width: 150px;
+    max-width: 450px;
+    width: 100%;
+    overflow: hidden;
+    margin: auto 0;
+}
+  
+.example-full-width {
+  width: 100%;
+}
+
+table{
+  height: 100%;
+}
+
+td {
+  padding-right: 8px;
+}
+
+.btn {
+  margin: auto;
+  display: block;
+  margin-top: 80px;
+}
+  

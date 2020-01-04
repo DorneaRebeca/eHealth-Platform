@@ -1,0 +1,56 @@
+<mat-card class="container mat-elevation-z2">
+    <form class="form-container" [formGroup]="myForm">
+            <table>
+            <tr > 
+                <td style="width: 50%;">
+                    <mat-form-field style="width: 95%;">
+                    <input matInput [matDatepicker]="picker1" placeholder="Start date" formControlName="startDate">
+                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                    <mat-datepicker #picker1></mat-datepicker>
+                    <mat-error *ngIf="myForm.controls['startDate'].hasError('required')">
+                        A start date is <strong> required </strong>
+                    </mat-error>
+                    </mat-form-field>
+                </td>
+                <td style="width: 50%;">
+                    <mat-form-field style="width: 95%; float: right;">
+                    <input matInput [matDatepicker]="picker2" placeholder="End date" formControlName="endDate">
+                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker #picker2></mat-datepicker>
+                    <mat-error *ngIf="myForm.controls['endDate'].hasError('required')">
+                        An end date is <strong> required </strong>
+                    </mat-error>
+                    </mat-form-field>
+                </td>
+            </tr >
+        </table>
+        <br>
+        <table >
+            <tr>
+                <td style="width: 20%;">
+                    <button mat-raised-button color="primary" (click)="openAddMedicationForm()"> Add medication </button>
+                </td>
+                <td style="width: 70%;">
+                    <mat-form-field style="width: 100%;">
+                    <mat-chip-list #chipList aria-label="Medication selection">
+                        <mat-chip *ngFor="let item of items" [selectable]="selectable"
+                                [removable]="removable" (removed)="removeItemFromCurrentmedicationPlan(item)">
+                        {{item.name}}
+                        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                        </mat-chip>
+                    </mat-chip-list>
+                    </mat-form-field>
+                </td>
+            </tr>
+        </table>
+        <br>
+        <div id="finish-btn-container">
+            <button mat-raised-button color="primary" (click)="createTreatment()"> Finish treatment </button>
+        </div>        
+    </form>
+
+  </mat-card>
+  
+  
+  
+  
