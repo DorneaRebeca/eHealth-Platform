@@ -22,7 +22,7 @@ export class FoodTrackerComponent implements OnInit, OnDestroy {
   uploadProcessIsOn: boolean = false;
   selectedIndex: number = -1;
 
-  constructor( public dialogRef: MatDialogRef<FoodTrackerComponent>, private patientService: PatientService){  }
+  constructor( public dialogRef: MatDialogRef<FoodTrackerComponent>, private patientService: PatientService) { }
 
   onNoClick(): void {
     this.uploadProcessIsOn = false;
@@ -35,7 +35,8 @@ export class FoodTrackerComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.meals = this.patientService.dailyMeals;
+    console.log(this.patientService.dailyMeals);
+    this.meals = this.patientService.getMealsForDay(new Date());
   }
 
   didTapCaptureButton(selected) {
@@ -60,10 +61,10 @@ export class FoodTrackerComponent implements OnInit, OnDestroy {
   }
 
   stopCamera() {
-    if(this.shouldShowCamera) {
+    if (this.shouldShowCamera) {
       this.shouldShowCamera = false;
       this.video.pause();
-      this.video.src = "";
+      this.video.src = '';
       this.stream.getTracks()[0].stop();
     }
   }
@@ -81,8 +82,30 @@ export class FoodTrackerComponent implements OnInit, OnDestroy {
   didTapApprovePhoto() {
     this.stopCamera();
     this.uploadProcessIsOn = false;
-    var nutrients: number = Math.round(Math.random() * 10_000 % 500);
-    this.patientService.addNutritionValue(nutrients, this.selectedIndex);
+    const nutrientsNumber: number = Math.round(Math.random() * 10_000 % 500);
+    var mealName;
+    switch (this.selectedIndex) {
+      case 0:
+        mealName = 'Breakfast';
+        break;
+      case 1:
+        mealName = 'Lunch';
+        break;
+      case 2:
+        mealName = 'Dinner';
+        break;
+      case 3:
+        mealName = 'Snack';
+        break;
+      default:
+        mealName = '';
+    }
+    const nutrition = {
+      date : new Date(),
+      meal: mealName,
+      nutrients : nutrientsNumber
+    };
+    this.patientService.addNutritionValue(nutrition);
     this.dialogRef.close();
   }
 
@@ -99,26 +122,26 @@ export class FoodTrackerComponent implements OnInit, OnDestroy {
   }
 
   showLoadingScreen(predefined  = 0) {
-    const interval = predefined == 0 ? Math.round(Math.random() * 10_000 % 200) * 10 : predefined;
-    document.getElementById("loading-spinner").style.setProperty('display', 'block');
+    const interval = predefined === 0 ? Math.round(Math.random() * 10_000 % 200) * 10 : predefined;
+    document.getElementById('loading-spinner').style.setProperty('display', 'block');
     return setTimeout(this.hideLoadingScreen, interval)
   }
 
   hideLoadingScreen() {
-    document.getElementById("loading-spinner").style.setProperty('display', 'none');
+    document.getElementById('loading-spinner').style.setProperty('display', 'none');
   }
 
   didTapUploadButton(selectedFile, index) {
-    if(selectedFile.length == 0) {
+    if (selectedFile.length === 0) {
       this.uploadProcessIsOn = false;
-      return
+      return;
     }
     this.selectedIndex = index;
     this.uploadProcessIsOn = true;
-    var reader = new FileReader();
-    reader.onload = function(event){
+    const reader = new FileReader();
+    reader.onload = function(event) {
       var img = new Image();
-      img.onload = function(){
+      img.onload = function() {
         const canvas: any = document.getElementById('canvas');
         const context: any = canvas.getContext('2d');
         document.getElementById('meals-menu').style.setProperty('display', 'none');

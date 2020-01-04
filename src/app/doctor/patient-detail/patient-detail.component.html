@@ -92,7 +92,19 @@
       </mat-list>
     </div>
   </mat-tab>
-  <mat-tab label="Vital Sign"> Vital Sign </mat-tab>
+  <mat-tab label="Vital Sign">
+    <mat-tab-group mat-stretch-tabs>
+      <mat-tab label="Heart rate">
+        <app-chart-heart-rate></app-chart-heart-rate>
+      </mat-tab>
+      <mat-tab label="Temperature">
+        <app-chart-temperature></app-chart-temperature>
+      </mat-tab>
+      <mat-tab label="Blood sugar">
+        <app-chart-blood-sugar></app-chart-blood-sugar>
+      </mat-tab>
+    </mat-tab-group>
+  </mat-tab>
   <mat-tab label="Nutrition history"> Nutrition history </mat-tab>
   <mat-tab label="Treatment(s)"> Treatment(s) </mat-tab>
 </mat-tab-group>

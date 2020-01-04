@@ -7,7 +7,7 @@ import {BehaviorSubject} from "rxjs";
 })
 
 export class PatientService {
-  nutrients: number;
+  // nutrients: number;
   nutritionValue: BehaviorSubject<number> = new BehaviorSubject<number>(0);
   drugsBreakfast = [
     {name: 'Medicament 1',selected:false},
@@ -26,18 +26,59 @@ export class PatientService {
   dailyMeals = [];// = [{'Breakfast': false}, {'Lunch': false}, {'Dinner': false}];
 
   constructor() {
-    this.nutrients = JSON.parse(localStorage.getItem('nutrients'));
-    this.dailyMeals = JSON.parse(localStorage.getItem('dailyMeals'))
+    // localStorage.setItem('dailyMeals', JSON.stringify([]));
+    this.dailyMeals = JSON.parse(localStorage.getItem('dailyMeals'));
   }
 
-  public addNutritionValue(numberOfNutrition, toMeal) {
-    //2000 is max
-    this.nutrients += numberOfNutrition;
-    localStorage.setItem('nutrients', JSON.stringify(this.nutrients));
-    this.nutritionValue.next(this.nutrients);
-    this.dailyMeals[toMeal].status = true;
-    this.dailyMeals[toMeal].calories += numberOfNutrition;
+  public addNutritionValue(nutrition) {
+    this.dailyMeals = JSON.parse(localStorage.getItem('dailyMeals'));
+    this.nutritionValue.next(0);
+    this.dailyMeals.filter(meal => {
+      return new Date(meal.date).toDateString() ===  nutrition.date.toDateString() && meal.name === nutrition.meal;
+    }).map( element => {
+      element.status = true;
+      element.calories += nutrition.nutrients;
+    });
     localStorage.setItem('dailyMeals', JSON.stringify(this.dailyMeals));
+  }
+
+  getMealsForDay(day) {
+    const found = this.dailyMeals.filter(meal => {
+      return new Date(meal.date).toDateString() ===  day.toDateString();
+    });
+    if (found.length === 0) {
+      this.dailyMeals.push({
+        status: false,
+        date: day,
+        calories: 0,
+        name: 'Breakfast'
+      });
+      this.dailyMeals.push({
+        status: false,
+        date: day,
+        calories: 0,
+        name: 'Lunch'
+      });
+      this.dailyMeals.push({
+        status: false,
+        date: day,
+        calories: 0,
+        name: 'Dinner'
+      });
+      this.dailyMeals.push({
+        status: false,
+        date: day,
+        calories: 0,
+        name: 'Snack'
+      });
+      localStorage.setItem('dailyMeals', JSON.stringify(this.dailyMeals));
+      return this.dailyMeals;
+    }
+    return found;
+  }
+
+  updateNutrition(date) {
+    this.nutritionValue.next(0);
   }
 
   saveDataInLocalStorageArray(tempData, arrayName : string) :void {

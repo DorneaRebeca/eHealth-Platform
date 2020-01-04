@@ -74,6 +74,7 @@ import {MatTabsModule} from "@angular/material/tabs";
     MatGridListModule,
     MatTabsModule,
     MatExpansionModule,
+
   ],
   exports: [
     HeaderComponent,

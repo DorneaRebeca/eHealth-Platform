@@ -134,3 +134,6 @@ tr.example-element-row:not(.example-expanded-row):active {
   padding-top: 0;
 }
 
+app-chart {
+  margin: 8px;
+}
