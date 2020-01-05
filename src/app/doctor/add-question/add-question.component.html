@@ -1,0 +1,39 @@
+<form id="form-container" [formGroup]="myForm">
+    <table class="example-full-width" cellspacing="0" >
+      <tr>
+        <td>
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Question" formControlName="question">
+                <mat-error *ngIf="myForm.controls['question'].hasError('required')">
+                  A question text is <strong> required </strong>
+                </mat-error>
+            </mat-form-field>
+        </td>
+      </tr>
+      <tr>
+          <td class="example-full-width">
+            <mat-form-field style="width: 65%;">
+                <input matInput placeholder="Answer for the new question" formControlName="answer">
+                <mat-error *ngIf="myForm.controls['answer'].hasError('required')">
+                  An answer is <strong> required </strong>
+                </mat-error>
+            </mat-form-field>
+            <button mat-raised-button color="primary" id="add-answer-btn" (click)="addAnswerToQuestion()"> Add answer </button>
+          </td>
+      </tr>
+      <tr>
+        <mat-form-field style="width: 100%;">
+            <mat-chip-list #chipList>
+                <mat-chip *ngFor="let answer of answers" [selectable]="selectable" [removable]="true" (removed)="removeAnswerFromQuestion(item)">
+                    {{ answer }}
+                    <mat-icon matChipRemove> cancel </mat-icon>
+                </mat-chip>
+            </mat-chip-list>
+        </mat-form-field>
+      </tr>
+    </table>
+</form>
+<div id="btn-container">
+  <button mat-raised-button color="primary" (click)="createNewQuestion()" [mat-dialog-close]="true"> Create question </button>
+</div>
+

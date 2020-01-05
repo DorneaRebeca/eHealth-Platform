@@ -27,21 +27,22 @@
         <br>
         <table >
             <tr>
+
                 <td style="width: 20%;">
                     <button mat-raised-button color="primary" (click)="openAddMedicationForm()"> Add medication </button>
                 </td>
                 <td style="width: 70%;">
                     <mat-form-field style="width: 100%;">
                     <mat-chip-list #chipList aria-label="Medication selection">
-                        <mat-chip *ngFor="let item of items" [selectable]="selectable"
-                                [removable]="removable" (removed)="removeItemFromCurrentmedicationPlan(item)">
-                        {{item.name}}
-                        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                        <mat-chip *ngFor="let item of items" [selectable]="selectable" [removable]="true" (removed)="removeItemFromNewTreatment(item)">
+                            {{ item.name }}
+                            <mat-icon matChipRemove> cancel </mat-icon>
                         </mat-chip>
                     </mat-chip-list>
                     </mat-form-field>
                 </td>
             </tr>
+            <tr>
         </table>
         <br>
         <div id="finish-btn-container">

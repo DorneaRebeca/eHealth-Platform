@@ -37,7 +37,7 @@ export class AddTreatmentComponent implements OnInit {
         this.items = this.doctorService.getItemsFromCurrentTreatment();
     }
 
-    removeItemFromCurrentmedicationPlan(item) {
+    removeItemFromNewTreatment(item) {
         this.doctorService.removeItemFromCurrentTreatment(item);
         this.loadItemsToCurrentMedicationPlan();
     }
@@ -83,7 +83,7 @@ export class AddTreatmentComponent implements OnInit {
         }
     }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
 
 }

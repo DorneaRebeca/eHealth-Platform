@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import {Meal} from "../patient/food-tracker/food-tracker.component";
 import {BehaviorSubject} from "rxjs";
 
 @Injectable({

@@ -35,6 +35,7 @@ import { DailyTreatmentComponent } from '../patient/daily-treatment/daily-treatm
 import { MydrugsComponent } from '../patient/mydrugs/mydrugs.component';
 import { AskformoreComponent } from '../patient/askformore/askformore.component';
 import {MatTabsModule} from "@angular/material/tabs";
+import { QuizService } from '../services/quiz.service';
 
 
 
@@ -108,7 +109,8 @@ import {MatTabsModule} from "@angular/material/tabs";
     MatExpansionModule,
   ],
   providers: [
-    AccountService
+    AccountService,
+    QuizService
   ],
   entryComponents: [
     FoodTrackerComponent,

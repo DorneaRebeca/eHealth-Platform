@@ -1,0 +1,62 @@
+<div class="container">
+    <form id="form-container" [formGroup]="myForm">
+        <table id="table-container">
+            <tr> 
+                <td>
+                    <mat-form-field class="example-full-width">
+                        <input matInput placeholder="Title" formControlName="title">
+                        <mat-error *ngIf="myForm.controls['title'].hasError('required')">
+                            A title is <strong> required </strong>
+                        </mat-error>
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <mat-form-field class="example-full-width">
+                        <textarea matInput placeholder="Description" formControlName="description"></textarea>
+                        <mat-error *ngIf="myForm.controls['description'].hasError('required')">
+                            A description is <strong> required </strong>
+                        </mat-error>
+                    </mat-form-field>
+                </td>
+            </tr >
+            <br>
+            <tr>
+                <td style="width: 100%;">
+                    <mat-form-field style="width: 100%;">
+                        <mat-chip-list #chipList>
+                            <mat-chip *ngFor="let question of newQuizQuestions" [selectable]="selectable" [removable]="true" (removed)="removeQuestionFromNewQuiz(item)">
+                                {{ question.text }}
+                                <mat-icon matChipRemove> cancel </mat-icon>
+                            </mat-chip>
+                        </mat-chip-list>
+                    </mat-form-field>
+                </td>
+            </tr>
+            <br>
+            <tr>
+                <td>
+                    <button mat-raised-button color="primary" style="width: 140px;" (click)="openAddNewQuestionForm()"> Add new question </button>
+                    <button mat-raised-button color="primary" style="width: 140px; float: right;" (click)="createNewQuiz()"> Create quiz </button>
+                </td>
+            </tr>
+        </table>
+
+        <mat-accordion id="questions-container" >
+            <mat-expansion-panel *ngFor="let question of questions">
+                <mat-expansion-panel-header>
+                    <mat-panel-title> {{ question.text }}</mat-panel-title>
+                </mat-expansion-panel-header>
+                <mat-list *ngFor="let answer of question.answers">
+                    <mat-list-item> {{ answer }} </mat-list-item>
+                </mat-list>
+                <button mat-raised-button color="primary" (click)="addQuestionToNewQuiz(question)"> Choose </button>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </form>
+  </div>
+  
+  
+  
+  
