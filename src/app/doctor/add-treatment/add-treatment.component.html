@@ -1,6 +1,6 @@
 <mat-card class="container mat-elevation-z2">
-    <form class="form-container" [formGroup]="myForm">
-            <table>
+    <form id="form-container" [formGroup]="myForm">
+        <table>
             <tr > 
                 <td style="width: 50%;">
                     <mat-form-field style="width: 95%;">
@@ -44,11 +44,10 @@
             </tr>
             <tr>
         </table>
-        <br>
-        <div id="finish-btn-container">
-            <button mat-raised-button color="primary" (click)="createTreatment()"> Finish treatment </button>
-        </div>        
     </form>
+    <div id="finish-btn-container">
+        <button mat-raised-button color="primary" (click)="createTreatment()"> Finish treatment </button>
+    </div>
 
   </mat-card>
   
