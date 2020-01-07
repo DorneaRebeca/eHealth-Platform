@@ -55,6 +55,7 @@ export class LoginComponent implements OnInit {
           this.saveTemperatureInfo();
           this.saveBloodSugarInfo();
           this.initMeasurements();
+          this.accountService.shouldShowNavBar.next(true);
           this.router.navigate(['home-patient']);
           break;
         }

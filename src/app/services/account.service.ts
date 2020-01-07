@@ -37,6 +37,13 @@ export class AccountService {
     {
       'username' : 'doctor',
       'password' : 'doctor',
+      'name' : 'John Doe',
+      'role' : "DOCTOR"
+    },
+    {
+      'username' : 'doctor',
+      'password' : 'doctor',
+      'name' : 'Christina Adams',
       'role' : "DOCTOR"
     }
   ];
@@ -79,6 +86,18 @@ export class AccountService {
     });
     
     return patients;
+  }
+
+  public getDoctors(){
+    let doctors = [];
+    
+    this.users.forEach(user => {
+      if(user.role == "DOCTOR") {
+        doctors.push(user);
+      }
+    });
+    
+    return doctors;
   }
   
   public getPatientByUsername(username) : any {

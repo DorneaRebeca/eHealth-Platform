@@ -36,11 +36,13 @@ import { MydrugsComponent } from '../patient/mydrugs/mydrugs.component';
 import { AskformoreComponent } from '../patient/askformore/askformore.component';
 import {MatTabsModule} from "@angular/material/tabs";
 import { QuizService } from '../services/quiz.service';
+import { ChatComponent } from './chat/chat.component';
+import { MessageService } from '../services/message.component';
 
 
 
 @NgModule({
-  declarations: [HeaderComponent],
+  declarations: [HeaderComponent, ChatComponent],
   imports: [
     FormsModule,
     ReactiveFormsModule,
@@ -110,14 +112,16 @@ import { QuizService } from '../services/quiz.service';
   ],
   providers: [
     AccountService,
-    QuizService
+    QuizService,
+    MessageService
   ],
   entryComponents: [
     FoodTrackerComponent,
     MeasurementsComponent,
     DailyTreatmentComponent,
     MydrugsComponent,
-    AskformoreComponent
+    AskformoreComponent,
+    ChatComponent
   ],
 })
 export class SharedModule { }

@@ -32,5 +32,10 @@
   </mat-sidenav>
   <mat-sidenav-content class="navbar-content">
     <router-outlet></router-outlet>
+    <div class="button-container" *ngIf="sideNavVisible">
+      <button mat-fab color="accent" id="add-button" (click)="openChat()"> 
+        <i class="material-icons"> chat </i> 
+      </button>
+    </div>
   </mat-sidenav-content>
 </mat-sidenav-container>

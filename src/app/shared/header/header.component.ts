@@ -1,12 +1,12 @@
-import {Component, OnInit, ChangeDetectorRef, AfterContentChecked} from '@angular/core';
+import {Component, OnInit, ChangeDetectorRef, AfterContentChecked, ViewEncapsulation} from '@angular/core';
 import {AccountService} from "../../services/account.service";
-import {connectableObservableDescriptor} from "rxjs/internal/observable/ConnectableObservable";
-import {MatDialog, MatDialogModule, MatDialogConfig} from '@angular/material/dialog';
+import {MatDialog} from '@angular/material/dialog';
 import {FoodTrackerComponent} from "../../patient/food-tracker/food-tracker.component";
 import {MeasurementsComponent} from '../../patient/measurements/measurements.component';
 import { DailyTreatmentComponent } from 'src/app/patient/daily-treatment/daily-treatment.component';
 import { MydrugsComponent } from 'src/app/patient/mydrugs/mydrugs.component';
 import {Router} from "@angular/router";
+import { ChatComponent } from '../chat/chat.component';
 
 @Component({
   selector: 'app-header',
@@ -22,7 +22,8 @@ export class HeaderComponent implements OnInit, AfterContentChecked {
     private accountService: AccountService,
     private cdRef : ChangeDetectorRef,
     private router: Router,
-    private dialog : MatDialog ) {
+    private dialog : MatDialog 
+  ) {
       this.accountService.shouldShowNavBar.subscribe(value => this.sideNavVisible = value);
       this.accountService.roleEvent.subscribe(role => this.loggedInUserRole = role);
   }
@@ -39,8 +40,7 @@ export class HeaderComponent implements OnInit, AfterContentChecked {
 
   showFoodTracker() {
     this.dialog.open(FoodTrackerComponent, {
-      height: '520px',
-      width: '664px',
+      panelClass: "custom-dialog-container"
     });
   }
 
@@ -58,6 +58,17 @@ export class HeaderComponent implements OnInit, AfterContentChecked {
 
   openMyDrugs() {
     this.dialog.open(MydrugsComponent);
+  }
+
+  openChat(){
+    this.dialog.open(ChatComponent, {
+      width: '750px',
+      height: '500px',
+      panelClass: 'myapp-no-padding-dialog',
+      data: {
+        openAs: this.loggedInUserRole
+      }
+    });
   }
 
 }

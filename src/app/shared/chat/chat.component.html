@@ -1,0 +1,50 @@
+<mat-card id="container">
+    <div id="inner-container1">
+        <div id="title-container">
+            <mat-label style="margin-top: 23px; margin-left: 15px; position: absolute;">
+                Contacts
+            </mat-label>
+        </div>
+        <mat-divider [vertical]="true" style="height:12%; width: 30%; position: absolute;"></mat-divider>
+        <div id="name-container">
+            <mat-label style="margin-top: 23px; margin-left: 15px; position: absolute;">
+                {{ selectedContact == null ? '' : selectedContact.info.name }}
+            </mat-label>
+        </div>
+    </div>
+    <mat-divider style="width:100%"></mat-divider>
+    <div id="inner-container2">
+        <div id="contacts-container">
+            <mat-button-toggle-group vertical style="width: 99.5%; height:100%;">
+                <mat-button-toggle *ngFor="let contact of contacts" (click)="selectContact(contact)">
+                    <img matListAvatar src="assets/person.jpg" id="chat-img">
+                    <p matLine> {{ contact.info.name }} </p>
+                </mat-button-toggle>
+                <mat-divider style="width: 100%; position: relative;"></mat-divider>
+            </mat-button-toggle-group>
+        </div>
+        <div id="inner-container3">
+            <div id="messages-container">
+                <p matLine *ngIf="selectedContact == null"> Please select a contact from the list on the left. </p>
+                <ul *ngIf="selectedContact != null">
+                    <li *ngFor="let message of selectedContact.messages"
+                        [style.flex-direction]=" message.type === 'S' ? 'row-reverse' : 'row' ">
+                        <img src="assets/person.jpg" style="border-radius: 50%; width: 36px; height: 37px;"/>
+                        <span [ngClass]=" message.type === 'S' ? 'speech-bubble-own' : 'speech-bubble' ">
+                          {{ message.content }}
+                        </span>
+                    </li>
+                </ul>
+            </div>
+            <mat-divider style="width: 100%; position: relative;"></mat-divider>
+            <div id="message-container">
+                <form [formGroup]="myForm">
+                    <mat-form-field style="width: 100%; margin-left: 15px; margin-top: -5px;" appearance="none">
+                        <input matInput placeholder="Type something" formControlName="message">
+                    </mat-form-field>
+                </form>
+                <button mat-mini-fab id="send-btn" color="primary" (click)="sendMessage()" [disabled]="isMessageEmpty()"> <i class="material-icons"> send </i> </button>
+            </div>
+        </div>
+    </div>
+</mat-card>
