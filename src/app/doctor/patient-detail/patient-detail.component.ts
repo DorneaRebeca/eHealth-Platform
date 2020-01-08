@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {DoctorService, Patient} from '../../services/doctor.service';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {Record} from '../../services/doctor.service';

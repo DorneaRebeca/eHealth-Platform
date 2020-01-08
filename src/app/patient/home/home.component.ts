@@ -52,22 +52,24 @@ export class HomeComponent implements OnInit, AfterContentInit  {
     }
   ];
 
-  ngAfterContentInit (): void {
+  ngAfterContentInit(): void {
     this.patientService.nutritionValue.subscribe( value => {
       setTimeout(() => {
-        document.getElementById("nutrients-progress-bar").scrollIntoView({behavior: 'smooth', block: 'start', inline: 'nearest'});
-        this.value = value.valueOf() * 100 / 2000;
-        if(this.patientService.nutrients > 2000) {
-          this.exceededNutrition += this.value;
+        document.getElementById('nutrients-progress-bar').scrollIntoView({behavior: 'smooth', block: 'start', inline: 'nearest'});
+        const meals = this.patientService.getMealsForDay(this.selectedDate);
+        const val = meals.reduce( (start, el) => el.calories + start, 0);
+        this.value = val.valueOf() * 100 / 2000;
+        if (val > 2000) {
+          this.exceededNutrition += val;
         }
         this.nutrientsMessage = '';
-        for(var i = 0; i < this.patientService.dailyMeals.length; i++){
-          let meal = this.patientService.dailyMeals[i];
-          if(meal.calories != 0) {
+        for (var i = 0; i < meals.length; i++) {
+          const meal = meals[i];
+          if (meal.calories !== 0) {
             this.nutrientsMessage += meal.name + ': ' + meal.calories + ' calories.\n\n';
           }
         }
-        }, 100 );
+      }, 100 );
     });
     this.refreshIntervalId = setInterval(() => this.startAnimate(), 1000);
   }
@@ -76,7 +78,7 @@ export class HomeComponent implements OnInit, AfterContentInit  {
   }
   constructor(
     private router: Router,
-    private patientService : PatientService,
+    private patientService: PatientService,
   ) {}
 
   ngOnInit(): void {
@@ -86,6 +88,7 @@ export class HomeComponent implements OnInit, AfterContentInit  {
   onSelect(event) {
     this.selectedDate = event;
     this.getMeasurements();
+    this.patientService.updateNutrition(this.selectedDate);
   }
 
   redirect(link : string) : void{
@@ -114,8 +117,9 @@ export class HomeComponent implements OnInit, AfterContentInit  {
   }
 
   public startAnimate() {
-    this.value = this.patientService.nutrients * 100 / 2000;
-    if(this.patientService.nutrients > 2000) {
+    const val = this.patientService.getMealsForDay(this.selectedDate).reduce( (start, el) => el.calories + start, 0);
+    this.value = val * 100 / 2000;
+    if (val > 2000) {
       this.exceededNutrition += 100;
     }
     clearInterval(this.refreshIntervalId);

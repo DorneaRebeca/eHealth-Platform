@@ -14,6 +14,9 @@ import { MydrugsComponent } from './patient/mydrugs/mydrugs.component';
 import { AskformoreComponent } from './patient/askformore/askformore.component';
 import { PatientsComponent } from './doctor/patients/patients.component';
 import { PatientDetailComponent } from './doctor/patient-detail/patient-detail.component';
+import { ChartHeartRateComponent } from './doctor/patient-detail/chart-heart-rate/chart-heart-rate.component';
+import { ChartTemperatureComponent } from './doctor/patient-detail/chart-temperature/chart-temperature.component';
+import { ChartBloodSugarComponent } from './doctor/patient-detail/chart-blood-sugar/chart-blood-sugar.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,10 @@ import { PatientDetailComponent } from './doctor/patient-detail/patient-detail.c
     MydrugsComponent,
     AskformoreComponent,
     PatientsComponent,
-    PatientDetailComponent
+    PatientDetailComponent,
+    ChartHeartRateComponent,
+    ChartTemperatureComponent,
+    ChartBloodSugarComponent,
   ],
   imports: [
     BrowserModule,
