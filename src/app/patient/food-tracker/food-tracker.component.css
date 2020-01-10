@@ -76,3 +76,10 @@ mat-progress-spinner {
   text-align: center;
   top: 48%;
 }
+
+#result-container {
+  object-fit: fill;
+  display: none;
+  height: 456px;
+  width: 606px;
+}

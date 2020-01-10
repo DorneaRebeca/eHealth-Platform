@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit {
   dateClass = (d: Date) => {
     const date = d.getDate();
     return this.dates[date] ? 'no-appointment' : undefined;
-  };
+  }
 
   onSelect(event) {
     this.selectedDate = event;

@@ -58,7 +58,7 @@ textarea {
 
 mat-calendar {
   width: 30%;
-  float: right; 
+  float: right;
   margin: auto;
 }
 
@@ -76,7 +76,7 @@ table{
     margin-top: 40px;
     margin-left: 80px;
 }
-  
+
 .header-image {
   background-image: url('src/assets/doctor-header.jpg');
   background-size: cover;

@@ -78,6 +78,12 @@ export class PatientService {
     return found;
   }
 
+  getMealsForDayPrettyPrint(day) {
+    return this.dailyMeals.filter(meal => {
+      return new Date(meal.date).toDateString() ===  day.toDateString();
+    })
+  }
+
   updateNutrition(date) {
     this.nutritionValue.next(0);
   }

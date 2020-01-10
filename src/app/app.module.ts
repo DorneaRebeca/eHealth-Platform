@@ -17,6 +17,7 @@ import { PatientDetailComponent } from './doctor/patient-detail/patient-detail.c
 import { ChartHeartRateComponent } from './doctor/patient-detail/chart-heart-rate/chart-heart-rate.component';
 import { ChartTemperatureComponent } from './doctor/patient-detail/chart-temperature/chart-temperature.component';
 import { ChartBloodSugarComponent } from './doctor/patient-detail/chart-blood-sugar/chart-blood-sugar.component';
+import { NutritionHistoryComponent } from './doctor/patient-detail/nutrition-history/nutrition-history.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { ChartBloodSugarComponent } from './doctor/patient-detail/chart-blood-su
     ChartHeartRateComponent,
     ChartTemperatureComponent,
     ChartBloodSugarComponent,
+    NutritionHistoryComponent,
   ],
   imports: [
     BrowserModule,

@@ -27,7 +27,7 @@
         <mat-list-item>
           <p mat-line><font color="gray"> Address: </font> {{ patientDetails.address }}</p>
         </mat-list-item>
-        
+
         <div id="buttons">
           <button mat-raised-button color="primary" (click)="openAddQuizPage()" style="margin-left: 10px;"> Create quiz </button>
           <button mat-raised-button color="primary"> Create prescription </button>
@@ -114,6 +114,8 @@
       </mat-tab>
     </mat-tab-group>
   </mat-tab>
-  <mat-tab label="Nutrition history"> Nutrition history </mat-tab>
+  <mat-tab label="Nutrition history">
+    <app-nutrition-history></app-nutrition-history>
+  </mat-tab>
   <mat-tab label="Treatment(s)"> Treatment(s) </mat-tab>
 </mat-tab-group>

@@ -2,6 +2,18 @@
 <body>
 <mat-icon id="cancel" color="primary" (click)="onNoClick()" >cancel</mat-icon>
 
+<div id="result-container">
+  <mat-list style="padding-top: 50px;">
+    <h3 mat-subheader>Food that was detected:</h3>
+    <mat-list-item *ngFor="let food of foodDetected">
+      <h4>{{food.name}}: {{food.calories}} kcal</h4>
+    </mat-list-item>
+  </mat-list>
+  <button class="overlay-button" mat-fab color="primary" (click)="didApproveDetectedFood()">
+    <mat-icon>done</mat-icon>
+  </button>
+</div>
+
 <div id="video-wrapper">
   <video id="video" width="606px" height="456px"></video>
   <button class="overlay-button" mat-fab color="primary" (click)="didTapTakePhotoButton()">

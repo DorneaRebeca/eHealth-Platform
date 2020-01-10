@@ -21,6 +21,7 @@ export class FoodTrackerComponent implements OnInit, OnDestroy {
   shouldShowCamera: boolean = false;
   uploadProcessIsOn: boolean = false;
   selectedIndex: number = -1;
+  foodDetected = [ {name: 'Banana', calories: 45}, {name: 'Orange', calories: 54}, {name: 'Strawberry', calories: 88} ];
 
   constructor( public dialogRef: MatDialogRef<FoodTrackerComponent>, private patientService: PatientService) { }
 
@@ -80,9 +81,15 @@ export class FoodTrackerComponent implements OnInit, OnDestroy {
   }
 
   didTapApprovePhoto() {
+    const nutrientsNumber: number = Math.round(Math.random() * 10_000 % 500);
+    document.getElementById('canvas-wrapper').style.setProperty('display', 'none');
+    document.getElementById('result-container').style.setProperty('display', 'block');
+
+  }
+
+  didApproveDetectedFood() {
     this.stopCamera();
     this.uploadProcessIsOn = false;
-    const nutrientsNumber: number = Math.round(Math.random() * 10_000 % 500);
     var mealName;
     switch (this.selectedIndex) {
       case 0:
@@ -99,18 +106,19 @@ export class FoodTrackerComponent implements OnInit, OnDestroy {
         break;
       default:
         mealName = '';
+
     }
     const nutrition = {
       date : new Date(),
       meal: mealName,
-      nutrients : nutrientsNumber
+      nutrients : 187
     };
     this.patientService.addNutritionValue(nutrition);
     this.dialogRef.close();
   }
 
   didTapRetakePhotoButton() {
-    if(this.uploadProcessIsOn)  {
+    if (this.uploadProcessIsOn)  {
       document.getElementById('upload-button').click();
       document.getElementById('meals-menu').style.removeProperty('display');
       document.getElementById('canvas-wrapper').style.setProperty('display', 'none');
@@ -124,7 +132,7 @@ export class FoodTrackerComponent implements OnInit, OnDestroy {
   showLoadingScreen(predefined  = 0) {
     const interval = predefined === 0 ? Math.round(Math.random() * 10_000 % 200) * 10 : predefined;
     document.getElementById('loading-spinner').style.setProperty('display', 'block');
-    return setTimeout(this.hideLoadingScreen, interval)
+    return setTimeout(this.hideLoadingScreen, interval);
   }
 
   hideLoadingScreen() {
