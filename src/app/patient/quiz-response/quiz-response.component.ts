@@ -91,8 +91,4 @@ export class QuizResponseComponent implements OnInit {
     );
   }
 
-
-
-
-
 }

@@ -139,3 +139,11 @@ tr.example-element-row:not(.example-expanded-row):active {
 app-chart {
   margin: 8px;
 }
+
+mat-expansion-panel {
+  width: 70%;
+}
+#answer {
+  padding-left  : 20px ;
+  text-align: center;
+}

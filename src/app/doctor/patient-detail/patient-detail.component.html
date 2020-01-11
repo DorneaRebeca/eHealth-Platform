@@ -27,7 +27,7 @@
         <mat-list-item>
           <p mat-line><font color="gray"> Address: </font> {{ patientDetails.address }}</p>
         </mat-list-item>
-        
+
         <div id="buttons">
           <button mat-raised-button color="primary" (click)="openAddQuizPage()" style="margin-left: 10px;"> Create quiz </button>
           <button mat-raised-button color="primary"> Create prescription </button>
@@ -116,4 +116,40 @@
   </mat-tab>
   <mat-tab label="Nutrition history"> Nutrition history </mat-tab>
   <mat-tab label="Treatment(s)"> Treatment(s) </mat-tab>
+
+  <mat-tab label="Answered forms">
+
+    <mat-accordion *ngFor="let form of answeredForms" id="answeredForms" fxFlexAlign="center">
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{form.name}}
+          </mat-panel-title>
+          <mat-panel-description>
+            {{form.date.toString()}}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title class="card-container-right">
+              <mat-icon class="card-icon" color="accent"> question_answer </mat-icon>
+              <span> {{ form.name }} </span>
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <mat-list *ngFor="let answer of form.answers">
+              <mat-list-item>
+                <font color="gray">{{answer.question}} </font>
+                <p fxFlexAlign="center" id="answer"> {{answer.answer}}</p>
+              </mat-list-item>
+            </mat-list>
+          </mat-card-content>
+        </mat-card>
+      </mat-expansion-panel>
+
+
+    </mat-accordion>
+
+  </mat-tab>
 </mat-tab-group>
