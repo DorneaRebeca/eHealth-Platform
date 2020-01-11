@@ -16,7 +16,7 @@
       help_outline
     </mat-icon>
         <mat-form-field appearance="outline">
-          <mat-label>Systolic</mat-label>
+          <mat-label>Systolic (upper value)</mat-label>
           <input matInput type="number"  placeholder="mmHg" name="systolic"  [formControl]="systolicControl" [(ngModel)]="systolic">
           <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
           <mat-hint>*mandatory value</mat-hint>
@@ -24,7 +24,7 @@
         </mat-form-field>
 
         <mat-form-field appearance="outline">
-          <mat-label>Diastolic</mat-label>
+          <mat-label>Diastolic (lower value)</mat-label>
           <input matInput type="number" name="diastolic" placeholder="mmGh" [formControl]="diastolicControl" [(ngModel)]="diastolic">
           <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
           <mat-hint>*mandatory value</mat-hint>
