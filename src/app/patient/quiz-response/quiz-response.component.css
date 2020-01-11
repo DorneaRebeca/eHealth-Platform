@@ -1,0 +1,13 @@
+#quiz-card {
+  align-items: center;
+  margin-top: 50px;
+  padding: 50px;
+}
+#buttons {
+  alignment: center;
+  width: 50%;
+}
+#buttons > button {
+  margin: auto 15px auto 15px;
+
+}

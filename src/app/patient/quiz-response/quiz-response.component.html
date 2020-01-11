@@ -1,0 +1,42 @@
+<mat-card id="quiz-card" fxFlexAlign="center">
+  <mat-card-header>
+    <mat-card-title class="card-container-right">
+      <mat-icon class="card-icon"> question_answer </mat-icon>
+      <span> {{quiz.name}} </span>
+    </mat-card-title>
+    <mat-card-subtitle>{{quiz.description}}</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <br>
+    <mat-vertical-stepper [linear]="isLinear" #stepper>
+      <mat-step *ngFor="let question of quiz.questions" [stepControl]="firstFormGroup">
+        <ng-template matStepLabel>{{question.text}}</ng-template>
+        <mat-form-field>
+          <mat-label>Answers</mat-label>
+          <mat-select>
+            <mat-option *ngFor="let option of question.answers" [value]="option" (click)="onSelect(question.text, option)">
+              {{option}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious color="accent">Back</button>
+          <button mat-button matStepperNext color="accent">Next</button>
+        </div>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Done</ng-template>
+        You are now done!
+        <div id="buttons">
+          <button mat-raised-button color="primary" style="margin-left: 10px;" (click)="stepper.reset()"> Cancel </button>
+          <button mat-raised-button color="primary" (click)="submitQuiz()"> Submit </button>
+        </div>
+      </mat-step>
+    </mat-vertical-stepper>
+
+  </mat-card-content>
+</mat-card>
+
+
+
