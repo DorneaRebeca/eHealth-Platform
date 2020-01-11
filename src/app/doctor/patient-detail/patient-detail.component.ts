@@ -4,6 +4,7 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
 import {Record} from '../../services/doctor.service';
 import { AccountService } from 'src/app/services/account.service';
 import { Router } from '@angular/router';
+import {Answer} from '../../services/quiz.service';
 
 @Component({
   selector: 'app-patient-detail',
@@ -24,6 +25,7 @@ export class PatientDetailComponent implements OnInit {
   dataSource = [];
   columnsToDisplay = ['name', 'start_date', 'duration'];
   expandedElement: Record | null;
+  answeredForms = [];
 
   constructor(
     private doctorService: DoctorService,
@@ -35,6 +37,7 @@ export class PatientDetailComponent implements OnInit {
     this.patientDetails = this.doctorService.getPatientDetails(+selectedPatientId);
     this.patientActivities = this.doctorService.getActivitiesForPatient(+selectedPatientId);
     this.dataSource = this.doctorService.getMedicalHistory(+selectedPatientId);
+    this.getAnsweredForms();
   }
 
   openAddTreatmentPage() {
@@ -43,5 +46,15 @@ export class PatientDetailComponent implements OnInit {
 
   openAddQuizPage() {
     this.router.navigate(["doctor-add-quiz"]);
+  }
+
+  getAnsweredForms() {
+    let data = JSON.parse(localStorage.getItem('quizAnswers'));
+    let patientId = localStorage.getItem("selectedPatient");
+    for(let d of data) {
+      if(d.patientId == patientId) {
+        this.answeredForms.push(d);
+      }
+    }
   }
 }

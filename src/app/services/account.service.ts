@@ -19,8 +19,9 @@ export class AccountService {
       'height': 191,
       'weight': 86,
       'address': "sss",
-      'role' : "PATIENT"
-    }, 
+      'role' : "PATIENT",
+      'id' : '0'
+    },
     {
       'username' : 'patient2',
       'password' : 'patient2',
@@ -33,18 +34,21 @@ export class AccountService {
       'weight': 86,
       'address': "sss",
       'role' : "PATIENT",
+      'id' : '1'
     },
     {
       'username' : 'doctor',
       'password' : 'doctor',
       'name' : 'John Doe',
-      'role' : "DOCTOR"
+      'role' : "DOCTOR",
+      'id' : '5'
     },
     {
       'username' : 'doctor',
       'password' : 'doctor',
       'name' : 'Christina Adams',
-      'role' : "DOCTOR"
+      'role' : "DOCTOR",
+      'id' : '7'
     }
   ];
 
@@ -67,6 +71,7 @@ export class AccountService {
           localStorage.setItem('loggedInUserRole' , "DOCTOR");
           role = 2;
         }
+        localStorage.setItem('loggedUserId', user.id);
       }
     });
     if(role == 0) {
@@ -78,28 +83,28 @@ export class AccountService {
 
   public getPatients(){
     let patients = [];
-    
+
     this.users.forEach(user => {
       if(user.role == "PATIENT") {
         patients.push(user);
       }
     });
-    
+
     return patients;
   }
 
   public getDoctors(){
     let doctors = [];
-    
+
     this.users.forEach(user => {
       if(user.role == "DOCTOR") {
         doctors.push(user);
       }
     });
-    
+
     return doctors;
   }
-  
+
   public getPatientByUsername(username) : any {
     this.users.forEach(user => {
       if(user.role == "PATIENT" && user.username == username) {

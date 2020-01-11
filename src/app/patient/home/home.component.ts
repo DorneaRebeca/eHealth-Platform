@@ -41,7 +41,7 @@ export class HomeComponent implements OnInit, AfterContentInit  {
     {
       from : 'Lola',
       message : 'Click here t answer a few questions!',
-      src : '/home-patient',
+      src : '/quiz-response',
       patientID : '5'
     },
     {
