@@ -57,10 +57,10 @@ export class NutritionHistoryComponent implements OnInit {
 
   }
 
-  ngOnDestroy() {
-    if (this.chart) {
-      this.chart.destroy();
-      this.chart = null;
-    }
-  }
+  // ngOnDestroy() {
+  //   if (this.chart) {
+  //     this.chart.destroy();
+  //     this.chart = null;
+  //   }
+  // }
 }

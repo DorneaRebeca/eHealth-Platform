@@ -29,13 +29,12 @@
         </mat-list-item>
 
         <div id="buttons">
-          <button mat-raised-button color="primary" (click)="openAddQuizPage()" style="margin-left: 10px;"> Create quiz </button>
-          <button mat-raised-button color="primary"> Create prescription </button>
-          <button mat-raised-button color="primary" (click)="openAddTreatmentPage()"> Create treatment </button>
+          <button mat-raised-button color="primary" (click)="openAddQuizPage()" style="margin-left: 15px;"> Add quiz </button>
+          <button mat-raised-button color="primary"> Add prescription </button>
+          <button mat-raised-button color="primary" (click)="openAddTreatmentPage()" style="float: right;"> Add treatment </button>
         </div>
 
       </mat-list>
-
     </mat-card-content>
   </mat-card>
 
@@ -81,7 +80,7 @@
   <mat-tab label="Activity Log">
     <div class="activity-log mat-elevation-z4">
       <font style="font-size: 18px"><i> Friday 27 December, 2019 </i></font>
-      <mat-list id="activity-list">
+      <mat-list class="activity-list">
         <mat-list-item *ngFor="let activity of patientActivities">
           <table id="activity-details-table">
             <tr>
@@ -114,13 +113,66 @@
       </mat-tab>
     </mat-tab-group>
   </mat-tab>
+
   <mat-tab label="Nutrition history">
     <app-nutrition-history></app-nutrition-history>
   </mat-tab>
-  <mat-tab label="Treatment(s)"> Treatment(s) </mat-tab>
+
+  <mat-tab label="Treatment(s)"> 
+    <mat-card>
+      <mat-card-content class="treatment-container mat-elevation-z4">
+        <table mat-table [dataSource]="treatments" multiTemplateDataRows>
+          <ng-container matColumnDef="Start date">
+            <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Start date </th>
+            <td mat-cell *matCellDef="let element"> {{element.startDate}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="End date">
+            <th mat-header-cell *matHeaderCellDef style="text-align: center;"> End date </th>
+            <td mat-cell *matCellDef="let element"> {{element.endDate}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="expandedDetail">
+            <td mat-cell *matCellDef="let element" style="padding: 0;" [attr.colspan]="columnsToDisplayTreatment.length">
+              <div class="example-element-detail" style="border-radius: 5px;" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+                <mat-list class="activity-list">
+                  <mat-list-item *ngFor="let medication of element.medications">
+                    <table id="activity-details-table">
+                      <tr style="margin: auto;">
+                        <td class="col-first"><font style="font-size: 21px;"> <b> {{ medication.name }}</b> </font> </td>
+                        <td rowspan="2">
+                          <div id="wrapper-activity-image">
+                            <img src="assets/medication.png" alt="bike">
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="col-first"> {{medication.dosage}} pill every {{medication.intakeIntervals}} hours.</td>
+                      </tr>
+                    </table>
+                    <mat-divider></mat-divider>
+                  </mat-list-item>
+                </mat-list>
+              </div>
+            </td>
+          </ng-container>
+
+
+          <tr mat-header-row *matHeaderRowDef="columnsToDisplayTreatment"></tr>
+          <tr mat-row *matRowDef="let element; columns: columnsToDisplayTreatment;"
+              class="example-element-row"
+              [class.example-expanded-row]="expandedElement === element"
+              (click)="expandedElement = expandedElement === element ? null : element">
+          </tr>
+          <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+        </table>
+      </mat-card-content>
+
+    </mat-card>
+
+  </mat-tab>
 
   <mat-tab label="Answered forms">
-
     <mat-accordion *ngFor="let form of answeredForms" id="answeredForms" fxFlexAlign="center">
       <mat-expansion-panel>
         <mat-expansion-panel-header>

@@ -1,10 +1,8 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
-import {DoctorService, Patient} from '../../services/doctor.service';
-import {animate, state, style, transition, trigger} from '@angular/animations';
-import {Record} from '../../services/doctor.service';
-import { AccountService } from 'src/app/services/account.service';
+import { Component, OnInit}  from '@angular/core';
+import { DoctorService, Patient } from '../../services/doctor.service';
+import { animate, state, style, transition, trigger } from '@angular/animations';
+import { Record } from '../../services/doctor.service';
 import { Router } from '@angular/router';
-import {Answer} from '../../services/quiz.service';
 
 @Component({
   selector: 'app-patient-detail',
@@ -26,6 +24,9 @@ export class PatientDetailComponent implements OnInit {
   columnsToDisplay = ['name', 'start_date', 'duration'];
   expandedElement: Record | null;
   answeredForms = [];
+  treatments = [];
+  columnsToDisplayTreatment = ['Start date', 'End date'];
+  columnsToDisplayMedication = ['Name', 'Dosage', 'Intake intervals']
 
   constructor(
     private doctorService: DoctorService,
@@ -37,6 +38,7 @@ export class PatientDetailComponent implements OnInit {
     this.patientDetails = this.doctorService.getPatientDetails(+selectedPatientId);
     this.patientActivities = this.doctorService.getActivitiesForPatient(+selectedPatientId);
     this.dataSource = this.doctorService.getMedicalHistory(+selectedPatientId);
+    this.treatments = this.doctorService.getTreatments();
     this.getAnsweredForms();
   }
 
@@ -51,9 +53,11 @@ export class PatientDetailComponent implements OnInit {
   getAnsweredForms() {
     let data = JSON.parse(localStorage.getItem('quizAnswers'));
     let patientId = localStorage.getItem("selectedPatient");
-    for(let d of data) {
-      if(d.patientId == patientId) {
-        this.answeredForms.push(d);
+    if(data != null){
+      for(let d of data) {
+        if(d.patientId == patientId) {
+          this.answeredForms.push(d);
+        }
       }
     }
   }

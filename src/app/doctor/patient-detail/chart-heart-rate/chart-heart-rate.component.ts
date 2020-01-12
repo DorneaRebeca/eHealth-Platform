@@ -72,11 +72,11 @@ export class ChartHeartRateComponent implements OnInit {
     this.chart.render();
   }
 
-  ngOnDestroy() {
-    if (this.chart) {
-      this.chart.destroy();
-      this.chart = null;
-    }
-  }
+  // ngOnDestroy() {
+  //   if (this.chart) {
+  //     this.chart.destroy();
+  //     this.chart = null;
+  //   }
+  // }
 
 }
