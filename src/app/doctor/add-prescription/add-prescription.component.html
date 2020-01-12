@@ -1,0 +1,117 @@
+<div class="container">
+    
+
+    <form class="example-form" [formGroup]="myForm" (ngSubmit)="onSubmit()">
+        <!-- <table class="example-full-width" cellspacing="0" >
+          <tr>
+            <td>
+              <mat-form-field class="example-full-width">
+                <mat-label> Medication </mat-label>
+                <mat-select formControlName="medications">
+                  <mat-option *ngFor="let medication of treatment" [value]="treatment"> {{ medication.name }} </mat-option>
+                </mat-select>
+                <mat-error *ngIf="myForm.controls['medications'].hasError('required')">
+                  Selecting a medication is <strong> required </strong>
+                </mat-error>
+              </mat-form-field>
+            </td>
+            <td>
+                <button mat-raised-button color="primary" class="btn" (click)="onSubmit()"> add med </button>
+            </td>
+            
+          </tr>
+        </table> -->
+        <div class="example-full-width" cellspacing="0" >
+           <div>
+            <mat-form-field class="example-full-width">
+                <mat-label> Medication </mat-label>
+                <mat-select formControlName="medications">
+                  <mat-option *ngFor="let medication of medications" [value]="medication"> {{ medication.name }} </mat-option>
+                </mat-select>
+                <mat-error *ngIf="myForm.controls['medications'].hasError('required')">
+                  Selecting a medication is <strong> required </strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+            
+                  <button mat-raised-button color="primary" class="submit"> Add medication </button>
+            
+        </div>
+    
+    </form>
+
+    <!-- <div class="table-container mat-elevation-z8">
+        <table mat-table [dataSource]="prescription">
+            <ng-container matColumnDef="Medication">
+                <th mat-header-cell *matHeaderCellDef> Medication Name </th>
+                <td mat-cell *matCellDef="let medication"> {{medication.name}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Quantity">
+                <th mat-header-cell *matHeaderCellDef> Quantity </th>
+                <td mat-cell *matCellDef="let medication"> {{medication.dosage}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Intake">
+                <th mat-header-cell *matHeaderCellDef> Intake interval </th>
+                <td mat-cell *matCellDef="let medication"> {{medication.intakeIntervals}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Details">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let medication" style="padding: 0; text-align: center">
+                    <button mat-raised-button color="primary" (click)="openAddTreatmentPage()"> Edit </button>
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="Delete">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let medication" style="padding: 0; text-align: center">
+                    <button mat-raised-button color="primary" (click)="openAddTreatmentPage()"> Edit </button>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns;"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table> -->
+
+
+    <!-- </div> -->
+    
+    <app-add-med-to-prescription></app-add-med-to-prescription>
+        
+    <mat-card id="patient-overview">
+        <mat-card-header>
+          <mat-card-title class="card-container-right">
+            <mat-icon class="card-icon"> people </mat-icon>
+            <span> {{ patientDetails.name }} </span>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <mat-list>
+    
+              <mat-list-item>
+                  <p mat-line><font color="gray">Name:</font> {{patientDetails.name}}</p>
+                </mat-list-item>
+            <mat-list-item>
+              <p mat-line><font color="gray">Age:</font> {{patientDetails.age}}</p>
+            </mat-list-item>
+            <mat-list-item>
+              <p mat-line><font color="gray">Gender:</font> {{patientDetails.gender}}</p>
+            </mat-list-item>
+            
+            <mat-list-item>
+              <p mat-line><font color="gray"> Cnp: </font> {{ patientDetails.cnp }}</p>
+            </mat-list-item>
+           
+    
+            
+    
+          </mat-list>
+    
+        </mat-card-content>
+      </mat-card>
+      <div id="buttons">
+        <button mat-raised-button color="primary" (click)="createPrescription()"> Create prescription </button>
+        
+      </div>
+</div>

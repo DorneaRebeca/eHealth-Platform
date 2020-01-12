@@ -8,6 +8,7 @@ import {PatientDetailComponent} from './doctor/patient-detail/patient-detail.com
 import {MeasurementsTutorialComponent} from './patient/measurements-tutorial/measurements-tutorial.component';
 import { AddTreatmentComponent } from './doctor/add-treatment/add-treatment.component';
 import { AddQuizComponent } from './doctor/add-quiz/add-quiz.component';
+import { AddPrescriptionComponent } from './doctor/add-prescription/add-prescription.component';
 
 const routes: Routes = [
     { path: 'login', component: LoginComponent } ,
@@ -16,6 +17,7 @@ const routes: Routes = [
     { path: 'app-patients', component: PatientsComponent },
     { path: 'doctor-patients', component: PatientsComponent },
     { path: 'doctor-add-treatment', component: AddTreatmentComponent },
+    { path: 'doctor-add-prescription', component: AddPrescriptionComponent },
     { path: 'doctor-add-quiz', component: AddQuizComponent },
     { path: 'app-patient-detail', component: PatientDetailComponent},
     { path: 'measurements-tutorial', component: MeasurementsTutorialComponent },

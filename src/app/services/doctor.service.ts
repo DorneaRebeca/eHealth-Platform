@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,9 +9,11 @@ export class DoctorService {
   patients: Patient[] = [];
   medications: Medication[] = [];
   treatments: Treatment[] = [];
-
+  prescription:Prescription[]=[];
+  
   selectedMedications: Medication[] = [];
-
+  selectedMedicationsForPrescription:Medication[]=[];
+ changeList=new Subject<Medication[]>();
   constructor() {
     this.patients.push({ id: 0, name: 'Pop Ionel', age: '34 years old', gender: 'Male', height: '191 cm', weigth: '86 kg', cnp: "1980703244390", address: "Valea viilor nr 131"});
     this.patients.push({ id: 1, name: 'Dan Tudor', age: '28 years old', gender: 'Male', height: '192 cm', weigth: '100 kg', cnp: "1980703244390", address: "Valea viilor nr 131"});
@@ -29,6 +32,28 @@ export class DoctorService {
     this.treatments.push({startDate: "07/01/2020", endDate: "10/01/2020", medications: this.medications});
     
   }
+
+  addMedicationsToPrescription(item){
+    this.prescription.push({medications:item})
+
+  }
+
+  addItemToCurrentPrescription(item){
+    this.selectedMedicationsForPrescription.push(item);
+    console.log(this.selectedMedicationsForPrescription);
+    this.changeList.next(this.selectedMedicationsForPrescription);
+  }
+
+  removeItemFromCurrentPrescription(item) {
+    var index = this.selectedMedicationsForPrescription.indexOf(item);
+    this.selectedMedicationsForPrescription.splice(index, 1);
+  }
+
+  getItemsFromCurrentPrescription(){
+    console.log(this.selectedMedicationsForPrescription);
+    return this.selectedMedicationsForPrescription ;
+  }
+
 
   addItemToCurrentTreatment(item){
     this.selectedMedications.push(item);
@@ -53,6 +78,10 @@ export class DoctorService {
 
   getTreatments(){
     return this.treatments;
+  }
+  getTreatmentMedicationDetails(id) {
+    let med=this.treatments
+    return med[0].medications.filter( medication => medication.name === id)[0];
   }
 
   getMedications() {
@@ -120,6 +149,10 @@ export interface Patient {
 export interface Treatment {
   startDate: string;
   endDate: string;
+  medications: Medication[]
+}
+export interface Prescription {
+  
   medications: Medication[]
 }
 
