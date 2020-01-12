@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormControl, Validators, ValidationErrors } from '@angular/forms';
 import { MatSnackBar, MatDialog } from '@angular/material';
 import { AddMedicationComponent } from '../add-medication/add-medication.component';
@@ -8,7 +8,8 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-add-treatment',
   templateUrl: './add-treatment.component.html',
-  styleUrls: ['./add-treatment.component.css']
+  styleUrls: ['./add-treatment.component.css'],
+  encapsulation: ViewEncapsulation.None 
 })
 export class AddTreatmentComponent implements OnInit {
 
@@ -45,8 +46,9 @@ export class AddTreatmentComponent implements OnInit {
     openAddMedicationForm() {
         this.dialog
             .open(AddMedicationComponent, {
-                height: '300px',
+                height: '400px',
                 width: '500px',
+                panelClass: 'myapp-no-padding-dialog'
             })
             .afterClosed()
             .subscribe(success => {

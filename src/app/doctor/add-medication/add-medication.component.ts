@@ -72,4 +72,5 @@ export class AddMedicationComponent implements OnInit {
   ngOnInit() {
     this.loadMedications();
   }
+
 }

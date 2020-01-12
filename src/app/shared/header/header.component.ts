@@ -1,4 +1,4 @@
-import {Component, OnInit, ChangeDetectorRef, AfterContentChecked, ViewEncapsulation} from '@angular/core';
+import {Component, OnInit, ChangeDetectorRef, AfterContentChecked} from '@angular/core';
 import {AccountService} from "../../services/account.service";
 import {MatDialog} from '@angular/material/dialog';
 import {FoodTrackerComponent} from "../../patient/food-tracker/food-tracker.component";

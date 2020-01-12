@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormControl, Validators, ValidationErrors } from '@angular/forms';
 import { Question, QuizService, Quiz } from 'src/app/services/quiz.service';
 import { MatDialog, MatSnackBar } from '@angular/material';
@@ -8,7 +8,8 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-add-quiz',
   templateUrl: './add-quiz.component.html',
-  styleUrls: ['./add-quiz.component.css']
+  styleUrls: ['./add-quiz.component.css'],
+  encapsulation: ViewEncapsulation.None 
 })
 export class AddQuizComponent implements OnInit {
 
@@ -61,8 +62,9 @@ export class AddQuizComponent implements OnInit {
 
   openAddNewQuestionForm() {
     this.dialog.open(AddQuestionComponent, {
-        height: '400px',
+        height: '450px',
         width: '500px',
+        panelClass: 'myapp-no-padding-dialog'
     })
     .afterClosed()
     .subscribe(success => {

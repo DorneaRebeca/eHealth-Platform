@@ -126,6 +126,15 @@ mat-button-toggle-group mat-button-toggle {
     border-radius: 0%;
 }
 
+.mat-button-focus-overlay {
+    background-color: transparent!important;
+}
+
+#cancel-btn {
+    float: right;
+    margin-top: 10px;
+}
+
 /* kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk */
 
 .speech-bubble {

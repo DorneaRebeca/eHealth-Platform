@@ -1,9 +1,7 @@
 import { Component, OnInit, ViewEncapsulation, Inject } from '@angular/core';
-import { DoctorService } from 'src/app/services/doctor.service';
 import { MessageService, Message } from 'src/app/services/message.component';
-import { FormControl, FormGroup, Validators, AbstractControl, ValidatorFn } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material';
-import { AccountService } from 'src/app/services/account.service';
 
 @Component({
   selector: 'app-chat',

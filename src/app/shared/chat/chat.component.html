@@ -10,6 +10,9 @@
             <mat-label style="margin-top: 23px; margin-left: 15px; position: absolute;">
                 {{ selectedContact == null ? '' : selectedContact.info.name }}
             </mat-label>
+                <button mat-icon-button id="cancel-btn" mat-dialog-close>
+                  <mat-icon aria-label="cancel"> cancel </mat-icon>
+                </button>
         </div>
     </div>
     <mat-divider style="width:100%"></mat-divider>

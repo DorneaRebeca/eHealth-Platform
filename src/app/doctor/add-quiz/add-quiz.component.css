@@ -9,7 +9,7 @@
     width: 100%;
 }
 
-#form-container {
+#form-container1 {
     display: inline-block;
     width: 100%;
     min-height: 100%;
@@ -34,4 +34,12 @@ mat-list {
 
 .mat-accordion {
     border-radius: 0%;
+}
+
+.myapp-no-padding-dialog .mat-dialog-container {
+    padding: 0;
+}
+
+.mat-button-focus-overlay {
+    background-color: transparent!important;
 }
