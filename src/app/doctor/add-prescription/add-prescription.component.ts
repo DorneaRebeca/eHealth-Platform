@@ -24,7 +24,7 @@ export class AddPrescriptionComponent implements OnInit,OnChanges {
   private prescription=[];
   private medications=[];
   patientDetails: Patient;
-
+  duration=0;
   
   constructor(
     private doctorService: DoctorService,
@@ -44,17 +44,30 @@ export class AddPrescriptionComponent implements OnInit,OnChanges {
     return noOfErrors > 0;
   }
 
-  addItemToTreatment() {
+  addItemToPrescription() {
     //let item : Medication =     
-    this.doctorService.addItemToCurrentPrescription(this.doctorService.getTreatmentMedicationDetails(this.myForm.controls['medications'].value.name))
-    console.log(this.myForm.controls['medications'].value.name);
+    
+     //this.doctorService.removeFromMeds(this.myForm.controls['medications'].value)
+    // this.medications=this.doctorService.getMedsPrescription();
+    if(this.doctorService.findMedInPrescription(this.doctorService.getTreatmentMedicationDetails(this.myForm.controls['medications'].value.name))===-1){
+      this.doctorService.addItemToCurrentPrescription(this.doctorService.getTreatmentMedicationDetails(this.myForm.controls['medications'].value.name))
+      console.log(this.myForm.controls['medications'].value.name);
+      
+    }else{
+      
+      this.snackBar.open('You already added this medication to prescription', "", {
+        duration: 3000,
+        panelClass: ['red-snackbar']
+    });
+
+    }
     this.prescription=this.doctorService.getItemsFromCurrentPrescription();
   }
 
   onSubmit(){
     if (!this.validationErrorsExists()) {
-      this.addItemToTreatment();
-      this.myForm.reset();
+      this.addItemToPrescription();
+      // this.myForm.reset();
     }
     else {
       this.snackBar.open('Something went wrong!', "", {
@@ -68,15 +81,23 @@ export class AddPrescriptionComponent implements OnInit,OnChanges {
     let selectedPatientId = 0;//localStorage.getItem("selectedPatient");
     this.patientDetails = this.doctorService.getPatientDetails(+selectedPatientId);
    // this.loadPatients();
+   this.prescription=this.doctorService.getItemsFromCurrentPrescription();
+   
     this.loadTreatment();
   }
   public loadTreatment() {
     // this.treatment = this.doctorService.getItemsFromCurrentTreatment();
     this.treatment = this.doctorService.getTreatments();//.getItemsFromCurrentTreatment();
     console.log(this.treatment)
-    this.medications=this.treatment[1].medications;
+    this.medications=this.treatment[0].medications;
+    
+    let date1 = new Date(this.treatment[0].startDate);
+    let date2 = new Date(this.treatment[0].endDate);
+    var timeDiff = Math.abs(date2.getTime() - date1.getTime());
+    this.duration = Math.ceil(timeDiff / (1000 * 3600 * 24)); 
+    
     this.prescription=this.doctorService.getItemsFromCurrentPrescription();
-    console.log(this.treatment[1].medications)
+    this.doctorService.addToMeds(this.medications)
   }
 
   ngOnChanges(){
@@ -84,6 +105,28 @@ export class AddPrescriptionComponent implements OnInit,OnChanges {
       this.prescription=meds;
     })
     console.log(this.prescription);
+  }
+
+  createPrescription(){
+    
+      let meds=this.doctorService.getItemsFromCurrentPrescription();
+      if (!(meds.length===0)) {
+        let pacient=[{id:this.patientDetails.id,name:this.patientDetails.name,age:this.patientDetails.age,gender:this.patientDetails.gender,cnp:this.patientDetails.cnp}]
+      console.log(pacient);
+      
+        this.doctorService.addMedicationsToPrescription(pacient,meds,this.duration);
+      this.snackBar.open('Success!', "", {
+          duration: 3000,
+          panelClass: ['green-snackbar']
+      });
+      this.router.navigate(["app-patient-detail"]);
+  }
+  else {
+      this.snackBar.open('Prescription could not be empty!', "", {
+          duration: 3000,
+          panelClass: ['red-snackbar']
+      });
+  }
   }
 
 }

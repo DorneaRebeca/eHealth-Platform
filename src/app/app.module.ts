@@ -20,6 +20,8 @@ import { ChartBloodSugarComponent } from './doctor/patient-detail/chart-blood-su
 import { NutritionHistoryComponent } from './doctor/patient-detail/nutrition-history/nutrition-history.component';
 import { AddPrescriptionComponent } from './doctor/add-prescription/add-prescription.component';
 import { AddMedToPrescriptionComponent } from './doctor/add-med-to-prescription/add-med-to-prescription.component';
+import { DownloadPrescriptionComponent } from './patient/download-prescription/download-prescription.component';
+
 
 @NgModule({
   declarations: [
@@ -36,6 +38,7 @@ import { AddMedToPrescriptionComponent } from './doctor/add-med-to-prescription/
     ChartTemperatureComponent,
     ChartBloodSugarComponent,
     NutritionHistoryComponent,
+    DownloadPrescriptionComponent
     
   ],
   imports: [

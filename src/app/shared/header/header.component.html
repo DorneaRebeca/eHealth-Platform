@@ -3,7 +3,8 @@
     <mat-icon class="burger-icon">menu</mat-icon>
   </button>
   <div fxShow="true" fxHide.lt-md class="buttons-container">
-    <a mat-button> <mat-icon aria-hidden="false"> local_hospital </mat-icon> MedApp </a>
+    <a mat-button  *ngIf="loggedInUserRole == 'DOCTOR'" routerLink="home-doctor"> <mat-icon aria-hidden="false"> local_hospital </mat-icon> MedApp </a>
+    <a mat-button  *ngIf="loggedInUserRole == 'PATIENT'" routerLink="home-patient"> <mat-icon aria-hidden="false"> local_hospital </mat-icon> MedApp </a>
     <a mat-button *ngIf="loggedInUserRole == 'DOCTOR'" routerLink="home-doctor" > Home </a>
     <a mat-button *ngIf="loggedInUserRole == 'DOCTOR'" routerLink="doctor-patients" > Patients </a>
     <a mat-button *ngIf="loggedInUserRole == 'PATIENT'" (click)="openMyDrugs()" > My drugs </a>

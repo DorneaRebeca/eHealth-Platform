@@ -1,28 +1,57 @@
+<div>
 <mat-toolbar id="headerToolbar"  class="toolbar" >
     <mat-card-title>My Treatment</mat-card-title>
-    <span class="toolbar-spacer"></span>
+    <!-- <span class="toolbar-spacer"></span> -->
     <mat-icon (click)="onClose()">cancel</mat-icon>
   </mat-toolbar>
 
 <mat-list>
     <mat-list-item>
-      <mat-toolbar class="toolbar"  >
+      <form class="normal-form" [formGroup]="myForm" >
+        <mat-form-field>
+          <mat-label>Before breakfast</mat-label>
+          <mat-select formControlName="beforeBreakfast" multiple>
+            <mat-option *ngFor="let drug of drugsBreakfast;" [value]="drug.name">{{ drug.name }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </form>
+    </mat-list-item>      
+      <!-- <mat-toolbar class="toolbar"  >
         <mat-card-title>Before breakfast</mat-card-title>
         <span class="toolbar-spacer"></span>
         <mat-icon  fxLayoutAlign="end" (click)="showBreakfastForm()">arrow_drop_down</mat-icon>
-      </mat-toolbar>
-    </mat-list-item>
-      <form class="normal-form" [hidden]="hideBeforeBreakfast">
-        <div class="controles-container" *ngFor="let drug of drugsBreakfast;">
+      </mat-toolbar> -->
+    
+        
+    <!-- <div class="controles-container" *ngFor="let drug of drugsBreakfast;">
             <input type="checkbox" 
             [ngModelOptions]="{standalone: true}"
             [(ngModel)]="drug.selected"/> {{drug.name}}
-          </div>
-      </form>
+          </div> -->
   
-    <mat-divider></mat-divider>
+          <mat-list-item>
+            <form class="normal-form" [formGroup]="myForm" >
+              <mat-form-field>
+                <mat-label>Before Lunch</mat-label>
+                <mat-select formControlName="beforeLunch" multiple>
+                  <mat-option *ngFor="let drug of drugsLunch;" [value]="drug.name">{{ drug.name }}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </form>
+          </mat-list-item>   
+          <mat-list-item>
+            <form class="normal-form" [formGroup]="myForm" >
+              <mat-form-field>
+                <mat-label>Before Dinner</mat-label>
+                <mat-select formControlName="beforeDinner" multiple>
+                  <mat-option *ngFor="let drug of drugsDinner;" [value]="drug.name">{{ drug.name }}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </form>
+          </mat-list-item>   
+    <!-- <mat-divider></mat-divider> -->
   
-    <mat-list-item>
+    <!-- <mat-list-item>
       <mat-toolbar class="toolbar" >
         <mat-card-title>Before lunch</mat-card-title>
         <span class="toolbar-spacer"></span>
@@ -38,9 +67,9 @@
             [(ngModel)]="drug.selected"/> {{drug.name}}
           </div>
     </form>
-    <mat-divider></mat-divider>
+    <mat-divider></mat-divider> -->
   
-    <mat-list-item>
+    <!-- <mat-list-item>
       <mat-toolbar class="toolbar" >
         <mat-card-title>Before dinner</mat-card-title>
         <span class="toolbar-spacer"></span>
@@ -56,6 +85,7 @@
             [(ngModel)]="drug.selected"/> {{drug.name}}
           </div>
     </form>
-    <mat-divider></mat-divider>
+    <mat-divider></mat-divider> -->
   
   </mat-list>
+</div>

@@ -15,16 +15,11 @@
             <td mat-cell *matCellDef="let medication"> {{medication.intakeIntervals}} </td>
         </ng-container>
 
-        <ng-container matColumnDef="Details">
-            <th mat-header-cell *matHeaderCellDef></th>
-            <td mat-cell *matCellDef="let medication" style="padding: 0; text-align: center">
-                <button mat-raised-button color="primary" (click)="openAddTreatmentPage()"> Edit </button>
-            </td>
-        </ng-container>
+       
         <ng-container matColumnDef="Delete">
             <th mat-header-cell *matHeaderCellDef></th>
             <td mat-cell *matCellDef="let medication" style="padding: 0; text-align: center">
-                <button mat-raised-button color="primary" (click)="openAddTreatmentPage()"> Edit </button>
+                <button mat-raised-button color="primary" (click)="deleteMedication()"> Delete </button>
             </td>
         </ng-container>
 

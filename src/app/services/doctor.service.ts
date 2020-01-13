@@ -7,9 +7,11 @@ import { Subject } from 'rxjs';
 
 export class DoctorService {
   patients: Patient[] = [];
+  patient:Patient;
   medications: Medication[] = [];
-  treatments: Treatment[] = [];
-  prescription:Prescription[]=[];
+  medsPrescripton: Medication[] ;
+  treatments: Treatment[] = [{startDate: "01/07/2020", endDate: "01/10/2020", medications: [{name: "Dicarbocalm", description: "Pentru disconforturi stomacale.", dosage: 1, intakeIntervals: 2},{name: "Paracetamol", description: "Impotriva racelii.", dosage: 1, intakeIntervals: 2}]}];
+  prescription:Prescription[]=[{id:0,name:"Pop Ionel",age: "34 years old", gender: "Male", cnp:"1980703244390",medications:[{name: "Paracetamol", description: "Impotriva racelii.", dosage: 1, intakeIntervals: 2}],duration:3}];
   
   selectedMedications: Medication[] = [];
   selectedMedicationsForPrescription:Medication[]=[];
@@ -26,16 +28,42 @@ export class DoctorService {
     
     this.treatments.push({startDate: "06/01/2020", endDate: "20/01/2020", medications: this.medications});
     
+    
     this.medications.push({name: "Tantum verde", description: "Pentru dureri in gat.", dosage: 1, intakeIntervals: 4});
     this.medications.push({name: "Dicarbocalm", description: "Pentru disconforturi stomacale.", dosage: 1, intakeIntervals: 2});
     
     this.treatments.push({startDate: "07/01/2020", endDate: "10/01/2020", medications: this.medications});
     
+    console.log(this.treatments)
+  }
+  findMedInPrescription(item){
+    var index = this.selectedMedicationsForPrescription.indexOf(item);
+    console.log(index)
+    return index
   }
 
-  addMedicationsToPrescription(item){
-    this.prescription.push({medications:item})
+  addToMeds(item){
+    console.log(item)
+    this.medsPrescripton=item;
+    //   for (var i=0; i<item; i++) {
+    //     input.push(i);
+    //   }
+    // this.medsPrescripton.push(item);
+  // }
+  }
+  removeFromMeds(item){
+    var index = this.medsPrescripton.indexOf(item);
+    this.medsPrescripton.splice(index, 1);
+  }
+  getMedsPrescription(){
+    return this.medsPrescripton
+  }
 
+  addMedicationsToPrescription(pacient,item,duration){
+    
+    this.patient=pacient
+    this.prescription.push({id:this.patient.id,name:pacient.name,age: pacient.age, gender: pacient.gender, cnp:pacient.cnp,medications:item,duration:duration})
+    
   }
 
   addItemToCurrentPrescription(item){
@@ -54,6 +82,11 @@ export class DoctorService {
     return this.selectedMedicationsForPrescription ;
   }
 
+  getCurrentPrescription(){
+    console.log(this.prescription);
+    return this.prescription ;
+    
+  }
 
   addItemToCurrentTreatment(item){
     this.selectedMedications.push(item);
@@ -152,7 +185,12 @@ export interface Treatment {
   medications: Medication[]
 }
 export interface Prescription {
-  
+  id: number;
+  name: string;
+  age: string;
+  gender: string;
+  cnp: string;
+  duration: number;
   medications: Medication[]
 }
 
