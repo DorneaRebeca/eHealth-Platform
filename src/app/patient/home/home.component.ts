@@ -49,7 +49,7 @@ export class HomeComponent implements OnInit, AfterContentInit  {
     },
     {
       from : 'Lola',
-      message : 'Click here t answer a few questions!',
+      message : 'Click here to answer a few questions!',
       src : '/quiz-response',
       patientID : '5'
     },

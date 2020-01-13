@@ -183,7 +183,7 @@
             {{form.name}}
           </mat-panel-title>
           <mat-panel-description>
-            {{form.date.toString()}}
+            {{form.date | date : 'fullDate'}}
           </mat-panel-description>
         </mat-expansion-panel-header>
 

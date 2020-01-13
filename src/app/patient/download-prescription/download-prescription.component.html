@@ -57,6 +57,6 @@
             </table> 
         </div>
 
-       <p> Use the following link to download the prescription:<a [href]="fileUrl" download="file.txt">Download Prescription</a></p>
+       <p [hidden]=showLink > Use the following link to download the prescription:<a [href]="fileUrl" download="file.txt" (click)="restoreStock()">Download Prescription</a></p>
         
 </div>

@@ -1,6 +1,13 @@
 import { Injectable } from '@angular/core';
 import {BehaviorSubject} from "rxjs";
 
+export interface Drug {
+  name: string;
+  position: number;
+  perday:number;
+  daysRemaining: number;
+  availablequantity: number;
+}
 @Injectable({
   providedIn: 'root'
 })
@@ -11,21 +18,32 @@ export class PatientService {
   selectedDrugLunch=[];
   public selectedPatient;
   nutrients: number;
+  showLink=false;
   // nutrients: number;
   nutritionValue: BehaviorSubject<number> = new BehaviorSubject<number>(0);
+  ELEMENT_DATA: Drug[] = [
+    {position: 1, name: 'Paracetamol', perday: 1, daysRemaining: 6,availablequantity:6},
+    {position: 2, name: 'Dicarbocalm', perday: 2, daysRemaining: 3,availablequantity:7},
+    {position: 3, name: 'Abacarvir', perday: 2, daysRemaining: 3,availablequantity:7},
+    {position: 4, name: 'Aciclovir', perday: 2, daysRemaining: 3,availablequantity:6},
+    {position: 5, name: 'Amoxicilina', perday: 2, daysRemaining: 3,availablequantity:7},
+    {position: 6, name: 'Eficen', perday: 2, daysRemaining: 3,availablequantity:7},
+    {position: 7, name: 'Berinert', perday: 2, daysRemaining: 3,availablequantity:7},
+    {position: 8, name: 'Marcofen', perday: 2, daysRemaining: 3,availablequantity:7},
+  ];
   drugsBreakfast = [
-    {name: 'Medicament 1',selected:false},
-    {name: 'Medicament 2',selected:false},
-    {name: 'Medicament 3',selected:false}
+    {name: 'Paracetamol',selected:false},
+    {name: 'Dicarbocalm',selected:false},
+    {name: 'Abacarvir',selected:false}
   ];
   drugsLunch = [
-    {name: 'Medicament 5',selected:false},
-    {name: 'Medicament 6',selected:false}
+    {name: 'Aciclovir',selected:false},
+    {name: 'Amoxicilina',selected:false}
   ];
   drugsDinner = [
-    {name: 'Medicament 8',selected:false},
-    {name: 'Medicament 10',selected:false},
-    {name: 'Medicament 13',selected:false}
+    {name: 'Eficen',selected:false},
+    {name: 'Berinert',selected:false},
+    {name: 'Marcofen',selected:false}
   ];
   dailyMeals = [];
 
@@ -90,6 +108,9 @@ export class PatientService {
   updateNutrition(date) {
     this.nutritionValue.next(0);
   }
+  getMyDrugs(){
+    return this.ELEMENT_DATA
+  }
 
   saveDataInLocalStorageArray(tempData, arrayName : string) :void {
     if(localStorage.getItem(arrayName) != null) {
@@ -111,8 +132,9 @@ export class PatientService {
       for(let i = 0; i < data.length; i++) {
         if(new Date(data[i].date).toDateString() ==  date.toDateString() ) {
           rez = data[i];
+          return rez;
         }
-        return rez;
+        
       }
     }
   }
@@ -145,6 +167,37 @@ export class PatientService {
   }
   getSelectedDrugsLunch(){
     return this.selectedDrugLunch
+  }
+  setShowLink(){
+    this.showLink=true;
+  }
+  getShowLink(){
+    return this.showLink
+  }
+  findMedicationDetails(id) {
+    let med=this.ELEMENT_DATA
+    return med.filter( medication => medication.name === id)[0];
+  }
+  updateStock(medication,duration){
+    
+    for (var i=0; i<medication.length; i++) {
+      console.log(medication[i].name)
+      var indexp =this.findMedicationDetails(medication[i].name) //this.ELEMENT_DATA.indexOf(medication[i].name);
+     
+      let index=indexp.position
+      if(index==-1){
+        let pos=this.ELEMENT_DATA.length;
+        let qty=medication[i].dosage*duration
+        this.ELEMENT_DATA.push( {position: pos+1, name: medication[i].name, perday: medication[i].dosage, daysRemaining: duration,availablequantity:qty})
+      }
+      else{
+        let days=this.ELEMENT_DATA[index-1].daysRemaining
+        let qty=this.ELEMENT_DATA[index-1].availablequantity
+        this.ELEMENT_DATA[index-1].daysRemaining=days+duration;
+        this.ELEMENT_DATA[index-1].availablequantity=qty+medication[i].dosage*duration
+        this.ELEMENT_DATA[index-1].perday=medication[i].dosage
+      }
+    }
   }
 
 }
