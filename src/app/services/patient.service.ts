@@ -6,6 +6,7 @@ import {BehaviorSubject} from "rxjs";
 })
 export class PatientService {
 
+  selectedDrug;
   public selectedPatient;
   nutrients: number;
   // nutrients: number;

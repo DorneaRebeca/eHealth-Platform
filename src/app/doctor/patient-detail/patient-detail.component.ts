@@ -45,6 +45,9 @@ export class PatientDetailComponent implements OnInit {
   openAddTreatmentPage() {
     this.router.navigate(["doctor-add-treatment"]);
   }
+  openAddPrescriptionPage() {
+    this.router.navigate(["doctor-add-prescription"]);
+  }
 
   openAddQuizPage() {
     this.router.navigate(["doctor-add-quiz"]);

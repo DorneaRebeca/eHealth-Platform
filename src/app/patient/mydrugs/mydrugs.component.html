@@ -1,9 +1,11 @@
-<mat-toolbar id="headerToolbar"  class="toolbar" >
+<div class="table-container ">
+  
+  <mat-toolbar id="headerToolbar"  class="toolbar" >
     <mat-card-title>Meds in my pocket</mat-card-title>
     <span class="toolbar-spacer"></span>
     <mat-icon (click)="onClose()">cancel</mat-icon>
   </mat-toolbar>
-
+  <h1>Meds in my pocket</h1>
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
     <!--- Note that these columns can be defined in any order.
@@ -39,7 +41,7 @@
       </ng-container>
       <ng-container matColumnDef="aksformore">
         <th mat-header-cell *matHeaderCellDef>  </th>
-        <td mat-cell *matCellDef="let element"> <button  color="primary"  (click)="aksForMore(element.position)">
+        <td mat-cell *matCellDef="let element"> <button mat-raised-button color="primary"  (click)="aksForMore(element.position)">
             Ask for more
           </button></td>
       </ng-container>
@@ -49,4 +51,4 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
-  
+  </div>

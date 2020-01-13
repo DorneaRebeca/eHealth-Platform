@@ -18,6 +18,10 @@ import { ChartHeartRateComponent } from './doctor/patient-detail/chart-heart-rat
 import { ChartTemperatureComponent } from './doctor/patient-detail/chart-temperature/chart-temperature.component';
 import { ChartBloodSugarComponent } from './doctor/patient-detail/chart-blood-sugar/chart-blood-sugar.component';
 import { NutritionHistoryComponent } from './doctor/patient-detail/nutrition-history/nutrition-history.component';
+import { AddPrescriptionComponent } from './doctor/add-prescription/add-prescription.component';
+import { AddMedToPrescriptionComponent } from './doctor/add-med-to-prescription/add-med-to-prescription.component';
+import { DownloadPrescriptionComponent } from './patient/download-prescription/download-prescription.component';
+
 
 @NgModule({
   declarations: [
@@ -34,6 +38,8 @@ import { NutritionHistoryComponent } from './doctor/patient-detail/nutrition-his
     ChartTemperatureComponent,
     ChartBloodSugarComponent,
     NutritionHistoryComponent,
+    DownloadPrescriptionComponent
+    
   ],
   imports: [
     BrowserModule,

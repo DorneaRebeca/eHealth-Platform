@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -6,11 +7,15 @@ import { Injectable } from '@angular/core';
 
 export class DoctorService {
   patients: Patient[] = [];
+  patient:Patient;
   medications: Medication[] = [];
-  treatments: Treatment[] = [];
-
+  medsPrescripton: Medication[] ;
+  treatments: Treatment[] = [{startDate: "01/07/2020", endDate: "01/10/2020", medications: [{name: "Dicarbocalm", description: "Pentru disconforturi stomacale.", dosage: 1, intakeIntervals: 2},{name: "Paracetamol", description: "Impotriva racelii.", dosage: 1, intakeIntervals: 2}]}];
+  prescription:Prescription[]=[{id:0,name:"Pop Ionel",age: "34 years old", gender: "Male", cnp:"1980703244390",medications:[{name: "Paracetamol", description: "Impotriva racelii.", dosage: 1, intakeIntervals: 2}],duration:3}];
+  
   selectedMedications: Medication[] = [];
-
+  selectedMedicationsForPrescription:Medication[]=[];
+ changeList=new Subject<Medication[]>();
   constructor() {
     this.patients.push({ id: 0, name: 'Pop Ionel', age: '34 years old', gender: 'Male', height: '191 cm', weigth: '86 kg', cnp: "1980703244390", address: "Valea viilor nr 131"});
     this.patients.push({ id: 1, name: 'Dan Tudor', age: '28 years old', gender: 'Male', height: '192 cm', weigth: '100 kg', cnp: "1980703244390", address: "Valea viilor nr 131"});
@@ -23,10 +28,63 @@ export class DoctorService {
     
     this.treatments.push({startDate: "06/01/2020", endDate: "20/01/2020", medications: this.medications});
     
+    
     this.medications.push({name: "Tantum verde", description: "Pentru dureri in gat.", dosage: 1, intakeIntervals: 4});
     this.medications.push({name: "Dicarbocalm", description: "Pentru disconforturi stomacale.", dosage: 1, intakeIntervals: 2});
     
     this.treatments.push({startDate: "07/01/2020", endDate: "10/01/2020", medications: this.medications});
+    
+    console.log(this.treatments)
+  }
+  findMedInPrescription(item){
+    var index = this.selectedMedicationsForPrescription.indexOf(item);
+    console.log(index)
+    return index
+  }
+
+  addToMeds(item){
+    console.log(item)
+    this.medsPrescripton=item;
+    //   for (var i=0; i<item; i++) {
+    //     input.push(i);
+    //   }
+    // this.medsPrescripton.push(item);
+  // }
+  }
+  removeFromMeds(item){
+    var index = this.medsPrescripton.indexOf(item);
+    this.medsPrescripton.splice(index, 1);
+  }
+  getMedsPrescription(){
+    return this.medsPrescripton
+  }
+
+  addMedicationsToPrescription(pacient,item,duration){
+    
+    this.patient=pacient
+    this.prescription.push({id:this.patient.id,name:pacient.name,age: pacient.age, gender: pacient.gender, cnp:pacient.cnp,medications:item,duration:duration})
+    
+  }
+
+  addItemToCurrentPrescription(item){
+    this.selectedMedicationsForPrescription.push(item);
+    console.log(this.selectedMedicationsForPrescription);
+    this.changeList.next(this.selectedMedicationsForPrescription);
+  }
+
+  removeItemFromCurrentPrescription(item) {
+    var index = this.selectedMedicationsForPrescription.indexOf(item);
+    this.selectedMedicationsForPrescription.splice(index, 1);
+  }
+
+  getItemsFromCurrentPrescription(){
+    console.log(this.selectedMedicationsForPrescription);
+    return this.selectedMedicationsForPrescription ;
+  }
+
+  getCurrentPrescription(){
+    console.log(this.prescription);
+    return this.prescription ;
     
   }
 
@@ -53,6 +111,10 @@ export class DoctorService {
 
   getTreatments(){
     return this.treatments;
+  }
+  getTreatmentMedicationDetails(id) {
+    let med=this.treatments
+    return med[0].medications.filter( medication => medication.name === id)[0];
   }
 
   getMedications() {
@@ -120,6 +182,15 @@ export interface Patient {
 export interface Treatment {
   startDate: string;
   endDate: string;
+  medications: Medication[]
+}
+export interface Prescription {
+  id: number;
+  name: string;
+  age: string;
+  gender: string;
+  cnp: string;
+  duration: number;
   medications: Medication[]
 }
 

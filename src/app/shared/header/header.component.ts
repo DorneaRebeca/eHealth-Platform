@@ -57,7 +57,13 @@ export class HeaderComponent implements OnInit, AfterContentChecked {
   }
 
   openMyDrugs() {
-    this.dialog.open(MydrugsComponent);
+  /*  this.dialog.open(MydrugsComponent
+  //     , {
+  //     height: '50%',
+  //     width: '70%',
+  // }
+  );*/
+  this.router.navigate(["ask-for-more"]);
   }
 
   openChat(){

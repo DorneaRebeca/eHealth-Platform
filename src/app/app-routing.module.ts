@@ -9,6 +9,9 @@ import {MeasurementsTutorialComponent} from './patient/measurements-tutorial/mea
 import { AddTreatmentComponent } from './doctor/add-treatment/add-treatment.component';
 import { AddQuizComponent } from './doctor/add-quiz/add-quiz.component';
 import {QuizResponseComponent} from './patient/quiz-response/quiz-response.component';
+import { AddPrescriptionComponent } from './doctor/add-prescription/add-prescription.component';
+import { MydrugsComponent } from './patient/mydrugs/mydrugs.component';
+import { DownloadPrescriptionComponent } from './patient/download-prescription/download-prescription.component';
 
 const routes: Routes = [
     { path: 'login', component: LoginComponent } ,
@@ -17,10 +20,14 @@ const routes: Routes = [
     { path: 'app-patients', component: PatientsComponent },
     { path: 'doctor-patients', component: PatientsComponent },
     { path: 'doctor-add-treatment', component: AddTreatmentComponent },
+    { path: 'doctor-add-prescription', component: AddPrescriptionComponent },
     { path: 'doctor-add-quiz', component: AddQuizComponent },
     { path: 'app-patient-detail', component: PatientDetailComponent},
     { path: 'measurements-tutorial', component: MeasurementsTutorialComponent },
     { path: 'quiz-response', component: QuizResponseComponent },
+    { path: 'ask-for-more', component: MydrugsComponent },
+    { path: 'app-download-prescription', component: DownloadPrescriptionComponent },
+ 
 ];
 
 @NgModule({

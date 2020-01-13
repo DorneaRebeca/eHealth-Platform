@@ -4,6 +4,8 @@ import {interval, Subscription} from "rxjs";
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {PatientService} from '../../services/patient.service';
+import { DomSanitizer } from '@angular/platform-browser';
+import { DoctorService } from 'src/app/services/doctor.service';
 
 @Component({
   selector: 'app-home-patient',
@@ -19,6 +21,7 @@ import {PatientService} from '../../services/patient.service';
 })
 
 export class HomeComponent implements OnInit, AfterContentInit  {
+  
   color = 'primary';
   mode = 'determined';
   exceededNutrition = 0;
@@ -33,9 +36,15 @@ export class HomeComponent implements OnInit, AfterContentInit  {
   nutrientsMessage : string = '';
   patientsNews  = [
     {
+      from : 'Lola',
+      message : 'Your medication stock is low! Ask for more...',
+      src : '/ask-for-more',
+      patientID : '5'
+    },
+    {
       from : 'Patrick',
       message : 'New recipe! Click to see!',
-      src : '/home-patient',
+      src : '/app-download-prescription',
       patientID : '5'
     },
     {
@@ -77,11 +86,14 @@ export class HomeComponent implements OnInit, AfterContentInit  {
     this.value = v;
   }
   constructor(
+    
     private router: Router,
     private patientService: PatientService,
+    private doctorService:DoctorService
   ) {}
 
   ngOnInit(): void {
+    
     this.getMeasurements();
   }
 
