@@ -3,6 +3,10 @@
   width: 50%;
   font-size: 18px;
 }
+section{
+  width: 48%;
+  margin: auto;
+}
 
 #tutorialList {
   float: left;
@@ -21,7 +25,7 @@ h1 {
   margin-left: 50px;
 }
 mat-card {
-  width: 600px;
+  width: 95%;
   margin-bottom: 40px;
   font-size: 18px;
 }
@@ -47,7 +51,10 @@ p{
   font-size: 18px;
 }
 img {
-  padding: 10px;
+  margin: auto;
+  padding: 0;
+  margin-left: 50px;
+  width: 80%;
 }
 
 div p {

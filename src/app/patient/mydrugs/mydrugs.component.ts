@@ -11,16 +11,7 @@ export interface Drug {
   availablequantity: number;
 }
 
-const ELEMENT_DATA: Drug[] = [
-  {position: 1, name: 'Medicament 1', perday: 1, daysRemaining: 6,availablequantity:6},
-  {position: 2, name: 'Medicament 2', perday: 2, daysRemaining: 3,availablequantity:7},
-  {position: 3, name: 'Medicament 3', perday: 2, daysRemaining: 3,availablequantity:7},
-  {position: 4, name: 'Medicament 5', perday: 2, daysRemaining: 3,availablequantity:6},
-  {position: 5, name: 'Medicament 6', perday: 2, daysRemaining: 3,availablequantity:7},
-  {position: 6, name: 'Medicament 8', perday: 2, daysRemaining: 3,availablequantity:7},
-  {position: 7, name: 'Medicament 10', perday: 2, daysRemaining: 3,availablequantity:7},
-  {position: 8, name: 'Medicament 13', perday: 2, daysRemaining: 3,availablequantity:7},
-];
+ 
 @Component({
   selector: 'app-mydrugs',
   templateUrl: './mydrugs.component.html',
@@ -28,21 +19,22 @@ const ELEMENT_DATA: Drug[] = [
 })
 export class MydrugsComponent implements OnInit {
 
+  elementData: Drug[] = [
+  ];
+  displayedColumns: string[] = ['position', 'name', 'perday', 'daysRemaining','availablequantity',"aksformore"];
+  dataSource ;
   constructor(private snackBar: MatSnackBar,
-    // private dialogRef: MatDialogRef<MydrugsComponent>,
     private patientService : PatientService,
     public dialog: MatDialog) { }
 
   ngOnInit() {
+    this.elementData=this.patientService.getMyDrugs();
+    console.log(this.elementData)
+    this.dataSource = this.elementData;
   }
-  // onClose() {
-  //   this.dialogRef.close();
-  // }
+  
   aksForMore(selected){
-  //   this.dialog.open(AskformoreComponent, {
-      
-  // });
-    if(ELEMENT_DATA[selected-1].daysRemaining>5){this.snackBar.open('There are enough medication in your pocket!', "", {
+    if(this.elementData[selected-1].daysRemaining>5){this.snackBar.open('There are enough medication in your pocket!', "", {
       duration: 3000,
       panelClass: ['red-snackbar']
       });
@@ -55,8 +47,8 @@ export class MydrugsComponent implements OnInit {
       console.log("you will receive prescription  for "+selected)
     }
   }
-  displayedColumns: string[] = ['position', 'name', 'perday', 'daysRemaining','availablequantity',"aksformore"];
-  dataSource = ELEMENT_DATA;
+ 
+  
   
 
 }
