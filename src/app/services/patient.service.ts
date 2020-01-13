@@ -6,7 +6,9 @@ import {BehaviorSubject} from "rxjs";
 })
 export class PatientService {
 
-  selectedDrug;
+  selectedDrug=[];
+  selectedDrugDinner=[];
+  selectedDrugLunch=[];
   public selectedPatient;
   nutrients: number;
   // nutrients: number;
@@ -125,6 +127,24 @@ export class PatientService {
 
   setDrugsForDinner(data:{name:string,selected:boolean}[]){
     this.drugsDinner=data;
+  }
+  setSelectedDrugs(list){
+    this.selectedDrug=list
+  }
+  getSelectedDrugs(){
+    return this.selectedDrug
+  }
+  setSelectedDrugsDinner(list){
+    this.selectedDrugDinner=list
+  }
+  getSelectedDrugsDinner(){
+    return this.selectedDrugDinner
+  }
+  setSelectedDrugsLunch(item){
+    this.selectedDrugLunch=item
+  }
+  getSelectedDrugsLunch(){
+    return this.selectedDrugLunch
   }
 
 }

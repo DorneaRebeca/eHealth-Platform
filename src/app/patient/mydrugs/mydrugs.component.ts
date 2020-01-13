@@ -12,8 +12,14 @@ export interface Drug {
 }
 
 const ELEMENT_DATA: Drug[] = [
-  {position: 1, name: 'Medicament 1', perday: 1, daysRemaining: 6,availablequantity:5},
+  {position: 1, name: 'Medicament 1', perday: 1, daysRemaining: 6,availablequantity:6},
   {position: 2, name: 'Medicament 2', perday: 2, daysRemaining: 3,availablequantity:7},
+  {position: 3, name: 'Medicament 3', perday: 2, daysRemaining: 3,availablequantity:7},
+  {position: 4, name: 'Medicament 5', perday: 2, daysRemaining: 3,availablequantity:6},
+  {position: 5, name: 'Medicament 6', perday: 2, daysRemaining: 3,availablequantity:7},
+  {position: 6, name: 'Medicament 8', perday: 2, daysRemaining: 3,availablequantity:7},
+  {position: 7, name: 'Medicament 10', perday: 2, daysRemaining: 3,availablequantity:7},
+  {position: 8, name: 'Medicament 13', perday: 2, daysRemaining: 3,availablequantity:7},
 ];
 @Component({
   selector: 'app-mydrugs',

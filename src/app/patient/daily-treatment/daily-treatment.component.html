@@ -10,8 +10,8 @@
       <form class="normal-form" [formGroup]="myForm" >
         <mat-form-field>
           <mat-label>Before breakfast</mat-label>
-          <mat-select formControlName="beforeBreakfast" multiple>
-            <mat-option *ngFor="let drug of drugsBreakfast;" [value]="drug.name">{{ drug.name }}</mat-option>
+          <mat-select formControlName="beforeBreakfast" multiple >
+            <mat-option *ngFor="let drug of drugsBreakfast;"  [value]="drug" (onSelectionChange)="somethingChanged(drug)">{{ drug.name }}</mat-option>
           </mat-select>
         </mat-form-field>
       </form>
@@ -34,7 +34,7 @@
               <mat-form-field>
                 <mat-label>Before Lunch</mat-label>
                 <mat-select formControlName="beforeLunch" multiple>
-                  <mat-option *ngFor="let drug of drugsLunch;" [value]="drug.name">{{ drug.name }}</mat-option>
+                  <mat-option *ngFor="let drugl of drugsLunch;" [value]="drugl">{{ drugl.name }}</mat-option>
                 </mat-select>
               </mat-form-field>
             </form>
@@ -44,7 +44,7 @@
               <mat-form-field>
                 <mat-label>Before Dinner</mat-label>
                 <mat-select formControlName="beforeDinner" multiple>
-                  <mat-option *ngFor="let drug of drugsDinner;" [value]="drug.name">{{ drug.name }}</mat-option>
+                  <mat-option *ngFor="let drugd of drugsDinner;" [value]="drugd">{{ drugd.name }}</mat-option>
                 </mat-select>
               </mat-form-field>
             </form>
