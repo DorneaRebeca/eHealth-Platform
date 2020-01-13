@@ -1,6 +1,7 @@
 #headerToolbar {
   margin-bottom: 30px;
   border-radius: 10px;
+  width: 100%;
 }
 
 mat-form-field {

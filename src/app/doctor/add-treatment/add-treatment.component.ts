@@ -70,7 +70,13 @@ export class AddTreatmentComponent implements OnInit {
     }
 
     createTreatment() {
-        if (!this.validationErrorsExists()) {
+        if(this.items.length == 0) {
+            this.snackBar.open('You shoul add some medications!', "", {
+              duration: 3000,
+              panelClass: ['red-snackbar']
+            });
+          } 
+        else if (!this.validationErrorsExists()) {
             this.snackBar.open('Success!', "", {
                 duration: 3000,
                 panelClass: ['green-snackbar']

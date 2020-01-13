@@ -24,8 +24,8 @@ tr.disabled{
 }
 
 #cancel {
-  position: absolute;
   z-index: 1;
+  float: right;
 }
 
 video {

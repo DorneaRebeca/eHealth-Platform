@@ -75,7 +75,13 @@ export class AddQuizComponent implements OnInit {
   }
 
   createNewQuiz() {
-    if (!this.validationErrorsExists()) {
+    if(this.newQuizQuestions.length == 0) {
+      this.snackBar.open('You shoul add some questions!', "", {
+        duration: 3000,
+        panelClass: ['red-snackbar']
+      });
+    } 
+    else if (!this.validationErrorsExists()) {
       let quiz : Quiz = {
         name : this.myForm.controls["title"].value,
         description : this.myForm.controls["description"].value,
@@ -83,6 +89,10 @@ export class AddQuizComponent implements OnInit {
       };
       this.quizService.addQuiz(quiz);
       this.router.navigate(["app-patient-detail"]);
+      this.snackBar.open('Succes!', "", {
+          duration: 3000,
+          panelClass: ['red-snackbar']
+      });
     }
     else {
       this.snackBar.open('Something went wrong!', "", {
