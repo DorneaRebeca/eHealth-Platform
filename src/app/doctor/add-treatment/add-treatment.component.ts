@@ -4,6 +4,7 @@ import { MatSnackBar, MatDialog } from '@angular/material';
 import { AddMedicationComponent } from '../add-medication/add-medication.component';
 import { DoctorService } from 'src/app/services/doctor.service';
 import { Router } from '@angular/router';
+import { Treatment } from 'src/app/services/doctor.service'
 
 @Component({
   selector: 'app-add-treatment',
@@ -81,6 +82,12 @@ export class AddTreatmentComponent implements OnInit {
                 duration: 3000,
                 panelClass: ['green-snackbar']
             });
+            let treatment : Treatment = {
+                startDate : this.myForm.controls['startDate'].value,
+                endDate : this.myForm.controls['endDate'].value,
+                medications : this.items
+            }
+            this.doctorService.addTreatment(treatment)
             this.router.navigate(["app-patient-detail"]);
         }
         else {

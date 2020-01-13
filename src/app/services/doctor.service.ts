@@ -26,13 +26,13 @@ export class DoctorService {
     this.medications.push({name: "Paracetamol", description: "Impotriva racelii.", dosage: 1, intakeIntervals: 2});    
     this.medications.push({name: "Algocalmin", description: "Pentru dureri de cap.", dosage: 1, intakeIntervals: 1});
     
-    this.treatments.push({startDate: "06/01/2020", endDate: "20/01/2020", medications: this.medications});
+    this.treatments.push({startDate: "06/01/2020", endDate: "06/11/2020", medications: this.medications});
     
     
     this.medications.push({name: "Tantum verde", description: "Pentru dureri in gat.", dosage: 1, intakeIntervals: 4});
     this.medications.push({name: "Dicarbocalm", description: "Pentru disconforturi stomacale.", dosage: 1, intakeIntervals: 2});
     
-    this.treatments.push({startDate: "07/01/2020", endDate: "10/01/2020", medications: this.medications});
+    this.treatments.push({startDate: "07/01/2020", endDate: "08/01/2020", medications: this.medications});
     
     console.log(this.treatments)
   }
@@ -107,6 +107,10 @@ export class DoctorService {
 
   getPatients() {
     return this.patients;
+  }
+
+  addTreatment(treatment){
+    this.treatments.push(treatment);
   }
 
   getTreatments(){
@@ -184,6 +188,7 @@ export interface Treatment {
   endDate: string;
   medications: Medication[]
 }
+
 export interface Prescription {
   id: number;
   name: string;
