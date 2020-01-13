@@ -15,9 +15,10 @@
     <mat-icon color="primary" class="tutorialIcon" (click)="openTutorial('blood pressure')">
       help_outline
     </mat-icon>
+      <form [formGroup]="bloodPressureForm">
         <mat-form-field appearance="outline">
           <mat-label>Systolic (upper value)</mat-label>
-          <input matInput type="number"  placeholder="mmHg" name="systolic"  [formControl]="systolicControl" [(ngModel)]="systolic">
+          <input matInput type="number"  placeholder="mmHg" name="systolic"  formControlName="systolicControl" [(ngModel)]="systolic">
           <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
           <mat-hint>*mandatory value</mat-hint>
           <mat-error>This field requires a number of maxim 3 digits.</mat-error>
@@ -25,7 +26,7 @@
 
         <mat-form-field appearance="outline">
           <mat-label>Diastolic (lower value)</mat-label>
-          <input matInput type="number" name="diastolic" placeholder="mmGh" [formControl]="diastolicControl" [(ngModel)]="diastolic">
+          <input matInput type="number" name="diastolic" placeholder="mmGh" formControlName="diastolicControl" [(ngModel)]="diastolic">
           <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
           <mat-hint>*mandatory value</mat-hint>
           <mat-error>This field requires a number of maxim 3 digits.</mat-error>
@@ -33,14 +34,14 @@
 
         <mat-form-field appearance="outline">
           <mat-label>Pulse rate</mat-label>
-          <input matInput placeholder="beats/minute" type="number" name="pulse" [formControl]="pulseControl" [(ngModel)]="pulse">
+          <input matInput placeholder="beats/minute" type="number" name="pulse" formControlName="pulseControl" [(ngModel)]="pulse">
           <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
           <mat-hint>*mandatory value</mat-hint>
           <mat-error>This field requires a number of maxim 3 digits</mat-error>
         </mat-form-field>
 
         <mat-form-field>
-          <input matInput [matDatepicker]="pressPicker" name="presDate" placeholder="Choose a date" [(ngModel)]="presDate">
+          <input matInput [matDatepicker]="pressPicker"  formControlName="pressureDateControl" name="presDate" placeholder="Choose a date" [(ngModel)]="presDate">
           <mat-datepicker-toggle matSuffix [for]="pressPicker"></mat-datepicker-toggle>
           <mat-datepicker #pressPicker></mat-datepicker>
         </mat-form-field>
@@ -49,6 +50,7 @@
           <button mat-raised-button color="primary" type="submit" (click)="saveBloodPressure()">Save</button>
           <button mat-raised-button color="accent" (click)="onClear()">Cancel</button>
         </div>
+      </form>
   </mat-expansion-panel>
 
   <mat-expansion-panel  #panel2>
@@ -60,18 +62,18 @@
 
     <mat-icon color="primary" class="tutorialIcon"  (click)="openTutorial('body temperature')" >
       help_outline
-    </mat-icon>>
-
+    </mat-icon>
+    <form [formGroup]="temperatureForm">
     <mat-form-field appearance="outline">
       <mat-label>Temperature</mat-label>
-      <input matInput placeholder="Celsius grades" type="number" name="temp" [formControl]="tempControl" [(ngModel)]="temperature">
+      <input matInput placeholder="Celsius grades" type="number"  name="temp" formControlName="tempControl" [(ngModel)]="temperature">
       <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
       <mat-hint>*mandatory value</mat-hint>
       <mat-error>This field requires a number of maxim 3 digits</mat-error>
     </mat-form-field>
 
     <mat-form-field>
-      <input matInput [matDatepicker]="tempPicker" name="tempDate" placeholder="Choose a date"  [(ngModel)]="tempDate">
+      <input matInput [matDatepicker]="tempPicker" name="tempDate" formControlName="tempDateControl"  placeholder="Choose a date"  [(ngModel)]="tempDate">
       <mat-datepicker-toggle matSuffix [for]="tempPicker"></mat-datepicker-toggle>
       <mat-datepicker #tempPicker></mat-datepicker>
     </mat-form-field>
@@ -80,6 +82,7 @@
       <button mat-raised-button color="primary" (click)="saveTemperature()">Save</button>
       <button mat-raised-button color="accent" (click)="onClear()">Cancel</button>
     </div>
+    </form>
   </mat-expansion-panel>
 
   <mat-expansion-panel #panel3>
@@ -92,17 +95,17 @@
     <mat-icon class="tutorialIcon"  color="primary" (click)="openTutorial('blood sugar')" >
       help_outline
     </mat-icon>
-
+    <form [formGroup]="sugarForm">
     <mat-form-field appearance="outline">
       <mat-label>Sugar Level</mat-label>
-      <input matInput placeholder="levesdjc"  type="number" name="sugar"  [formControl]="sugarControl" [(ngModel)]="bloodSugar">
+      <input matInput placeholder="levesdjc"  type="number" name="sugar"  formControlName="sugarControl" [(ngModel)]="bloodSugar">
       <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
       <mat-hint>*mandatory value</mat-hint>
       <mat-error >This field requires a number of maxim 3 digits</mat-error>
     </mat-form-field>
 
     <mat-form-field>
-      <input matInput [matDatepicker]="sugarPicker" placeholder="Choose a date" name="sDate" [(ngModel)]="sugarDate">
+      <input matInput [matDatepicker]="sugarPicker" placeholder="Choose a date" formControlName="sugarDateControl" name="sDate" [(ngModel)]="sugarDate">
       <mat-datepicker-toggle matSuffix [for]="sugarPicker"></mat-datepicker-toggle>
       <mat-datepicker #sugarPicker></mat-datepicker>
     </mat-form-field>
@@ -111,6 +114,7 @@
       <button mat-raised-button color="primary" (click)="saveBloodSugar()" >Save</button>
       <button mat-raised-button color="accent" (click)="onClear()">Cancel</button>
     </div>
+    </form>
   </mat-expansion-panel>
 
 </mat-accordion>
