@@ -30,6 +30,36 @@ export class PatientService {
   dailyMeals = [];
 
   constructor() {
+    let points = [];
+    for (var i = 1; i <= 31; i++) {
+      let str = new Date(2020, 0, i);
+      const meals = this.getMealsForDay(str);
+      points.push({
+        status: i < 14,
+        date: str,
+        calories: i < 14 ? Math.floor(Math.random() * (400 + 1)) : 0,
+        name: 'Breakfast'
+      });
+      points.push({
+        status: i < 14,
+        date: str,
+        calories: i < 14 ? Math.floor(Math.random() * (400 + 1)) : 0,
+        name: 'Lunch'
+      });
+      points.push({
+        status: i < 14,
+        date: str,
+        calories: i < 14 ? Math.floor(Math.random() * (400 + 1)) : 0,
+        name: 'Dinner'
+      });
+      points.push({
+        status: i < 14,
+        date: str,
+        calories: i < 14 ? Math.floor(Math.random() * (400 + 1)) : 0,
+        name: 'Snack'
+      });
+    }
+    localStorage.setItem('dailyMeals', JSON.stringify(points));
     // localStorage.setItem('dailyMeals', JSON.stringify([]));
     this.dailyMeals = JSON.parse(localStorage.getItem('dailyMeals'));
   }
