@@ -122,7 +122,7 @@ export class AddPrescriptionComponent implements OnInit,OnChanges {
       this.router.navigate(["app-patient-detail"]);
   }
   else {
-      this.snackBar.open('Prescription could not be empty!', "", {
+      this.snackBar.open('Prescription can not be empty!', "", {
           duration: 3000,
           panelClass: ['red-snackbar']
       });
